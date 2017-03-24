@@ -3,13 +3,13 @@ from igraph import *
 def lobby(graph):
     lobbies = []
 
-    for u in self.graph.vs:
+    for u in graph.vs:
         lobby = 1 # initialize lobby
         vdegs = [] # neighbors' degree
 
-        edges = self.graph.es.select(_source=u.index)
+        edges = graph.es.select(_source=u.index)
         for e in edges:
-            v = self.graph.vs[e.target]
+            v = graph.vs[e.target]
             vdegs.append(v.degree(mode='out'))
                             
 	vdegs.sort()
