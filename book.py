@@ -5,7 +5,7 @@ from lobby import lobby
 authors of this project.
 """
 class Book(object):
-        def __init__(self, name, source='local', color='black', marker='o'):
+        def __init__(self, name, source='local', color='black', marker='o', generative_model=True):
                 """
                 Parameter
                 ---------
@@ -32,6 +32,9 @@ class Book(object):
                 self.color = color
                 self.marker = marker
 
+                # model properties
+                self.generative_model = generative_model
+                
                 # system properties
                 self.data_directory = 'data/'
                 self.data_file_extension = '.csv'
@@ -86,6 +89,9 @@ class Book(object):
 			 	dest = name_idxs[v]
 				graph.add_edges([(src, dest)]) # TODO: check weights
 
+                                if (self.generative_model==True):
+                                        Book.Tick(self, graph)
+
                 return graph
                                 
         def create_graph_from_local_data(self):
@@ -114,7 +120,7 @@ class Book(object):
 			        if (name_idxs.has_key(v)==False):
 			                name_idxs[v] = next_idx
 			                next_idx += 1
-
+                                print(v)
                                 # count the characters
                                 if(self.name_freqs.has_key(v)==False):
                                         self.name_freqs[v] = 1
@@ -224,8 +230,20 @@ class Book(object):
 
         def calc_graph_vertex_lobby(self):
                 lobby(self.graph)
-        
+
+
+        def Tick(self, graph):
+                graph
+                deg = 0
+
+                for v in graph.vs:
+                        deg += v.degree(mode="out")
+                avg = float(deg)/graph.vcount()
+
+                print(str(avg) + "\t" + str(graph.components().size(0)))
+                
 if __name__ == "__main__":
-        l = Book('anna', 'sgb')
+#        l = Book('anna', 'sgb')
+        l = Book('acts')
         g = l.get_graph()
-        print(g)
+        #print(g)
