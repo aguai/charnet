@@ -1,162 +1,11 @@
 from igraph import *
 import matplotlib.pyplot as plt
-import logging
+from book import *
 
-# LOG helpers
-logfn = 'charnet.log' # log file name
-logf = None # log file
-logger = logging.getLogger('charnet')
-logger.setLevel(logging.INFO)
-        
-class CharNet(object):
-        data_directory = 'data/'
-        # Extension for data files
-        data_file_extension = '.csv'	
-        # Extension for files containing frequency of characters
-	# appearance
-	freq_file_extension = '.freq'
+#The `write_hapax_legomena_table()` function write the _Hapax_
+#frequency to be included in the paper using LaTeX syntax for tables.
 
-	def __init__(self, name=None, color=None, marker=None, source=None):
-        	self.name = name
-        	self.color = color
-        	self.marker = marker
-		self.source = source
-
-		self.graph = None # igraph Graph
-
-		# logging to standard output
-		self.logger = logging.getLogger(self.name)
-		## options: DEBUG, INFO, WARN, ERROR, CRITICAL
-		self.logger.setLevel(logging.INFO)
-
-		# read data file
-		names_idx = {} # map names and indices
-		next_idx = 0 # next free index
-		arcs = {} # hash of array of arcs tips
-
-		if (self.source == "charnet"):
-                        b = Local(self.name)
-                        self.graph = b.create_graph()
-		else if (source=="sgb"):
-                        sgb = SGB(self.name)
-                        self.graph = sgb.create_graph()
-		else
-			logger.error("Data source parser not implemented: {0}", self.source)
-			exit()
-
-## Calculating Global measures
-
-Clustering coefficient is calculated using `igraph`
-[transitivity](http://igraph.org/r/doc/transitivity.html) routine.  We
-also calculate
-[density](http://igraph.org/python/doc/igraph.GraphBase-class.html#density)
-and
-[diameter](http://igraph.org/python/doc/igraph.GraphBase-class.html#diameter)
-of the graph.
-
-<<complete=False>>=
-		self.graph['clustering'] = self.graph.transitivity_undirected()
-		self.graph['density'] = self.graph.density()
-		self.graph['diameter'] = self.graph.diameter(directed=False)
-@
-
-
-## Character frequency
-
-Files in `data/` directory with ".freq" extension contains characters'
-frequency already counted during data compilation. For the books that
-don't have this file in `data/`, this file are generated and written
-in a file with the same extension. The file has the following format:
-
-````
-Sir Isaac Newton;4
-````
-
-where "`;`" is the separator, the first column is the character name and
-the second the frequency.
-
-<<complete=False>>=
-		self.freqs = {}
-		fn = self.name + FREQ_EXTENSION
-
-		self.logger.info("Read frequency for " + fn)
-		f = open(fn, "r")
-    	    	for ln in f:
-            		(vname, freq) = ln.rstrip("\n").split(';')
-			self.freqs[vname] = int(freq)
-		f.close()
-@
-
-# Lobby or h index
-
-All nodes are traversed and Lobby index is calculated and stored in
- the lobby macro-field.
-
-If a node has the following list of neighbors sorted by degree:
-
-<table>
-<tr>
-	<th> neighbor  </th><th>  degree </th>
-</tr>
-<tr>
-<td>   1       </td><td>   21    </td>
-</tr>
-<tr>
-<td>   2       </td><td>   18    </td>
-</tr>
-<tr>
-<td>   3       </td><td>    4    </td>
-</tr>
-<tr>
-<td>   4       </td><td>    3    </td>
-</tr>
-</table>
-
-the Lobby index is 3 because degree $\leq$ neighbor_position.
- Degree repetitions are not accounted.
-
-<<complete=False>>=
-	def lobby(self):
-		lobbies = []
-
-		logf.write("Calculating lobby index for " + self.name + "\n")
-
-	    	for u in self.graph.vs:
-                	lobby = 1 # initialize lobby
-                    	vdegs = [] # neighbors' degree
-
-                    	edges = self.graph.es.select(_source=u.index)
-                	for e in edges:
-            	    		v = self.graph.vs[e.target]
-            	    		vdegs.append(v.degree(mode='out'))
-        
-			vdegs.sort()
-                	vdegs.reverse()
-	       		old_vdeg = -1
-	        	idx = 0
-                	for vdeg in vdegs:
-            	    		# Ignore repetition of degrees
-            	    		if (vdeg != old_vdeg):
-                       			idx = idx + 1
-            	    		if (vdeg <= idx):
-                       			u['lobby'] = lobby = vdeg
-                       			break
-             	    		old_deg = vdeg
-
-			logf.write(" " + u['name'] + "\t" + str(lobby) + "\n")
-			lobbies.append(lobby)
-
-		return lobbies
-@
-
-# _Hapax_ _Legomena_
-
-_Hapax_ _Legomena_ are words with occurrence frequency equals to one.
-The `write_hapax_legomena_table()` function write the _Hapax_
-frequency to be included in the paper using LaTeX syntax for tables.
-
-<<complete=False>>=
-def write_hapax_legomena_table(charnets):
+def write_hapax_legomena_table(books):
 	fn = 'hapax.tex'
 
 	f = open(fn, "w")
@@ -164,30 +13,30 @@ def write_hapax_legomena_table(charnets):
 	f.write("\\bf Book & number of {\\it Hapax Legomena} characters/number of characters \\\\\n")
 	
 	# count the lapaxes for each book
-	for charnet in charnets:
-		nr_hapaxes = 0
-		nr_chars = 0
-		for name, freq in charnet.freqs.items():
-		       	if (freq == 1):
-		   		nr_hapaxes += 1
+	for book in books:
+		nr_hapaxes = book.get_number_hapax_legomenas()
+		nr_chars = book.get_number_characters()
 
-			nr_chars += 1
-
-		f.write(charnet.name + "&" + str(nr_hapaxes) + "/" + str(nr_chars)+ "\\\\\n")
+		f.write(book.name + "&" + str(nr_hapaxes) + "/" + str(nr_chars)+ "\\\\\n")
 
 	f.write("\end{tabular}\n")
 	f.close()
-	logger.info("Wrote table in {0}", fn)
-@
 
 # Writing global measures
 
-Glabal measures for each character network are written as a table and
-included in a LaTeX file named `global.tex` to be included in the
-manuscript.
+# Global measures for each character network are written as a table and
+# included in a LaTeX file named `global.tex` to be included in the
+# manuscript.
 
-<<complete=False>>=
-def write_global_measures(charnets):
+# Clustering coefficient is calculated using `igraph`
+# [transitivity](http://igraph.org/r/doc/transitivity.html) routine.  We
+# also calculate
+# [density](http://igraph.org/python/doc/igraph.GraphBase-class.html#density)
+# and
+# [diameter](http://igraph.org/python/doc/igraph.GraphBase-class.html#diameter)
+# of the graph.
+
+def write_global_measures(books):
 	fn = 'global.tex'
 
 	f = open(fn, "w")
@@ -195,35 +44,36 @@ def write_global_measures(charnets):
 	f.write("\\begin{tabular}{l|c|c|c}\\hline\n")
 	f.write("\\bf\\hfil book\\hfil & \\bf\\hfil clustering coefficient\hfil"
 		 + "& \\bf\\hfil density\\hfil & \\bf\\hfil diameter\\hfil\\\\ \\hline\n")
-	for charnet in charnets:
-		f.write(charnet.name + " & " + str(charnet.graph['clustering']) + " & "
-				  + str(charnet.graph['density']) + " & "
-				  + str(charnet.graph['diameter']) + "\\\\ \n")
+	for book in books:
+	        book.graph['clustering'] = book.graph.transitivity_undirected()
+	        book.graph['density'] = book.graph.density()
+	        book.graph['diameter'] = book.graph.diameter(directed=False)
+
+		f.write(book.name + " & " + str(book.graph['clustering']) + " & "
+				  + str(book.graph['density']) + " & "
+				  + str(book.graph['diameter']) + "\\\\ \n")
 	f.write("\\hline\\end{tabular}\n")
 	f.close()
-	logger.info("Wrote table in {0}", fn)
-@
 
 # Plotting
 
 ## Ranking frequency
 
-Character appearance frequency is ranked in the y axis. The scale for
-y axis is logarithmic.
+# Character appearance frequency is ranked in the y axis. The scale for
+# y axis is logarithmic.
 
-<<complete=False>>=
-def plot_rank_frequency(charnets, normalize=True):
+def plot_rank_frequency(books, normalize=True):
 	fns = ['figure1a.png', 'figure1b.png']
 	normalizes = [False, True]
 
 	for k in range(len(fns)):
 		fig, ax = plt.subplots()
 
-		for charnet in charnets:
-	    		g = charnet.graph
-			name = charnet.name
-			color = charnet.color
-			marker = charnet.marker
+		for book in books:
+	    		g = book.graph
+			name = book.name
+			color = book.color
+			marker = book.marker
 	    		freqs = {}		
 			xs = []
 			ys = []
@@ -231,7 +81,7 @@ def plot_rank_frequency(charnets, normalize=True):
 			max_freq = 0.0
 
 			x = 1
-			for character, freq in charnet.freqs.items():
+			for character, freq in book.name_freqs.items():
 			    	y = int(freq)
 			    	xs.append(x)
 				ys.append(y)
@@ -265,29 +115,27 @@ def plot_rank_frequency(charnets, normalize=True):
 
 		plt.savefig(fns[k])
 		print("INFO: Wrote plot in " + fns[k])
-@
 
 ## Centralities
 
-[Betweenness](http://igraph.org/python/doc/igraph.GraphBase-class.html#betweenness),
-[closeness](http://igraph.org/python/doc/igraph.GraphBase-class.html#closeness)
-and
-[eigenvector](http://igraph.org/python/doc/igraph.GraphBase-class.html#eigenvector_centrality)
-centralities are calculated using `igraph`. The normalization of
-betweeness is obtained by dividing the value by $(N-1)(N-2)/2$, where $N$ is
-the number of vertices.
+# [Betweenness](http://igraph.org/python/doc/igraph.GraphBase-class.html#betweenness),
+# [closeness](http://igraph.org/python/doc/igraph.GraphBase-class.html#closeness)
+# and
+# [eigenvector](http://igraph.org/python/doc/igraph.GraphBase-class.html#eigenvector_centrality)
+# centralities are calculated using `igraph`. The normalization of
+# betweeness is obtained by dividing the value by $(N-1)(N-2)/2$, where $N$ is
+# the number of vertices.
 
-<<complete=False>>=
-def plot_centralities(charnets):
+def plot_centralities(books):
 	offset_fig_nr = 1 # figure number starts after 1
 
-	for charnet in charnets:
-        	g = charnet.graph.as_undirected()
-		name = charnet.name
+	for book in books:
+        	g = book.graph.as_undirected()
+		name = book.name
 
 		# DEGREE
 		for i in range(len(g.vs)):
-            		g.vs[i]['Degree'] = v.degree(mode="out")
+            		g.vs[i]['Degree'] = g.vs[i].degree(mode="out")
 
 		# BETWEENNESS
 #		cents   = g.betweenness(vertices=None, directed=False, weights='weight')
@@ -303,7 +151,7 @@ def plot_centralities(charnets):
 
 		# LOBBY
 		## Already do the assignment of lobby value to each vertex
-		charnet.lobby()
+		book.calc_graph_vertex_lobby()
 
 	centrs = ["Degree", "Betweenness", "Closeness", "Lobby"] # Degree, Betweenness, Closeness, Lobby
 	for c in centrs:
@@ -311,33 +159,32 @@ def plot_centralities(charnets):
 
 		fig, ax = plt.subplots()
 
-		for i in range(len(charnets)):
-		        g = charnets[i].graph.as_undirected()
-			name = charnets[i].name
-			color = charnets[i].color
-			marker = charnets[i].marker
+		for i in range(len(books)):
+		        g = books[i].graph.as_undirected()
+			name = books[i].name
+			color = books[i].color
+			marker = books[i].marker
 			xs = []
 			ys = []
 			freqs = {}
 
 			# calculate the centrality frequency
 			for v in g.vs:
-				val = v[i][c]
+                                print(c+" "+v['name'])
+                                
+				val = v[c]
 			    	if freqs.has_key(val):
                 			freqs[val] = freqs[val] + 1
             			else:
 					freqs[val] = 1
 
 			# Normalize and add to points to plot
-			logf.write("# "+ c " for " + name + ": " + str(g.vcount()) + " vertices\n")
-			logf.write("  " + c + "\tnorm_" + c + "\tfrequency\tnorm_frequency\n")
 			for val, freq in freqs.items():
 				x = val # val
 				y = float(freq) / g.vcount()   # freq / N
 				xs.append(x)
 				ys.append(y)
-				logf.write("  " + str(deg) + "\t" + str(x) + "\t" + str(freq) + "\t" + str(y) + "\n")
-					
+									
 			marker_style = dict(linestyle='', color=color, markersize=4)
 			ax.plot(xs, ys, c=color,
 				    marker=marker,
@@ -353,21 +200,16 @@ def plot_centralities(charnets):
 		#plt.legend()
 		plt.tight_layout()
 		plt.savefig(fn)
-		logger.info("Wrote plot in {0}", fn)
-@
 
-# Graph drawing
+# Graphs are drawing using
+# [_igraph_](http://igraph.org/python/doc/tutorial/tutorial.html)
+# library and written to output as png files. Graph drawings are not
+# used in the paper but they are showed in the project page.
 
-Graphs are drawing using
-[_igraph_](http://igraph.org/python/doc/tutorial/tutorial.html)
-library and written to output as png files. Graph drawings are not
-used in the paper but they are showed in the project page.
-
-<<complete=False>>=
-def draw_graphs(charnets):
-	for charnet in charnets:
-        	g = charnet.graph.as_undirected()
-		fn = charnet.name+".png"
+def draw_graphs(books):
+	for book in books:
+        	g = book.graph.as_undirected()
+		fn = book.name+".png"
 
 		visual_style = {} 
         	layout = g.layout("kk")
@@ -384,48 +226,39 @@ def draw_graphs(charnets):
 	        visual_style["bbox"] = (800, 600)
 
 	        plot(g, fn, **visual_style)
-		logger.info("Wrote graph in {0}", fn)
-@
 
-# Main subroutine
+# The main subroutine declares some attributes associated with the
+# books. Those attributes are used to label the books and to
+# standardize the pictorial elements properties like color and point
+# marker in the plot.
 
-The main subroutine declares some attributes associated with the
- books.  Those attributes are used to label the books and to
- standardize the pictorial elements properties like color and point
- marker in the plot.
- 
-
-<<complete=False>>=
 if __name__ == "__main__":
 	color = {'bible': 'red', 'fiction': 'blue', 'biography': 'darkgreen'}
 
-	acts = {'name': 'acts', 'color': color['bible'], 'marker': 's'}
-	arthur = {'name': 'arthur', 'color': 'magenta', 'marker': '>'}
-	david = {'name': 'david', 'color': color['fiction'], 'marker': '8'}
-	hobbit = {'name': 'hobbit', 'color': color['fiction'], 'marker': 'p'}
-	huck = {'name': 'huck', 'color': color['fiction'], 'marker': 'H'}
-	luke = {'name': 'luke', 'color': color['bible'], 'marker': '8'}
-	newton = {'name': 'newton', 'color': color['biography'], 'marker': 'o'}
-	pythagoras = {'name': 'pythagoras', 'color': color['biography'], 'marker': '^'}
-	tolkien = {'name': 'tolkien', 'color': color['biography'], 'marker': 'd'}
+	acts = {'name': 'acts', 'source':'local', 'color': color['bible'], 'marker': 's'}
+	arthur = {'name': 'arthur', 'source':'local', 'color': 'magenta', 'marker': '>'}
+	david = {'name': 'david', 'source':'sgb', 'color': color['fiction'], 'marker': '8'}
+	hobbit = {'name': 'hobbit', 'source':'local', 'color': color['fiction'], 'marker': 'p'}
+	huck = {'name': 'huck', 'source':'sgb', 'color': color['fiction'], 'marker': 'H'}
+	luke = {'name': 'luke', 'source':'local', 'color': color['bible'], 'marker': '8'}
+	newton = {'name': 'newton', 'source':'local', 'color': color['biography'], 'marker': 'o'}
+	pythagoras = {'name': 'pythagoras', 'source':'local', 'color': color['biography'], 'marker': '^'}
+	tolkien = {'name': 'tolkien', 'source':'local', 'color': color['biography'], 'marker': 'd'}
 	
 #	attrs = [acts, arthur, david, hobbit,
 #	      	      huck, luke, newton,
 #		      pythagoras, tolkien]
-	charnets = []
+	books = []
 
 	attrs = [arthur]
 
-	logf = open(logfn, "w")
 	for i in range(len(attrs)):
-	    cn = BookNet(attrs[i]['name'], attrs[i]['color'], attrs[i]['marker'])
-	    charnets.append(cn)
+	    cn = Book(attrs[i]['name'], attrs[i]['source'], attrs[i]['color'], attrs[i]['marker'])
+	    books.append(cn)
 
-	write_global_measures(charnets)
-	write_hapax_legomena_table(charnets)
-	plot_rank_frequency(charnets)
-	plot_centralities(charnets)
-	draw_graphs(charnets)
+	write_global_measures(books)
+	write_hapax_legomena_table(books)
+	plot_rank_frequency(books)
+	plot_centralities(books)
+	draw_graphs(books)
 
-	logf.close()
-@
