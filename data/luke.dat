@@ -1,5 +1,6 @@
 * File "luke.dat" from Characters Network project (C) 2017 University of Sao Paulo, Brazil
 * Holy Bible's Luke
+* Gathered from "American Holy Bible"
 * This file may be freely copied.
 AG angel Gabriel
 AN Andrew
@@ -57,7 +58,6 @@ PE Peter
 PH Philip
 PI Pilate
 PS pharisees
-PU Pilatus
 RS the ruler of the synagogue
 RU rulers
 SB scribes
@@ -79,58 +79,24 @@ ZA Zachary
 ZC Zacchaeus
 ZE Zealot
 
-AG,ZA
-AG,MA
-EB,MA
-EB,ZA,JO
-JS,MA
-MA,JS,JE
-SE,JE,MA,PA
-MA,JE
-PB,JO
-SO,JO
-JO,JE
-JE,DE
-MU,JE
-SM,JE
-SP,JE,MZ,JZ
-ML,JE
-MP,JE
-LV,JE
-PS,JE
-SB,PS,MW,JE
-JE,PE,AN,JA,JO,PH,BT,MT,TH,JP,ZE,JJ,JI
-JE,CF
-DM,MM,JE
-SW,JE,SI
-JE,LG
-JU,JE,WB
-JE,PE,JO,JA,JU,JW,JD
-JE,PE,JO,JA
-JE,MO,EL,PE
-JE,CD
-JE,JO
-JE,JA,JO
-MR,MS,JE
-JE,DD
-PS,OL,JE
-WS,JE,RS
-MD,JE,LW,PS
-TL,JE
-PE,JE
-BJ,JE
-ZC,JE
-CP,SB,ED,SD
-JI,CP,CA
-JE,PE,JO
-JE,PE,AN,JA,JO,PH,BT,MT,TH,JP,ZE,JJ,JI
-SH,CP,CT,ED,JE
-PE
-CP,SB,JE
-PI,JE,CP
-HE,JE,CP,SB
-PI,CP,RU,JE,BA
-SC,JE,TM,CE
-JT,PU
-MG,JN,MJ,PE
-SI,CL,JE
+1:ZA,AG;AG,MA;EB,MA;EB,ZA,JO
+2:JS,MA;MA,JS,JE;SE,JE,MA,PA;MA,JE
+3:PB,JO;SO,JO;JO,JE
+4:JE,DE;MU,JE;SM,JE
+5:SP,JE,MZ,JZ;ML,JE;MP,JE;LV,JE
+6:PS,JE;SB,PS,MW,JE;JE,PE,AN,JA,JO,PH,BT,MT,TH,JP,ZE,JJ,JI
+7:JE,CF;DM,MM,JE;SW,JE,SI
+8:JE,LG;JU,JE,WB;JE,PE,JO,JA,JU,JW,JD
+9:JE,PE,JO,JA;JE,MO,EL,PE;JE,CD;JE,JO;JE,JA,JO
+10:MR,MS,JE
+11:JE,DD;PS,OL,JE
+12:WS,JE,RS
+13:MD,JE,LW,PS
+17:TL,JE
+18:PE,JE;BJ,JE
+19:ZC,JE
+20:CP,SB,ED,SD
+22:JI,CP,CA;JE,PE,JO;JE,PE,AN,JA,JO,PH,BT,MT,TH,JP,ZE,JJ,JI;SH,CP,CT,ED,JE
+23:PI,JE;HE,JE;CP,SB,JE;PI,CP,RU,JE,BA;SC,JE,TM,CE;JT,PI
+24:MG,JN,MJ,PE;SI,CL,JE
+* End of file "luke.dat"
