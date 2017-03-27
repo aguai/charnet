@@ -10,6 +10,7 @@ CA captains
 CD child with demon
 CE centurion
 CF centurion friends
+CL Cleopas
 CP chief priests
 CT captains of the temple
 DD demon that was dumb
@@ -18,6 +19,7 @@ DM dead man
 EB Elizabeth
 ED elders
 EL ELIIJAH
+HE Herod
 JA James
 JD Jairus' daughter
 JE Jesus
@@ -126,9 +128,9 @@ SH,CP,CT,ED,JE
 PE
 CP,SB,JE
 PI,JE,CP
-Herod,JE,CP,SB
+HE,JE,CP,SB
 PI,CP,RU,JE,BA
 SC,JE,TM,CE
 JT,PU
 MG,JN,MJ,PE
-SI,Cleopas,JE
+SI,CL,JE
