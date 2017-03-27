@@ -1,0 +1,134 @@
+* File "luke.dat" from Characters Network project (C) 2017 University of Sao Paulo, Brazil
+* Holy Bible's Luke
+* This file may be freely copied.
+AG angel Gabriel
+AN Andrew
+BA Barabbas
+BJ blind man in Jericho
+BT Bartholomew
+CA captains
+CD child with demon
+CE centurion
+CF centurion friends
+CP chief priests
+CT captains of the temple
+DD demon that was dumb
+DE devil
+DM dead man
+EB Elizabeth
+ED elders
+EL ELIIJAH
+JA James
+JD Jairus' daughter
+JE Jesus
+JI Judas Iscariot
+JJ Judas the son of James
+JN Joanna
+JO John
+JP James the son of Alpheus
+JS Joseph
+JT "Joseph of Arimathaea"
+JU Jairus
+JW Jairus' wife
+JZ John, Zebedee's son
+LG Legion
+LV Levi
+LW lawyers
+MA Mary
+MD a certain man that had the dropsy
+MG Mary Magdalene
+MJ Mary the mother of James
+ML a man full of leprosy
+MM dead man's mother
+MO MOSES
+MP a man that was palsied
+MR Martha
+MS Martha's sister called Mary
+MT Mathew
+MU a man that had a spirit of uncleandemon
+MW the man that had his hand withered
+MZ James, Zebedee's son
+OL one of the lawyers
+PA prophetess Anna
+PB publicans
+PE Peter
+PH Philip
+PI Pilate
+PS pharisees
+PU Pilatus
+RS the ruler of the synagogue
+RU rulers
+SB scribes
+SC Simon of Cyrene
+SD sadducees
+SE Simeon
+SH servant of the high priest
+SI Simon
+SM Simon's wife's mother
+SO soldiers
+SP Simon Peter
+SW sinner woman
+TH Thomas
+TM two malefactors
+TL ten man that were lepers
+WB a woman having an issue of blood twelve years
+WS a woman that had a spirit of infirmity eighteen years
+ZA Zachary
+ZC Zacchaeus
+ZE Zealot
+
+AG,ZA
+AG,MA
+EB,MA
+EB,ZA,JO
+JS,MA
+MA,JS,JE
+SE,JE,MA,PA
+MA,JE
+PB,JO
+SO,JO
+JO,JE
+JE,DE
+MU,JE
+SM,JE
+SP,JE,MZ,JZ
+ML,JE
+MP,JE
+LV,JE
+PS,JE
+SB,PS,MW,JE
+JE,PE,AN,JA,JO,PH,BT,MT,TH,JP,ZE,JJ,JI
+JE,CF
+DM,MM,JE
+SW,JE,SI
+JE,LG
+JU,JE,WB
+JE,PE,JO,JA,JU,JW,JD
+JE,PE,JO,JA
+JE,MO,EL,PE
+JE,CD
+JE,JO
+JE,JA,JO
+MR,MS,JE
+JE,DD
+PS,OL,JE
+WS,JE,RS
+MD,JE,LW,PS
+TL,JE
+PE,JE
+BJ,JE
+ZC,JE
+CP,SB,ED,SD
+JI,CP,CA
+JE,PE,JO
+JE,PE,AN,JA,JO,PH,BT,MT,TH,JP,ZE,JJ,JI
+SH,CP,CT,ED,JE
+PE
+CP,SB,JE
+PI,JE,CP
+Herod,JE,CP,SB
+PI,CP,RU,JE,BA
+SC,JE,TM,CE
+JT,PU
+MG,JN,MJ,PE
+SI,Cleopas,JE
