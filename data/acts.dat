@@ -1,5 +1,6 @@
 * File "acts.dat" from Characters Network project (C) 2017 University of Sao Paulo, Brazil
 * Holy Bible's Acts of Apostles
+* Gathered from "American Holy Bible"
 * This file may be freely copied.
 AE Aeneas
 AK Agrippa the King
@@ -42,7 +43,7 @@ LC Lucius of Cirene
 LM lame man
 LY Lydia
 MA Manaen
-MV Mnason of Cyprus
+MC Mnason of Cyprus
 MD maid having a spirit of divination
 MG magistrates
 MT men of Athens
@@ -78,59 +79,26 @@ TM Timon
 TR Trophimus
 TY Tychicus
 
-LM,JO,PE
-AS,AL,CA,JO,PE
-PE,AN
-PE,SH
-CP,,PE,GM
-ST,PH,PC,NA,TM,PM,NO
-HP,ST
-ST,SA
-SI,PH
-PE,JO,SI
-EU,PH
-SA,HP
-JE,SA
-AN,JE
-AN,SA
-BA,SA
-PE,AE
-PE,TA
-PE,CO
-PE,RH
-BA,SY,LC,MA,SA
-BA,SA,JM
-BA,SA,SP
-SA,EL
-PA,BA,PE,JA,JU,SL
-PA,BA
-BA,JM
-PA,SL
-TI,PA
-LY,PA
-MD,PA
-PA,SL,MG
-PA,SL,PR
-JI,PA,SL
-RT,JS
-PA,MT
-PA,DA,DM
-PA,AQ,PI
-PA,TJ,CR
-PA,GA
-AP,PI,AQ
-DE,GI,AR,AL
-PA,SP,AR,SE,GD,TI,TY,TR
-ET,PA
-PA,EE
-PA,PV
-PA,MC
-PA,JA
-PS,PA
-PN,OT,FE,PA
-FE,DR,PA
-PF,PA
-AK,BE,PF
-AK,BE,PF,PA
-PA,CJ,AR
-FP,PA
+3:JO,PE;LM,JO,PE
+4:AS,CA,JO,AL,PE
+5:PE,AN;PE,SH;CP,PE,GM
+6.5:ST,PH,PC,NA,TM,PM,NO
+7:HP,ST;ST,SA
+8:SI,PH;PE,JO,SI;EU,PH
+9:SA,HP;JE,SA;AN,JE;AN,SA;BA,SA;PE,AE;PE,TA
+10:PE,CO
+12:RH,PE
+13:BA,SY,LC,MA,SA;BA,SA,JM;BA,SA,SP;SA,EL
+15:PA,BA,PE,JA,JU,SL;PA,BA;BA,JM;PA,SL
+16:TI,PA;LY,PA;MD,PA;PA,SL,MG;PA,SL,PR;JI,PA,SL
+17:RT,JS;PA,MT;PA,DA,DM
+18:PA,AQ,PI;PA,TJ,CR;PA,GA;AP,PI,AQ
+19:DE,GI,AR,AL
+20:PA,SP,AR,SE,GD,TI,TY,TR;ET,PA;PA,EE
+21:PA,PV;PA,MC;PA,JA
+23:PS,PA
+24:PN,OT,FE,PA;FE,DR,PA
+25:PF,PA;AK,BE,PF;AK,BE,PF,PA
+27:PA,CJ,AR
+28:FP,PA
+* End of file "acts.dat"
