@@ -1,71 +1,136 @@
+* File "acts.dat" from Characters Network project (C) 2017 University of Sao Paulo, Brazil
+* Holy Bible's Acts of Apostles
+* This file may be freely copied.
+AE Aeneas
+AK Agrippa the King
 AL Alexander
 AN Ananias
+AP Apollo
+AQ Aquila
+AR Aristarchus
 AS Annas
+BA Barnabas
+BE Bernice
 CA Caiaphas
+CJ centurion named Julius
+CO Cornelius
 CP captain
+CR Crispus
+DA Dionysius the Areopagyte
+DE Demetrius
+DM Damaris
+DR Drusilla
+EE elders of the Ephesus church
+EL Elymas
+ET Eutychus
+EU eunuch
+FE Felix
+FP father of Publius
+GA Gallio
+GD Gaius of Derbe
+GI Gaius
 GM Gamaliel
 HP high priest
+JA James
+JE Jesus
+JI jailor
+JM John Mark
 JO John
+JS Jason
+JU Judas
+LC Lucius of Cirene
 LM lame man
+LY Lydia
+MA Manaen
+MV Mnason of Cyprus
+MD maid having a spirit of divination
+MG magistrates
+MT men of Athens
+NA Nicanor
+NO Nicolaus
+OT orator Tertullus
+PA Paul
+PC Prochorus
 PE Peter
+PF Porcius Festus
+PH Philip
+PI Priscilla
+PM Parmenas
+PN priest Ananias
+PS Paul's sister son
+PR prisoners
+PV Philip the evangelist
+RH Rhoda
+RT rulers of Thessalonica
 SA Saul
-SP Sapphira
+SE Secundus
+SB Sopater of Beroea
+SH Sapphira
+SI Simon
+SL Silas
+SP Sergius Paulus
 ST Stephen
+SY Symeon
+TA Tabitha
+TI Timothy
+TJ Titus Justus
+TM Timon
+TR Trophimus
+TY Tychicus
 
 LM,JO,PE
 AS,AL,CA,JO,PE
 PE,AN
-PE,SP
+PE,SH
 CP,,PE,GM
-Stephen,Philip,Prochorus,Nicanor,Timon,Parmenas,Nicolaus
-HP,Stephen
+ST,PH,PC,NA,TM,PM,NO
+HP,ST
 ST,SA
-Simon,Philip
-PE,JO,Simon
-eunuch,Philip
+SI,PH
+PE,JO,SI
+EU,PH
 SA,HP
-Jesus,SA
-AN,Jesus
+JE,SA
+AN,JE
 AN,SA
-Barnabas,SA
-PE,Aeneas
-PE,Tabitha
-PE,Cornelius
-PE,Rhoda
-Barnabas,Symeon,"Lucius of Cirene",Manaen,SA
-Barnabas,SA,"John Mark"
-Barnabas,SA,"Sergius Paulus"
-SA,Elymas
-Paul,Barnabas,PE,James,Judas,Silas
-Paul,Barnabas
-Barnabas,"John Mark"
-Paul,Silas
-Timothy,Paul
-Lydia,Paul
-"maid having a spirit of divination",Paul
-Paul,Silas,magistrates
-Paul,Silas,prisoners
-jailor,Paul,Silas
-* 16:37 ??
-"rulers of Thessalonica",Jason
-Paul,"men of Athens"
-Paul,"Dionysius the Areopagyte",Damaris
-Paul,Aquila,Priscilla
-Paul,"Titus Justus",Crispus
-Paul,Gallio
-Apollo,Pricilla,Aquila
-Demetrius,Gaius,Aristarchus,Alexander
-Paul,"Sopater of Beroea",Aristarchus,Secundus,"Gaius of Derbe",Timothy,Tychicus,Trophimus
-Eutychus,Paul
-Paul,"elders of the Ephesus church"
-Paul,"Philip the evangelist"
-Paul,"Mnason of Cyprus"
-Paul,James
-"Paul's sister son",Paul
-"priest Ananias","orator Tertullus",Felix,Paul
-Felix,Drusilla,Paul
-"Porcius Festus",Paul
-"Agrippa the King",Bernice,"Porcius Festus"
-"Agrippa the King",Bernice,"Porcius Festus",Paul
-Paul,"centurion named Julius",Aristarchus
-"father of Publius",Paul
+BA,SA
+PE,AE
+PE,TA
+PE,CO
+PE,RH
+BA,SY,LC,MA,SA
+BA,SA,JM
+BA,SA,SP
+SA,EL
+PA,BA,PE,JA,JU,SL
+PA,BA
+BA,JM
+PA,SL
+TI,PA
+LY,PA
+MD,PA
+PA,SL,MG
+PA,SL,PR
+JI,PA,SL
+RT,JS
+PA,MT
+PA,DA,DM
+PA,AQ,PI
+PA,TJ,CR
+PA,GA
+AP,PI,AQ
+DE,GI,AR,AL
+PA,SP,AR,SE,GD,TI,TY,TR
+ET,PA
+PA,EE
+PA,PV
+PA,MC
+PA,JA
+PS,PA
+PN,OT,FE,PA
+FE,DR,PA
+PF,PA
+AK,BE,PF
+AK,BE,PF,PA
+PA,CJ,AR
+FP,PA
