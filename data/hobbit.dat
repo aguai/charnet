@@ -1,0 +1,210 @@
+* File "hobbit.dat" from Characters Network project (C) 2017 University of Sao Paulo, Brazil
+* Hobbit, by J. R. R. Tolkien
+* This file may be freely copied.
+* The encounters are not in order of appearance; 0 means no chapter was gathered.
+AZ Azog
+BA Balin
+BD Beladona
+BE Bert
+BI Bilbo
+BF Bifur
+BL Bolg
+BM Bombur
+BN Beorn
+BO Bofur
+BR Bard
+BU Bungo
+CA Carc
+DA Dain
+DO Dori
+DW Dwalin
+EL Elrond
+FI Fili
+FN Fiindin
+GA Gandalf
+GC Gran Orc
+GL Gloin
+GO Gollum
+KA King of the Eagles
+KD King of the Dwarves
+KE King of the Elves
+KI Kili
+NA Nain
+NO Nori
+OI Oin
+OR Ori
+OT old Tuk
+RA Radagast
+RO Roac
+SM Smaug
+TH Thorin
+TM Tom
+TO Thror
+TR Thrain
+WB William (Bill)
+WI William
+
+0:AZ,TO
+0:BA,BF
+0:BA,BI
+0:BA,BO
+0:BA,BM
+0:BA,DO
+0:BA,FI
+0:BA,GA
+0:BA,GL
+0:BA,KI
+0:BA,NO
+0:BA,OI
+0:BA,OR
+0:BA,TH
+0:BA,TH
+0:BR,BI
+0:BR,KD
+0:BR,TH
+0:BD,BU
+0:BN,BA
+0:BN,BF
+0:BN,BI
+0:BN,BO
+0:BN,BM
+0:BN,DO
+0:BN,DW
+0:BN,FI
+0:BN,GA
+0:BN,KI
+0:BN,NO
+0:BN,OI
+0:BN,OR
+0:BN,TH
+0:BE,BI
+0:BE,TM
+0:BE,WI
+0:BF,BI
+0:BF,BO
+0:BF,BM
+0:BF,GA
+0:BF,TH
+0:BI,BD
+0:BI,BU
+0:BI,GA
+0:BO,BI
+0:BO,BM
+0:BO,GA
+0:BO,TH
+0:BL,AZ
+0:BM,BI
+0:BM,GA
+0:BM,TH
+0:CA,RO
+0:CA,TH
+0:DA,AZ
+0:DA,TH
+0:DO,BF
+0:DO,BI
+0:DO,BO
+0:DO,BM
+0:DO,GA
+0:DO,GL
+0:DO,NO
+0:DO,OI
+0:DO,OR
+0:DO,TH
+0:DW,BA
+0:DW,BF
+0:DW,BI
+0:DW,BO
+0:DW,BM
+0:DW,DO
+0:DW,FI
+0:DW,GA
+0:DW,GL
+0:DW,KI
+0:DW,NO
+0:DW,OI
+0:DW,OR
+0:DW,TH
+0:EL,BI
+0:EL,GA
+0:EL,TH
+0:FN,BA
+0:FI,BF
+0:FI,BI
+0:FI,BO
+0:FI,BM
+0:FI,DO
+0:FI,GA
+0:FI,GL
+0:FI,NO
+0:FI,OI
+0:FI,OR
+0:FI,TH
+0:GA,BD
+0:GA,RA
+0:GL,BF
+0:GL,BI
+0:GL,BO
+0:GL,BM
+0:GL,GA
+0:GL,TH
+0:GO,BI
+0:GC,TH
+0:KI,BF
+0:KI,BI
+0:KI,BO
+0:KI,BM
+0:KI,DO
+0:KI,FI
+0:KI,GA
+0:KI,GL
+0:KI,NO
+0:KI,OI
+0:KI,OR
+0:KI,TH
+0:NA,DA
+0:NO,BF
+0:NO,BI
+0:NO,BO
+0:NO,BM
+0:NO,GA
+0:NO,GL
+0:NO,OI
+0:NO,OR
+0:NO,TH
+0:OI,BF
+0:OI,BI
+0:OI,BO
+0:OI,BM
+0:OI,GA
+0:OI,GL
+0:OI,TH
+0:OR,BF
+0:OR,BI
+0:OR,BO
+0:OR,BM
+0:OR,GA
+0:OR,OI
+0:OR,TH
+0:RA,BN
+0:KE,BI
+0:KE,TH
+0:KE,TH
+0:KD,TH
+0:KA,GA
+0:SM,BI
+0:TH,BI
+0:TH,GA
+0:TH,RO
+0:TR,GA
+0:TR,TH
+0:TO,TH
+0:TM,BE
+0:TM,BI
+0:TM,WI
+0:OT,BD
+0:OT,BI
+0:OT,GA
+0:WB,BE
+0:0:WB,BI
+0:WB,TM
+* End of file "hobbit.dat"
