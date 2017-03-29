@@ -1,0 +1,83 @@
+* File "newton.dat" from Characters Network project (C) 2017 University of Sao Paulo, Brazil
+* Isaac Newton, by James Gleick
+* This file may be freely copied.
+* The encounters are not in order of appearance; 0 means no chapter was gathered.
+BH Benjamin Haydon
+BS Barnabas Smith
+CB Catherine Barton
+CH Christiaan Huygens
+CM Charles Montague
+CW Christopher Wren
+EH Edmond Haley
+GL Gottfried Leibniz
+HA Hannah Ayscough
+HO Henry Oldenburg
+HS Henry Stokes
+IB Isaac Barrow
+IN Isaac Newton
+JB Johann Bernoulli
+JD John Conduitt
+JG James Gregory
+JI James II
+JK John Locke
+JL John Collins
+JM John Flamsteed
+JR James Crompton
+JS John Wallis
+JT John Milton
+JW John Wilkins
+KT Keats
+ND Nicolas Fatio de Duillier
+OC Oliver Cromwell
+RB Robert Boyle
+RH Robert Hooke
+SP Samuel Pepys
+WA William Ayscough
+WC William Clarke
+WW Wordsworth
+
+0:BH,WW
+0:CB,CM
+0:CM,IN
+0:CH,HO
+0:CW,EH
+0:CW,RH
+0:EH,IN
+0:EH,JI
+0:EH,RH
+0:GL,IN
+0:GL,JB
+0:HA,BS
+0:HA,WA
+0:HO,JW
+0:HO,RB
+0:HO,RH
+0:IN,BS
+0:IN,CH
+0:IN,HA
+0:IN,HO
+0:IN,HS
+0:IN,IB
+0:IN,JL
+0:IN,JD
+0:IN,JK
+0:IN,JS
+0:IN,ND
+0:IN,RB
+0:IN,SP
+0:IN,WA
+0:IN,WC
+0:JR,IN
+0:JR,JM
+0:JG,JL
+0:JL,IB
+0:JM,EH
+0:JT,HO
+0:KT,BH
+0:KT,WW
+0:ND,CH
+0:OC,JW
+0:RB,RH
+0:RH,IN
+0:SP,JI
+* End of file "newton.dat"
