@@ -1,0 +1,78 @@
+* File "pythagoras.dat" from Characters Network project (C) 2017 University of Sao Paulo, Brazil
+* The Life of Pythagoras, by Iamblichus
+* This file may be freely copied.
+* The encounters are not in order of appearance; 0 means no chapter was gathered.
+AB Abaris
+AC Archippus
+AR Aristaeus, Pythagoras follower
+AX Anaxamander, philosopher
+BI Bitale, Damo's daughter
+CH Charondas, disciple
+CR Creophilus, Pythagoras mentor
+DA Damophon
+DI Dionysius
+DL Diospolitan, philosopher from Egypt
+DM Damo, Pythagoras daughter
+EM Empedocles
+EP Euphorbus, Panthus son
+ER Eratocles, your son was disciple
+EU Euryphamus, disciple
+HE Hermodamas, escape friend
+HI Hippasus
+HO Homacoion
+HY Hyppobotus
+LY Lysis
+MC Mnesarchus, Pithagoras son
+ME Memphian, philosopher from Egypt
+MO Mochus, physiologist
+MN Mnesarchus, Pythagoras father
+MY Myllias
+NE Neanthes
+NI Nicomachus
+PA Panthus
+PH Pherecydes, Pythagoras mentor
+PL Phlaris, tyrant
+PO Policrates, king of Syria
+PT Pythais, Pythagoras mother
+PY Pythagoras
+TA Thales, philosopher
+TE Theano, Pythagoras wife
+TG Telauges, Bitale's husband
+TH Timycha, Myllias wife
+TI Timaratus
+TN Theano, Pithagoras and Aristaeus wife
+TY Thymaridas, disciple
+ZA Zaleucus, disciple
+
+0:MN,PT
+0:CR,PH
+0:PO,PY
+0:HE,PY
+0:AX,PY
+0:TA,PY
+0:ME,DL
+0:MO,PY
+0:ER,PY
+0:NI,PY
+0:HO,PY
+0:CH,PY
+0:ZA,TI
+0:EU,PY
+0:HI,PY
+0:HY,NE
+0:DI,PY
+0:MY,TH
+0:PL,MY
+0:PL,TH
+0:PL,AB
+0:EP,PA
+0:EM,PY
+0:DA,PY
+0:TY,PY
+0:DM,TE
+0:DM,BI
+0:TG,BI
+0:AR,TN
+0:MC,TN
+0:AC,LY
+* End of file "pythagoras.dat"
