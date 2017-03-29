@@ -1,0 +1,240 @@
+* File "arthur.dat" from Characters Network project (C) 2017 University of Sao Paulo, Brazil
+* The King of the Winter - the chronicles of the Arthur - Vol. 1, by Bernard Cornwell
+* This file may be freely copied.
+* The encounters are not in order of appearance; 0 means no chapter was gathered.
+AE Aelle
+AG Agricola
+AI Ailleann   
+AR Arthur
+AV Agravain
+BB Bishop Bedwin
+BC Bishop Conrad
+BL Bleidding
+BO Bors
+BR Brochvael
+CA Cavan
+CE Ceinwyn
+CG Caddwg
+CH Culhwch
+CI Cei
+CN Celwin
+CU Cuneglas
+CW Cadwy
+DE Derfel
+DR Druidam
+DS Dumonian soldier
+EI Ellin
+EL Elaine
+GA Galahad
+GD Gudovan
+GE Guard of Deads Island
+GI Guinevere
+GL girl
+GN Gereint
+GO Gorfyddyd
+GP Griffid ap Annan
+GR Griffid
+GU Gundleus
+GW Gwlyddyn
+HA Halsyd
+HE Helledd
+HC Higher Council
+HW Hywel
+HY Hygwydd
+IG Igraine
+IO Iorweth
+IS Issa
+KB King Ban
+LA Lancelot
+LE Leodegan
+LI Ligessac
+LL Lwellwyn
+LU Lunete
+LW Ladwys
+MA Malldynn
+ME Merlin
+MF Morfans
+MG Morgana
+MI Minac
+MK monk
+MS messenger
+MV Melvas
+MW Menw
+NA Nabur
+NI Nimue
+NO Norwenna
+OM Owain's mem
+OW Owain
+RA Ralla
+SA Sagramor
+SL Sarlinna
+SN Sansum
+SO mem (soldiers)
+SS Silurian soldiers
+TA Tanaburs
+TD Therdig
+TN Tonwyn
+TR Tristan
+TW Tewdric
+UT Uther
+VA Valerin
+WL Wlenca
+
+AE,AR
+AV,DE
+AG,HC
+AG,UT
+AG,DE
+AI,DE
+AR,MG
+AR,RA
+AR,DE
+AR,TR
+AR,SL
+AR,OM
+AR,CW
+AR,NA
+AR,LW
+AR,CE
+AR,GI
+AR,SN
+AR,LA
+AR,GA
+AR,NI
+AR,TW
+AR,HY
+AR,CU
+BB,UT
+BB,GU
+BB,NO
+BB,HC
+BB,TR
+BB,SL
+BB,OW
+BB,DE
+BC,AR
+BL,AR
+BL,DE
+BR,SN
+CW,OW
+CA,BL
+CA,DE
+CE,DE
+CH,DE
+CH,BO
+CH,GA
+CU,AR
+DE,MG
+DE,GD
+DE,CI
+DE,TA
+DE,MF
+DE,WL
+DE,ME
+DE,CH
+DE,BO
+DE,GD
+DE,IS
+DE,GD
+DE,TD
+DE,SA
+DE,TR
+DE,CU
+DE,CA
+DE,TA
+DR,DE
+EL,GI
+EI,UT
+GA,DE
+GA,BO
+GA,TW
+GA,AR
+GA,GO
+GA,ME
+GN,UT
+GN,BL
+GO,AR
+GO,ME
+GP,DE
+GP,AR
+GP,NI
+GD,DE
+GD,HW
+GI,AR
+GI,DE
+GI,IO
+GU,NO
+GU,HC
+GU,AR
+GW,DE
+GW,AR
+HA,GA
+HE,DE
+HW,DE
+HW,LI
+IG,DE
+IO,AR,CE
+IO,AR
+IO,GA
+IS,DE
+LA,DE
+LA,EL
+LE,AR
+LE,DE
+LI,DE
+LI,MW
+LI,SO
+LI,SS
+LU,DE
+LU,NI
+MA,DE
+MV,GR
+ME,CG
+ME,GO
+MI,DE
+MF,DE
+MG,GL
+MG,UT
+MG,NI
+MG,HC
+MG,MK
+MG,OW
+NI,DE
+NI,NO
+NI,AR
+NI,OW
+NO,MS
+NO,MG
+OW,HC
+OW,UT
+OW,GU
+OW,DE
+OW,LL
+OW,SO
+OW,TR
+OW,AR
+KB,DE
+KB,CN
+SA,DE
+SA,TR
+SA,CU
+SN,DE
+SN,GI
+SN,IG
+DS,DE
+TA,GU
+TW,NI
+TW,UT
+TW,AR
+TW,CU
+TN,CE
+TR,SL
+UT,DE
+UT,TR
+UT,GU
+UT,HC
+UT,MG
+UT,NI
+VA,AR
+VA,DE
+* End of file "arthur.dat"
