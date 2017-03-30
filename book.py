@@ -6,11 +6,14 @@ from lobby import lobby
 authors of this project.
 """
 class Book(object):
-        FREQS_EXTENSION = ".freq"
-
+        FREQ_EXTENSION = ".freq"
+        DATA_FILE_EXTENSION = ".dat"
+        COMMENT_TOKEN = '*'
+        
         def __init__(self, name,
-                     data_directory='data', data_file_extension='.dat',
-                     color='black', marker='o', generative_model=True):
+                     data_directory='data',
+                     color='black', marker='o',
+                     generative_model=True):
                 """
                 Parameter
                 ---------
@@ -41,7 +44,6 @@ class Book(object):
                 
                 # system properties
                 self.data_directory = data_directory
-                self.data_file_extension = data_file_extension
 
                 # data structures
                 self.code_names = None # map code to character names
@@ -51,11 +53,6 @@ class Book(object):
                 # graph properties
                 self.degs_componentSizes = []
                 
-                if (self.data_file_extension==".csv"):
-                        self.comment_token = '#'
-                else:
-                        self.comment_token = '*'
-
                 self.create_graph()
                         
         def get_number_characters(self):
@@ -87,10 +84,10 @@ class Book(object):
                 arcs = {}
                 are_edges = False
                 
-                fn = self.data_directory+ "/" + self.name + self.data_file_extension
+                fn = self.data_directory+ "/" + self.name + Book.DATA_FILE_EXTENSION
                 f = open(fn, "r")
                 for ln in f:
-		        if (ln.startswith(self.comment_token)): # ignore comments
+		        if (ln.startswith(Book.COMMENT_TOKEN)): # ignore comments
 			        continue
 
                         if (ln.startswith('\n') or ln.startswith('\r')): # edges start after empty line
@@ -149,7 +146,7 @@ class Book(object):
                 # the second the frequency.
                 if (self.has_frequency_file==True):
 		        self.name_freqs = {}
-		        fn = self.data_directory + "/" + self.name + Book.FREQS_EXTENSION
+		        fn = self.data_directory + "/" + self.name + Book.FREQ_EXTENSION
 
 		        f = open(fn, "r")
     	    	        for ln in f:
@@ -175,7 +172,7 @@ class Book(object):
                                 if (self.generative_model==True):
                                         Book.Tick(self, graph)
 
-                return graph
+                self.graph = graph
  
 
         def calc_graph_vertex_lobby(self):
@@ -234,7 +231,7 @@ def plot_degree_componentSize(books):
                		alpha=0.3, 
                         **marker_style)
 
-#        plt.xscale('log')
+ #       plt.xscale('log')
         ax.set_xlabel('w')
  #       plt.yscale('log')
 	ax.set_ylabel('size') # frequency
