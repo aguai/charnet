@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from igraph import *
+import networkx as nx
 from lobby import lobby
 
 """Local class is used to process data of books gathered by the
@@ -48,7 +48,7 @@ class Book(object):
                 # data structures
                 self.code_names = None # map code to character names
                 self.name_freqs = {} # map character names and their frequencies
-                self.graph = None
+                self.G = None
 
                 # graph properties
                 self.degs_componentSizes = []
@@ -68,7 +68,7 @@ class Book(object):
                 return nr_hapaxes
         
         def get_graph(self):
-                return self.graph
+                return self.G
         
         def create_graph(self):
                 """
@@ -154,96 +154,58 @@ class Book(object):
 			        self.name_freqs[vname] = int(freq)
 		        f.close()                        
 
-                graph = Graph()
+                G = nx.Graph()
 
-                graph.add_vertices(self.nr_chars)
-		
-		# name the vertices
+		# add and name the vertices
 		for name, idx in name_idxs.items():
-		    	graph.vs[idx]['name'] = name
+		    	G.add_node(idx, name=name)
 			
 		# add the edges
-		for u, vs in arcs.items():
-			src = name_idxs[u]
-			for v in vs:
-			 	dest = name_idxs[v]
-				graph.add_edges([(src, dest)]) # TODO: check weights
+		for u_name, vs in arcs.items():
+			u = name_idxs[u_name]
+			for v_name in vs:
+			 	v = name_idxs[v_name]
 
+                                if (G.has_edge(u, v)==True): # increase weight
+                                        G[u][v]['weight'] += 1
+                                else: # add edge with weight = 1
+                                        G.add_edge(u, v, weight=1)
+                                
                                 if (self.generative_model==True):
-                                        Book.Tick(self, graph)
+                                        Book.Tick(self, G)
 
-                self.graph = graph
- 
+                self.G = G
 
         def calc_graph_vertex_lobby(self):
-                lobby(self.graph)
+                lobby(self.G)
 
-        def Tick(self, graph):
-                graph
+        def Tick(self, G):
+                G
                 deg = 0
 
-                for v in graph.vs:
-                        deg += v.degree(mode="out")
-                avg = float(deg)/graph.vcount()
+                for i in range(G.number_of_nodes()):
+                        deg += G.degree(i)
+                avg = float(deg)/G.number_of_nodes()
 
-                self.degs_componentSizes.append([avg, graph.components().size(0)])
+                # TODO COMPONENT
+                #self.degs_componentSizes.append([avg, G.components().size(0)])
 
         def calc_normalized_centralities(self):
-        	self.graph.as_undirected()
-
 		# DEGREE
-		for i in range(len(self.graph.vs)):
-            		self.graph.vs[i]["degree"] = float(self.graph.vs[i].degree(mode="out")) / self.graph.vcount()
+                degs = nx.degree_centrality(self.G)                
+		for i in range(self.G.number_of_nodes()):
+                        self.G.node[i]['degree'] = degs[i]
 
 		# BETWEENNESS
-#		cents   = g.betweenness(vertices=None, directed=False, weights='weight')
-		self.graph.vs["betweenness"]   = self.graph.betweenness(vertices=None, directed=False)
-		for i in range(len(self.graph.vs)):
-			self.graph.vs[i]["betweenness"] = float(self.graph.vs[i]["betweenness"] / ((self.graph.vcount()-1)*(self.graph.vcount()-2)/2.0))
+		bets = nx.betweenness_centrality(self.G)
+		for i in range(self.G.number_of_nodes()):
+			self.G.node[i]['betweenness'] = bets[i]
 
-		# CLOSENESS
-#		cents   = g.closeness(vertices=None, weights='weight')
-		self.graph.vs["closeness"]   = self.graph.closeness(vertices=None)
-		for i in range(len(self.graph.vs)):
-			self.graph.vs[i]["closeness"] = self.graph.vs[i]["closeness"]
-                
-def plot_degree_componentSize(books):
-        fn = 'giant.png'
-        
-	fig, ax = plt.subplots()
+		# CLOSENESS - already normalized
+                closes = nx.closeness_centrality(self.G)
+                for i in range(self.G.number_of_nodes()):
+		        self.G.node[i]['closeness']   = closes[i]
 
-	for book in books:
-	    	g = book.graph
-		name = book.name
-		color = book.color
-		marker = book.marker
-		xs = []
-		ys = []
-	                
-                for elem in book.degs_componentSizes:
-                        xs.append(elem[0])
-			ys.append(elem[1])
-		
-			marker_style = dict(linestyle=':', color=color, markersize=6)
-                ax.plot(xs, ys, c=color,
-			marker=marker,
-                        label=name,
-               		alpha=0.3, 
-                        **marker_style)
-
- #       plt.xscale('log')
-        ax.set_xlabel('w')
- #       plt.yscale('log')
-	ax.set_ylabel('size') # frequency
-
-	plt.rc('legend',fontsize=10)
-	ax.legend()
-	ax.grid(True)
-
-	plt.savefig(fn)
-	print("INFO: Wrote plot in " + fn)
-
-                
 if __name__ == "__main__":
         anna = Book('anna', 'sgb', '.dat', 'blue')
         acts = Book('acts', 'data', '.dat', 'red')
@@ -251,4 +213,3 @@ if __name__ == "__main__":
         huck = Book('huck', 'sgb', '.dat', 'brown')
         luke = Book('luke', 'data', '.dat', 'green')
         books = [acts, anna, david, huck, luke]
-        plot_degree_componentSize(books)

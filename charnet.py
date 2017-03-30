@@ -1,4 +1,4 @@
-from igraph import *
+import networkx as nx
 import matplotlib.pyplot as plt
 from book import *
 
@@ -28,12 +28,12 @@ def write_hapax_legomena_table(books):
 # included in a LaTeX file named `global.tex` to be included in the
 # manuscript.
 
-# Clustering coefficient is calculated using `igraph`
-# [transitivity](http://igraph.org/r/doc/transitivity.html) routine.  We
-# also calculate
-# [density](http://igraph.org/python/doc/igraph.GraphBase-class.html#density)
+# Clustering coefficient is calculated using _NetworkX_ library
+# [transitivity](https://networkx.github.io/documentation/networkx-1.10/reference/generated/networkx.algorithms.cluster.transitivity.html#networkx.algorithms.cluster.transitivity)
+# routine.  We also calculate
+# [density](https://networkx.github.io/documentation/networkx-1.9/reference/generated/networkx.classes.function.density.html)
 # and
-# [diameter](http://igraph.org/python/doc/igraph.GraphBase-class.html#diameter)
+# [diameter](https://networkx.github.io/documentation/networkx-1.10/reference/generated/networkx.algorithms.distance_measures.diameter.html)
 # of the graph.
 
 def write_global_measures(books):
@@ -45,13 +45,13 @@ def write_global_measures(books):
 	f.write("\\bf\\hfil book\\hfil & \\bf\\hfil clustering coefficient\hfil"
 		 + "& \\bf\\hfil density\\hfil & \\bf\\hfil diameter\\hfil\\\\ \\hline\n")
 	for book in books:
-	        book.graph['clustering'] = book.graph.transitivity_undirected()
-	        book.graph['density'] = book.graph.density()
-	        book.graph['diameter'] = book.graph.diameter(directed=False)
+	        book.G.graph['clustering'] = nx.transitivity(book.G)
+	        book.G.graph['density'] = nx.density(book.G)
+	        book.G.graph['diameter'] = nx.diameter(book.G)
 
-		f.write(book.name + " & " + str(book.graph['clustering']) + " & "
-				  + str(book.graph['density']) + " & "
-				  + str(book.graph['diameter']) + "\\\\ \n")
+		f.write(book.name + " & " + str(book.G.graph['clustering']) + " & "
+				  + str(book.G.graph['density']) + " & "
+				  + str(book.G.graph['diameter']) + "\\\\ \n")
 	f.write("\\hline\\end{tabular}\n")
 	f.close()
 
@@ -70,7 +70,6 @@ def plot_rank_frequency(books, normalize=True):
 		fig, ax = plt.subplots()
 
 		for book in books:
-	    		g = book.graph
 			name = book.name
 			color = book.color
 			marker = book.marker
@@ -129,63 +128,35 @@ def plot_rank_frequency(books, normalize=True):
 def plot_centralities(books):
 	offset_fig_nr = 1 # figure number starts after 1
 
+        # PRE-processing
 	for book in books:
-        	g = book.graph.as_undirected()
-		name = book.name
-
-		# DEGREE
-		for i in range(len(g.vs)):
-            		g.vs[i]['Degree'] = g.vs[i].degree(mode="out")
-
-		# BETWEENNESS
-#		cents   = g.betweenness(vertices=None, directed=False, weights='weight')
-		cents   = g.betweenness(vertices=None, directed=False)
-		for i in range(len(g.vs)):
-			g.vs[i]['Betweenness'] = float(cents[i]) / ((g.vcount()-1)*(g.vcount()-2)/2.0)
-
-		# CLOSENESS
-#		cents   = g.closeness(vertices=None, weights='weight')
-		cents   = g.closeness(vertices=None)
-		for i in range(len(g.vs)):
-			g.vs[i]['Closeness'] = cents[i]
-
-		# LOBBY
+                book.calc_normalized_centralities()
 		## Already do the assignment of lobby value to each vertex
 		book.calc_graph_vertex_lobby()
 
-	centrs = ["Degree", "Betweenness", "Closeness", "Lobby"] # Degree, Betweenness, Closeness, Lobby
+	centrs = ["degree", "betweenness", "closeness"]
 	for c in centrs:
 		fn = c + ".png"
 
 		fig, ax = plt.subplots()
 
 		for i in range(len(books)):
-		        g = books[i].graph.as_undirected()
+                        G = books[i].G
 			name = books[i].name
 			color = books[i].color
 			marker = books[i].marker
 			xs = []
 			ys = []
-			freqs = {}
 
-			# calculate the centrality frequency
-			for v in g.vs:
-                                print(c+" "+v['name'])
-                                
-				val = v[c]
-			    	if freqs.has_key(val):
-                			freqs[val] = freqs[val] + 1
-            			else:
-					freqs[val] = 1
+			# load the centrality measures
+			for j in range(G.number_of_nodes()):
+				x = G.node[j][c]
+                                y = G.node[j]['lobby']
 
-			# Normalize and add to points to plot
-			for val, freq in freqs.items():
-				x = val # val
-				y = float(freq) / g.vcount()   # freq / N
 				xs.append(x)
 				ys.append(y)
 									
-			marker_style = dict(linestyle='', color=color, markersize=4)
+			marker_style = dict(linestyle='', color=color, markersize=6)
 			ax.plot(xs, ys, c=color,
 				    marker=marker,
 				    label=name,
@@ -195,37 +166,15 @@ def plot_centralities(books):
 		ax.grid(True)
 		#plt.xscale('log')   			       			       
 		ax.set_xlabel(c)
-		plt.yscale('log')
-		ax.set_ylabel('Frequency')
+		#plt.yscale('log')
+		ax.set_ylabel('Lobby')
 		#plt.legend()
 		plt.tight_layout()
 		plt.savefig(fn)
 
-# Graphs are drawing using
-# [_igraph_](http://igraph.org/python/doc/tutorial/tutorial.html)
-# library and written to output as png files. Graph drawings are not
-# used in the paper but they are showed in the project page.
-
+# TODO DRAW GRAPH
 def draw_graphs(books):
-	for book in books:
-        	g = book.graph.as_undirected()
-		fn = book.name+".png"
-
-		visual_style = {} 
-        	layout = g.layout("kk")
-        	#layout = g.layout_reingold_tilford(root=2)
-
-        	visual_style["vertex_size"] = 20
-        	visual_style["vertex_label_size"] = 11
-        	visual_style["vertex_color"] = "red"
-        	visual_style["vertex_label"] = g.vs['name']
-        	visual_style["edge_width"] = 1
-        	visual_style["edge_curved"] = False
-		#        visual_style["edge_width"] = [1 + 2 * int(is_formal) for is_formal in g.es["is_formal"]]
-	        visual_style["layout"] = layout
-	        visual_style["bbox"] = (800, 600)
-
-	        plot(g, fn, **visual_style)
+        print('DRAW GRAPH UNIMPLEMENTED')
 
 # The main subroutine declares some attributes associated with the
 # books. Those attributes are used to label the books and to
@@ -233,24 +182,24 @@ def draw_graphs(books):
 # marker in the plot.
 
 if __name__ == "__main__":
+        books = []
 	color = {'bible': 'red', 'fiction': 'blue', 'biography': 'darkgreen'}
 
-	acts = {'name': 'acts', 'source':'local', 'color': color['bible'], 'marker': 's'}
-	arthur = {'name': 'arthur', 'source':'local', 'color': 'magenta', 'marker': '>'}
+	acts = {'name': 'acts', 'source':'data', 'color': color['bible'], 'marker': 's'}
+	arthur = {'name': 'arthur', 'source':'data', 'color': 'magenta', 'marker': '>'}
 	david = {'name': 'david', 'source':'sgb', 'color': color['fiction'], 'marker': '8'}
-	hobbit = {'name': 'hobbit', 'source':'local', 'color': color['fiction'], 'marker': 'p'}
+	hobbit = {'name': 'hobbit', 'source':'data', 'color': color['fiction'], 'marker': 'p'}
 	huck = {'name': 'huck', 'source':'sgb', 'color': color['fiction'], 'marker': 'H'}
-	luke = {'name': 'luke', 'source':'local', 'color': color['bible'], 'marker': '8'}
-	newton = {'name': 'newton', 'source':'local', 'color': color['biography'], 'marker': 'o'}
-	pythagoras = {'name': 'pythagoras', 'source':'local', 'color': color['biography'], 'marker': '^'}
-	tolkien = {'name': 'tolkien', 'source':'local', 'color': color['biography'], 'marker': 'd'}
+	luke = {'name': 'luke', 'source':'data', 'color': color['bible'], 'marker': '8'}
+	newton = {'name': 'newton', 'source':'data', 'color': color['biography'], 'marker': 'o'}
+	pythagoras = {'name': 'pythagoras', 'source':'data', 'color': color['biography'], 'marker': '^'}
+	tolkien = {'name': 'tolkien', 'source':'data', 'color': color['biography'], 'marker': 'd'}
 	
-#	attrs = [acts, arthur, david, hobbit,
-#	      	      huck, luke, newton,
-#		      pythagoras, tolkien]
-	books = []
+	attrs = [acts, arthur, david, hobbit,
+	      	      huck, luke, newton,
+		      pythagoras, tolkien]
 
-	attrs = [arthur]
+	attrs = [david]
 
 	for i in range(len(attrs)):
 	    cn = Book(attrs[i]['name'], attrs[i]['source'], attrs[i]['color'], attrs[i]['marker'])
