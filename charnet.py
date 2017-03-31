@@ -138,7 +138,8 @@ def plot_centralities(books):
 	for c in centrs:
 		fn = c + ".png"
 
-		fig, ax = plt.subplots()
+		fig, ((ax0, ax1, ax2), (ax3, ax4, ax5), (ax6, ax7, ax8)) = plt.subplots(nrows=3, ncols=3, sharex=True, sharey=True)
+                axes = [ax0, ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8]
 
 		for i in range(len(books)):
                         G = books[i].G
@@ -157,18 +158,20 @@ def plot_centralities(books):
 				ys.append(y)
 									
 			marker_style = dict(linestyle='', color=color, markersize=6)
-			ax.plot(xs, ys, c=color,
+			axes[i].plot(xs, ys, c=color,
 				    marker=marker,
 				    label=name,
                			    alpha=0.3, 
 				    **marker_style)
 
-		ax.grid(True)
+		        axes[i].grid(True)
+		        axes[i].set_xlabel(c)
+		        axes[i].set_ylabel('lobby')
+                        
 		#plt.xscale('log')   			       			       
-		ax.set_xlabel(c)
 		#plt.yscale('log')
-		ax.set_ylabel('Lobby')
 		#plt.legend()
+                fig.subplots_adjust(hspace=0)
 		plt.tight_layout()
 		plt.savefig(fn)
 
@@ -199,13 +202,13 @@ if __name__ == "__main__":
 	      	      huck, luke, newton,
 		      pythagoras, tolkien]
 
-	attrs = [david]
+#	attrs = [david]
 
 	for i in range(len(attrs)):
 	    cn = Book(attrs[i]['name'], attrs[i]['source'], attrs[i]['color'], attrs[i]['marker'])
 	    books.append(cn)
 
-	write_global_measures(books)
+	#write_global_measures(books)
 	write_hapax_legomena_table(books)
 	plot_rank_frequency(books)
 	plot_centralities(books)
