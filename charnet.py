@@ -1,3 +1,4 @@
+import math
 import networkx as nx
 import matplotlib.pyplot as plt
 from book import *
@@ -17,7 +18,12 @@ def write_hapax_legomena_table(books):
 		nr_hapaxes = book.get_number_hapax_legomenas()
 		nr_chars = book.get_number_characters()
 
-		f.write(book.name + "&" + str(nr_hapaxes) + "/" + str(nr_chars)+ "\\\\\n")
+                ln = book.name + " & "
+                ln += '{0:02d}'.format(nr_hapaxes) + "/"
+                ln += '{0:02d}'.format(nr_chars) + " = "
+                ln += '{0:.3f}'.format(float(nr_hapaxes)/nr_chars) + " \\\\\n"
+                
+		f.write(ln)
 
 	f.write("\end{tabular}\n")
 	f.close()
@@ -42,16 +48,25 @@ def write_global_measures(books):
 	f = open(fn, "w")
 
 	f.write("\\begin{tabular}{l|c|c|c}\\hline\n")
-	f.write("\\bf\\hfil book\\hfil & \\bf\\hfil clustering coefficient\hfil"
-		 + "& \\bf\\hfil density\\hfil & \\bf\\hfil diameter\\hfil\\\\ \\hline\n")
+	f.write("\\bf\\hfil book\\hfil "
+                + " & \\bf\\hfil clustering coefficient\hfil"
+		+ " & \\bf\\hfil density\\hfil "
+               # + " & \\bf\\hfil diameter\\hfil
+                +"\\\\ \\hline\n"
+        )
 	for book in books:
 	        book.G.graph['clustering'] = nx.transitivity(book.G)
 	        book.G.graph['density'] = nx.density(book.G)
-	        book.G.graph['diameter'] = nx.diameter(book.G)
+	        #book.G.graph['diameter'] = nx.diameter(book.G)
 
-		f.write(book.name + " & " + str(book.G.graph['clustering']) + " & "
-				  + str(book.G.graph['density']) + " & "
-				  + str(book.G.graph['diameter']) + "\\\\ \n")
+                ln = book.name + " & "
+                ln += '{0:.3f}'.format(book.G.graph['clustering']) + " & "
+		ln += '{0:.3f}'.format(book.G.graph['density'])
+                        #+ " & " + str(book.G.graph['diameter'])
+                ln += "\\\\ \n"
+                        
+		f.write(ln)
+                
 	f.write("\\hline\\end{tabular}\n")
 	f.close()
 
@@ -148,28 +163,41 @@ def plot_centralities(books):
 			marker = books[i].marker
 			xs = []
 			ys = []
-
+                        left = bottom = 100000.0
+                        right = top = 0.0
+                        
 			# load the centrality measures
 			for j in range(G.number_of_nodes()):
 				x = G.node[j][c]
                                 y = G.node[j]['lobby']
 
-				xs.append(x)
-				ys.append(y)
-									
+                                xs.append(x)
+                                ys.append(y)
+
+                                if (x < left): left = x
+                                if (x > right): right = x
+                                if (y < bottom): bottom = y
+                                if (y > top): top = y
+                                
 			marker_style = dict(linestyle='', color=color, markersize=6)
 			axes[i].plot(xs, ys, c=color,
 				    marker=marker,
 				    label=name,
                			    alpha=0.3, 
 				    **marker_style)
-
 		        axes[i].grid(True)
 		        axes[i].set_xlabel(c)
 		        axes[i].set_ylabel('lobby')
+
+                        axes[i].text(.3, .85, name,
+                        horizontalalignment='center',
+                        verticalalignment='center',
+                        fontsize=11, color='gray',
+                        transform=axes[i].transAxes)
+
                         
-		#plt.xscale('log')   			       			       
-		#plt.yscale('log')
+		plt.xscale('log')   			       			       
+		plt.yscale('log')
 		#plt.legend()
                 fig.subplots_adjust(hspace=0)
 		plt.tight_layout()
@@ -177,7 +205,9 @@ def plot_centralities(books):
 
 # TODO DRAW GRAPH
 def draw_graphs(books):
-        print('DRAW GRAPH UNIMPLEMENTED')
+        for book in books:
+                fn = book.name + ".gexf"
+                nx.write_gexf(book.G, fn)
 
 # The main subroutine declares some attributes associated with the
 # books. Those attributes are used to label the books and to
@@ -208,7 +238,7 @@ if __name__ == "__main__":
 	    cn = Book(attrs[i]['name'], attrs[i]['source'], attrs[i]['color'], attrs[i]['marker'])
 	    books.append(cn)
 
-	#write_global_measures(books)
+        write_global_measures(books)
 	write_hapax_legomena_table(books)
 	plot_rank_frequency(books)
 	plot_centralities(books)
