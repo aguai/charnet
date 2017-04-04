@@ -142,14 +142,29 @@ def plot_rank_frequency(books, normalize=True):
 
 def plot_centralities(books):
 	offset_fig_nr = 1 # figure number starts after 1
-
+	centrs = ["degree", "betweenness", "closeness"]
+        
         # PRE-processing
 	for book in books:
                 book.calc_normalized_centralities()
 		## Already do the assignment of lobby value to each vertex
 		book.calc_graph_vertex_lobby()
+        
+        for book in books:
+                G = book.G
+                fn = book.name + '-centralities.csv'
+                f = open(fn, "w")
 
-	centrs = ["degree", "betweenness", "closeness"]
+                f.write("character;betweenness,closeness;lobby\n");
+                for i in range(G.number_of_nodes()):
+                        ln = G.node[i]['name'] + ";"
+                        ln += '{0:.3f}'.format(G.node[i]['betweenness']) + ";"
+		        ln += '{0:.3f}'.format(G.node[i]['closeness']) + ";"
+                        ln += '{0:.3f}'.format(G.node[i]['lobby']) + "\n"
+                        f.write(ln)
+                f.close()
+                
+                        
 	for c in centrs:
 		fn = c + ".png"
 

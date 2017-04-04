@@ -155,7 +155,8 @@ class Book(object):
 		        f.close()                        
 
                 G = nx.Graph()
-
+                G.graph['name'] = self.name
+                
 		# add and name the vertices
 		for name, idx in name_idxs.items():
 		    	G.add_node(idx, name=name)
