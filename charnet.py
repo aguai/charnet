@@ -1,6 +1,7 @@
 import math
 import networkx as nx
 import matplotlib.pyplot as plt
+import pygraphviz as pgv
 from book import *
 
 #The `write_hapax_legomena_table()` function write the _Hapax_
@@ -221,8 +222,21 @@ def plot_centralities(books):
 # TODO DRAW GRAPH
 def draw_graphs(books):
         for book in books:
-                fn = book.name + ".gexf"
-                nx.write_gexf(book.G, fn)
+                G = book.G
+                fn = book.name + ".png"
+
+                labels = {}
+                for i in range(G.number_of_nodes()):
+                        labels[i] = G.node[i]['name']
+                
+                fig = plt.figure(figsize=(12,12))
+                ax = plt.subplot(111)
+                ax.set_title('Graph - ' + book.name, fontsize=10)
+                pos = nx.spring_layout(G)
+                nx.draw(G, pos, node_size=1500, node_color=book.color, font_size=8, font_weight='bold')
+                nx.draw_networkx_labels(G, pos, labels, font_size=16)
+                plt.tight_layout()
+                plt.savefig(fn, format="PNG")
 
 # The main subroutine declares some attributes associated with the
 # books. Those attributes are used to label the books and to
