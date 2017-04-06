@@ -1,3 +1,4 @@
+import sys, getopt
 import math
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -227,14 +228,14 @@ def draw_graphs(books):
 
                 labels = {}
                 for i in range(G.number_of_nodes()):
-                        labels[i] = G.node[i]['name']
+                        labels[i] = G.node[i]['name'].rstrip("\r")
                 
                 fig = plt.figure(figsize=(12,12))
                 ax = plt.subplot(111)
-                ax.set_title('Graph - ' + book.name, fontsize=10)
+                ax.set_title('Graph - ' + book.name, fontsize=16)
                 pos = nx.spring_layout(G)
-                nx.draw(G, pos, node_size=1500, node_color=book.color, font_size=8, font_weight='bold')
-                nx.draw_networkx_labels(G, pos, labels, font_size=16)
+                nx.draw(G, pos, node_size=1500, node_color=book.color, font_size=14, font_weight='bold')
+                nx.draw_networkx_labels(G, pos, labels, font_size=12)
                 plt.tight_layout()
                 plt.savefig(fn, format="PNG")
 
@@ -246,7 +247,8 @@ def draw_graphs(books):
 if __name__ == "__main__":
         books = []
 	color = {'bible': 'red', 'fiction': 'blue', 'biography': 'darkgreen'}
-
+        flags = 0
+        
 	acts = {'name': 'acts', 'source':'data', 'color': color['bible'], 'marker': 's'}
 	arthur = {'name': 'arthur', 'source':'data', 'color': 'magenta', 'marker': '>'}
 	david = {'name': 'david', 'source':'sgb', 'color': color['fiction'], 'marker': '8'}
@@ -261,15 +263,28 @@ if __name__ == "__main__":
 	      	      huck, luke, newton,
 		      pythagoras, tolkien]
 
-#	attrs = [david]
+        #	attrs = [david]
+
+        try:
+                opts, args = getopt.getopt(sys.argv,"glrcdh",[])
+        except getopt.GetoptError:
+                print 'test.py -g | -l | -r | -c | -d | -h'
+                sys.exit(2)
+        for opt, arg in opts:
+                if opt == '-h':
+                        print 'test.py -i <inputfile> -o <outputfile>'
+                        sys.exit()
+                elif opt in ("-d"):
+                        flags = 8
+
 
 	for i in range(len(attrs)):
 	    cn = Book(attrs[i]['name'], attrs[i]['source'], attrs[i]['color'], attrs[i]['marker'])
 	    books.append(cn)
 
-        write_global_measures(books)
-	write_hapax_legomena_table(books)
-	plot_rank_frequency(books)
-	plot_centralities(books)
-	draw_graphs(books)
+        #write_global_measures(books)
+	#write_hapax_legomena_table(books)
+	#plot_rank_frequency(books)
+	#plot_centralities(books)
+        draw_graphs(books)
 
