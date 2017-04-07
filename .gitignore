@@ -1,4 +1,5 @@
 # project output
+*.dot
 *.csv
 *.gexf
 *.png
