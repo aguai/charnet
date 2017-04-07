@@ -177,8 +177,8 @@ class Book(object):
 
                 self.G = G
 
-        def calc_graph_vertex_lobby(self):
-                lobby(self.G)
+        def calc_graph_vertex_lobby(self, log_file=None):
+                lobby(self.G, log_file)
 
         def Tick(self, G):
                 G
