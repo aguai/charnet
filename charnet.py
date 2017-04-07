@@ -161,9 +161,10 @@ def plot_centralities(books):
                 fn = book.name + '-centralities.csv'
                 f = open(fn, "w")
 
-                f.write("character;betweenness,closeness;lobby\n");
+                f.write("character;degree;betweenness,closeness;lobby\n");
                 for i in range(G.number_of_nodes()):
                         ln = G.node[i]['name'] + ";"
+                        ln += '{0:.3f}'.format(G.node[i]['degree']) + ";"
                         ln += '{0:.3f}'.format(G.node[i]['betweenness']) + ";"
 		        ln += '{0:.3f}'.format(G.node[i]['closeness']) + ";"
                         ln += '{0:.3f}'.format(G.node[i]['lobby']) + "\n"
