@@ -35,6 +35,23 @@ def write_hapax_legomena_table(books):
 	f.write("\end{tabular}\n")
 	f.close()
 
+# Calculate the average degree and the standard deviation degree
+# Source: http://holanda.xyz/files/mean.c
+def degree_stat(G):
+        avg_prev = float(G.degree(0))
+        var_prev = 0
+        for i in range(1, G.number_of_nodes()):
+                deg = float(G.degree(i))
+                avg_curr = avg_prev + (deg - avg_prev)/(i + 1)
+                var_curr = var_prev + (deg - avg_prev) * (deg - avg_curr)
+
+                avg_prev = avg_curr
+                var_prev = var_curr
+                        
+        stdev = math.sqrt(var_curr/(G.number_of_nodes() - 1))
+
+        return (avg_curr, stdev)
+        
 ## Writing global measures
 # Global measures for each character network are written as a table and
 # included in a LaTeX file named `global.tex` to be included in the
@@ -46,7 +63,6 @@ def write_hapax_legomena_table(books):
 # and
 # [diameter](https://networkx.github.io/documentation/networkx-1.10/reference/generated/networkx.algorithms.distance_measures.diameter.html)
 # of the graph.
-
 def write_global_measures(books):
         logging.info('Writing global measures...')
         
@@ -54,19 +70,26 @@ def write_global_measures(books):
 
 	f = open(fn, "w")
 
-	f.write("\\begin{tabular}{l|c|c|c}\\hline\n")
+	f.write("\\begin{tabular}{l|c|c|c|c}\\hline\n")
 	f.write("\\bf\\hfil book\\hfil "
+                + " & \\bf\\hfil avg. degree\hfil"
+                + " & \\bf\\hfil stdev. degree\hfil"
                 + " & \\bf\\hfil clustering coefficient\hfil"
 		+ " & \\bf\\hfil density\\hfil "
                # + " & \\bf\\hfil diameter\\hfil
                 +"\\\\ \\hline\n"
         )
 	for book in books:
-	        book.G.graph['clustering'] = nx.transitivity(book.G)
-	        book.G.graph['density'] = nx.density(book.G)
-	        #book.G.graph['diameter'] = nx.diameter(book.G)
-
+                G = book.G
+	        G.graph['clustering'] = nx.transitivity(book.G)
+	        G.graph['density'] = nx.density(book.G)
+	        #G.graph['diameter'] = nx.diameter(book.G)
+                (deg_avg, deg_stdev) = degree_stat(G)
+                
+                # OUTPUT
                 ln = book.name + " & "
+                ln += '{0:.3f}'.format(deg_avg) + " & "
+                ln += '{0:.3f}'.format(deg_stdev) + " & "
                 ln += '{0:.3f}'.format(book.G.graph['clustering']) + " & "
 		ln += '{0:.3f}'.format(book.G.graph['density'])
                         #+ " & " + str(book.G.graph['diameter'])
