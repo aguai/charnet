@@ -70,11 +70,12 @@ def write_global_measures(books):
 
 	f = open(fn, "w")
 
-	f.write("\\begin{tabular}{l|c|c|c|c}\\hline\n")
+	f.write("{\small\\begin{tabular}{l|c|c|c|c|c}\\hline\n")
 	f.write("\\bf\\hfil book\\hfil "
+                + " & \\bf\\hfil nodes\hfil"
                 + " & \\bf\\hfil avg. degree\hfil"
                 + " & \\bf\\hfil stdev. degree\hfil"
-                + " & \\bf\\hfil clustering coefficient\hfil"
+                + " & \\bf\\hfil clustering coeff.\hfil"
 		+ " & \\bf\\hfil density\\hfil "
                # + " & \\bf\\hfil diameter\\hfil
                 +"\\\\ \\hline\n"
@@ -87,17 +88,18 @@ def write_global_measures(books):
                 (deg_avg, deg_stdev) = degree_stat(G)
                 
                 # OUTPUT
-                ln = book.name + " & "
-                ln += '{0:.3f}'.format(deg_avg) + " & "
-                ln += '{0:.3f}'.format(deg_stdev) + " & "
-                ln += '{0:.3f}'.format(book.G.graph['clustering']) + " & "
+                ln = book.name + ' & '
+                ln += str(G.number_of_nodes()) + ' & '
+                ln += '{0:.3f}'.format(deg_avg) + ' & '
+                ln += '{0:.3f}'.format(deg_stdev) + ' & '
+                ln += '{0:.3f}'.format(book.G.graph['clustering']) + ' & '
 		ln += '{0:.3f}'.format(book.G.graph['density'])
                         #+ " & " + str(book.G.graph['diameter'])
                 ln += "\\\\ \n"
                         
 		f.write(ln)
                 
-	f.write("\\hline\\end{tabular}\n")        
+	f.write("\\hline\\end{tabular}}\n")        
 	f.close()
         logging.info('- Wrote %s'% fn)
 
