@@ -1,13 +1,18 @@
-import sys, getopt
+#!/usr/bin/python
+from optparse import OptionParser
+import logging
 import math
 import networkx as nx
 import matplotlib.pyplot as plt
 import pygraphviz as pgv
 from book import *
 
+# INIT
+logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
+
+## Hapax Legomena
 #The `write_hapax_legomena_table()` function write the _Hapax_
 #frequency to be included in the paper using LaTeX syntax for tables.
-
 def write_hapax_legomena_table(books):
 	fn = 'hapax.tex'
 
@@ -30,12 +35,10 @@ def write_hapax_legomena_table(books):
 	f.write("\end{tabular}\n")
 	f.close()
 
-# Writing global measures
-
+## Writing global measures
 # Global measures for each character network are written as a table and
 # included in a LaTeX file named `global.tex` to be included in the
 # manuscript.
-
 # Clustering coefficient is calculated using _NetworkX_ library
 # [transitivity](https://networkx.github.io/documentation/networkx-1.10/reference/generated/networkx.algorithms.cluster.transitivity.html#networkx.algorithms.cluster.transitivity)
 # routine.  We also calculate
@@ -45,6 +48,8 @@ def write_hapax_legomena_table(books):
 # of the graph.
 
 def write_global_measures(books):
+        logging.info('Writing global measures...')
+        
 	fn = 'global.tex'
 
 	f = open(fn, "w")
@@ -69,17 +74,16 @@ def write_global_measures(books):
                         
 		f.write(ln)
                 
-	f.write("\\hline\\end{tabular}\n")
+	f.write("\\hline\\end{tabular}\n")        
 	f.close()
-
-# Plotting
+        logging.info('- Wrote %s'% fn)
 
 ## Ranking frequency
-
 # Character appearance frequency is ranked in the y axis. The scale for
 # y axis is logarithmic.
-
 def plot_rank_frequency(books, normalize=True):
+        logging.info('Plot rank x frequency...')
+        
 	fns = ['figure1a.png', 'figure1b.png']
 	normalizes = [False, True]
 
@@ -130,27 +134,27 @@ def plot_rank_frequency(books, normalize=True):
 		ax.grid(True)
 
 		plt.savefig(fns[k])
-		print("INFO: Wrote plot in " + fns[k])
+                logging.info('- Wrote %s' % fns[k] )
 
 ## Centralities
-
-# [Betweenness](http://igraph.org/python/doc/igraph.GraphBase-class.html#betweenness),
-# [closeness](http://igraph.org/python/doc/igraph.GraphBase-class.html#closeness)
-# and
-# [eigenvector](http://igraph.org/python/doc/igraph.GraphBase-class.html#eigenvector_centrality)
-# centralities are calculated using `igraph`. The normalization of
-# betweeness is obtained by dividing the value by $(N-1)(N-2)/2$, where $N$ is
-# the number of vertices.
-
+# Lobby index centrality is calculated using function defined in
+# lobby.py.
+# Degree, betweenness and closeness centralities are calculated
+# using NetworkX. All measures are normalized.
+##
 def plot_centralities(books):
+        logging.info('Plot centralities...')
+        
 	offset_fig_nr = 1 # figure number starts after 1
 	centrs = ["degree", "betweenness", "closeness"]
         
         # PRE-processing
+        f = open('lobby.log', 'w') # log file, used to debug the results
 	for book in books:
                 book.calc_normalized_centralities()
-		## Already do the assignment of lobby value to each vertex
-		book.calc_graph_vertex_lobby()
+		## Already do the assignment of lobby value to each vertex                
+		book.calc_graph_vertex_lobby(f)
+        f.close
         
         for book in books:
                 G = book.G
@@ -165,7 +169,7 @@ def plot_centralities(books):
                         ln += '{0:.3f}'.format(G.node[i]['lobby']) + "\n"
                         f.write(ln)
                 f.close()
-                
+                logging.info('- Wrote data %s' % fn )
                         
 	for c in centrs:
 		fn = c + ".png"
@@ -211,7 +215,6 @@ def plot_centralities(books):
                         verticalalignment='center',
                         fontsize=11, color='gray',
                         transform=axes[i].transAxes)
-
                         
 		plt.xscale('log')   			       			       
 		plt.yscale('log')
@@ -219,12 +222,16 @@ def plot_centralities(books):
                 fig.subplots_adjust(hspace=0)
 		plt.tight_layout()
 		plt.savefig(fn)
+                logging.info('- Wrote plot %s' % fn )
 
-# TODO DRAW GRAPH
+# Graphs for the characters' encounters are drawn for visualization only using
+# matplotlib and NetworkX.
 def draw_graphs(books):
+        logging.info('Drawing graphs...')
+        
         for book in books:
                 G = book.G
-                fn = book.name + ".png"
+                fn = "g-" + book.name + ".png"
 
                 labels = {}
                 for i in range(G.number_of_nodes()):
@@ -238,12 +245,12 @@ def draw_graphs(books):
                 nx.draw_networkx_labels(G, pos, labels, font_size=12)
                 plt.tight_layout()
                 plt.savefig(fn, format="PNG")
+                logging.info('- Wrote %s' % fn )
 
 # The main subroutine declares some attributes associated with the
 # books. Those attributes are used to label the books and to
 # standardize the pictorial elements properties like color and point
 # marker in the plot.
-
 if __name__ == "__main__":
         books = []
 	color = {'bible': 'red', 'fiction': 'blue', 'biography': 'darkgreen'}
@@ -260,31 +267,52 @@ if __name__ == "__main__":
 	tolkien = {'name': 'tolkien', 'source':'data', 'color': color['biography'], 'marker': 'd'}
 	
 	attrs = [acts, arthur, david, hobbit,
-	      	      huck, luke, newton,
-		      pythagoras, tolkien]
+	      	 huck, luke, newton,
+		 pythagoras, tolkien]
 
-        #	attrs = [david]
-
-        try:
-                opts, args = getopt.getopt(sys.argv,"glrcdh",[])
-        except getopt.GetoptError:
-                print 'test.py -g | -l | -r | -c | -d | -h'
-                sys.exit(2)
-        for opt, arg in opts:
-                if opt == '-h':
-                        print 'test.py -i <inputfile> -o <outputfile>'
-                        sys.exit()
-                elif opt in ("-d"):
-                        flags = 8
-
-
+        # process command line arguments
+        usage = "usage: %prog [options] arg"
+        parser = OptionParser(usage)
+        parser.add_option("-a", "--all",
+                          help="execute all tasks",
+                          action="store_true", dest="all_tasks")
+        parser.add_option("-c", "--centralities",
+                          help="plot the lobby and other centralities comparisons, generating PNG files",
+                          action="store_true", dest="centralities")
+        parser.add_option("-d", "--draw-graph",
+                          help="draw the graph of characters encounters for visualization generating PNG files",
+                          action="store_true", dest="draw_graph")
+        parser.add_option("-g", "--global",
+                          help="write global measures in a table in a LaTeX file",
+                          action="store_true", dest="global_measures")
+        parser.add_option("-l", "--legomena",
+                          help="Write the frequency of hapax legomena, characters that "
+                          +"appear only once in a table in a LaTeX file",
+                          action="store_true", dest="hapax_legomena")
+        parser.add_option("-r", "--rank",
+                          help="plot the ranking of characters frequencies generating the figures 1a and 1b",
+                          action="store_true", dest="rank")
+        
+        (options, args) = parser.parse_args()
+        
 	for i in range(len(attrs)):
 	    cn = Book(attrs[i]['name'], attrs[i]['source'], attrs[i]['color'], attrs[i]['marker'])
 	    books.append(cn)
 
-        #write_global_measures(books)
-	#write_hapax_legomena_table(books)
-	#plot_rank_frequency(books)
-	#plot_centralities(books)
-        draw_graphs(books)
-
+        if options.all_tasks:
+                write_global_measures(books)
+                write_hapax_legomena_table(books)
+                plot_rank_frequency(books)
+                plot_centralities(books)
+                draw_graphs(books)
+        else:
+                if options.centralities:
+                        plot_centralities(books)
+                if options.draw_graph:
+                        draw_graphs(books)
+                if options.global_measures:
+                        write_global_measures(books)
+                if options.hapax_legomena:
+                        write_hapax_legomena_table(books)
+                if options.rank:
+                        plot_rank_frequency(books)
