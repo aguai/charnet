@@ -16,7 +16,7 @@ neighbor     degree
    4           3 
 ==========  ========
    
-the Lobby index is 3 because degree $\leq$ neighbor_position. Degree repetitions are not accounted.
+the Lobby index is 3 because degree $\leq$ neighbor_position. 
 """
 def lobby(G, log_file=None):
     lobbies = []
