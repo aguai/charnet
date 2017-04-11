@@ -7,6 +7,9 @@ import matplotlib.pyplot as plt
 import pygraphviz as pgv
 from book import *
 
+# to calculate Pearson correlation
+from scipy.stats.stats import pearsonr
+
 # INIT
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
 
@@ -171,7 +174,7 @@ def plot_centralities(books):
         logging.info('Plot centralities...')
         
 	offset_fig_nr = 1 # figure number starts after 1
-	centrs = ["degree", "betweenness", "closeness"]
+	centrs = ["Degree", "Betweenness", "Closeness"]
         
         # PRE-processing
         f = open('lobby.log', 'w') # log file, used to debug the results
@@ -189,10 +192,10 @@ def plot_centralities(books):
                 f.write("character;degree;betweenness,closeness;lobby\n");
                 for i in range(G.number_of_nodes()):
                         ln = G.node[i]['name'] + ";"
-                        ln += '{0:.3f}'.format(G.node[i]['degree']) + ";"
-                        ln += '{0:.3f}'.format(G.node[i]['betweenness']) + ";"
-		        ln += '{0:.3f}'.format(G.node[i]['closeness']) + ";"
-                        ln += '{0:.3f}'.format(G.node[i]['lobby']) + "\n"
+                        ln += '{0:.3f}'.format(G.node[i]['Degree']) + ";"
+                        ln += '{0:.3f}'.format(G.node[i]['Betweenness']) + ";"
+		        ln += '{0:.3f}'.format(G.node[i]['Closeness']) + ";"
+                        ln += '{0:.3f}'.format(G.node[i]['Lobby']) + "\n"
                         f.write(ln)
                 f.close()
                 logging.info('- Wrote data %s' % fn )
@@ -216,16 +219,11 @@ def plot_centralities(books):
 			# load the centrality measures
 			for j in range(G.number_of_nodes()):
 				x = G.node[j][c]
-                                y = G.node[j]['lobby']
+                                y = G.node[j]['Lobby']
 
                                 xs.append(x)
                                 ys.append(y)
 
-                                if (x < left): left = x
-                                if (x > right): right = x
-                                if (y < bottom): bottom = y
-                                if (y > top): top = y
-                                
 			marker_style = dict(linestyle='', color=color, markersize=6)
 			axes[i].plot(xs, ys, c=color,
 				    marker=marker,
@@ -233,13 +231,26 @@ def plot_centralities(books):
                			    alpha=0.3, 
 				    **marker_style)
 		        axes[i].grid(True)
-		        axes[i].set_xlabel(c)
-		        axes[i].set_ylabel('lobby')
 
-                        axes[i].text(.3, .85, name,
+                        if (i>=6 and i<9):
+		                axes[i].set_xlabel(c)
+                        if (i % 3==0):
+		                axes[i].set_ylabel('Lobby')
+
+                        axes[i].text(0.5, 1.1, name,
                         horizontalalignment='center',
                         verticalalignment='center',
                         fontsize=11, color='gray',
+                        transform=axes[i].transAxes)
+
+                        # calculate Pearson correlation
+                        (r_row, p_value) = pearsonr(xs, ys)
+                        print name, r_row, p_value
+                        # write Pearson correlation in the plot
+                        axes[i].text(.675, .875, '$r=$'+'{0:.3f}'.format(r_row),
+                        horizontalalignment='center',
+                        verticalalignment='center',
+                        fontsize=10, color='black',
                         transform=axes[i].transAxes)
                         
 		plt.xscale('log')   			       			       
