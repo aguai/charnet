@@ -29,7 +29,7 @@ def lobby(G, log_file=None):
         if (log_file):
             log_file.write(G.node[u]['name'] + "\tdegree=" + str(G.degree(u)) + '\n')
 
-        G.node[u]['lobby'] = lobby = 1 # initialize lobby
+        G.node[u]['Lobby'] = lobby = 1 # initialize lobby
         degs = [] # neighbors' degree
 
         for v in G.neighbors(u):
@@ -50,11 +50,11 @@ def lobby(G, log_file=None):
             old_idx = idx
 
             if (log_file!=None):
-                log_file.write("lobby=" + str(lobby) + '\n')
+                log_file.write("Lobby=" + str(lobby) + '\n')
 
-        G.node[u]['lobby'] = float(lobby) / G.number_of_nodes() # normalize by N vertices
+        G.node[u]['Lobby'] = float(lobby) / G.number_of_nodes() # normalize by N vertices
         
-        lobbies.append(G.node[u]['lobby'])
+        lobbies.append(G.node[u]['Lobby'])
 
     log_file.flush()
     return lobbies

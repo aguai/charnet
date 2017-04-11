@@ -195,17 +195,17 @@ class Book(object):
 		# DEGREE
                 degs = nx.degree_centrality(self.G)                
 		for i in range(self.G.number_of_nodes()):
-                        self.G.node[i]['degree'] = degs[i]
+                        self.G.node[i]['Degree'] = degs[i]
 
 		# BETWEENNESS
 		bets = nx.betweenness_centrality(self.G)
 		for i in range(self.G.number_of_nodes()):
-			self.G.node[i]['betweenness'] = bets[i]
+			self.G.node[i]['Betweenness'] = bets[i]
 
 		# CLOSENESS - already normalized
                 closes = nx.closeness_centrality(self.G)
                 for i in range(self.G.number_of_nodes()):
-		        self.G.node[i]['closeness']   = closes[i]
+		        self.G.node[i]['Closeness']   = closes[i]
 
 if __name__ == "__main__":
         anna = Book('anna', 'sgb', '.dat', 'blue')
