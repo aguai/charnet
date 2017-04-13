@@ -1,0 +1,525 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                       %
+%    LaTeX source code `ioplau2e.tex' used to generate `author         %
+%    guidelines', the documentation explaining and demonstrating use   %
+%    of the Institute of Physics Publishing LaTeX preprint files       %
+%    `iopart.cls, iopart12.clo and iopart10.clo'.                      %
+%                                                                      %
+%    `ioplau2e.tex' itself uses LaTeX with `iopart.cls'                %
+%                                                                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+% First we have a character check
+%
+% ! exclamation mark    " double quote  
+% # hash                ` opening quote (grave)
+% & ampersand           ' closing quote (acute)
+% $ dollar              % percent       
+% ( open parenthesis    ) close paren.  
+% - hyphen              = equals sign
+% | vertical bar        ~ tilde         
+% @ at sign             _ underscore
+% { open curly brace    } close curly   
+% [ open square         ] close square bracket
+% + plus sign           ; semi-colon    
+% * asterisk            : colon
+% < open angle bracket  > close angle   
+% , comma               . full stop
+% ? question mark       / forward slash 
+% \ backslash           ^ circumflex
+%
+% ABCDEFGHIJKLMNOPQRSTUVWXYZ 
+% abcdefghijklmnopqrstuvwxyz 
+% 1234567890
+%% This is file `elsarticle-template-1-num.tex',
+%%
+%% Copyright 2009 Elsevier Ltd
+%%
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+%%
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.2 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%%
+%% Template article for Elsevier's document class `elsarticle'
+%% with numbered style bibliographic references
+%%
+%% $Id: elsarticle-template-1-num.tex 149 2009-10-08 05:01:15Z rishi $
+%% $URL: http://lenova.river-valley.com/svn/elsbst/trunk/elsarticle-template-1-num.tex $
+%%
+%\documentclass[paper]{elsarticle}
+
+\documentclass[review]{elsarticle}
+
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers after \end{frontmatter}.
+\usepackage{lineno,hyperref}
+\modulolinenumbers[5]
+
+%% Use the option review to obtain double line spacing
+%% \documentclass[preprint,review,12pt]{elsarticle}
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+%% \documentclass[final,1p,times]{elsarticle}
+%% \documentclass[final,1p,times,twocolumn]{elsarticle}
+%% \documentclass[final,3p,times]{elsarticle}
+%% \documentclass[final,3p,times,twocolumn]{elsarticle}
+%% \documentclass[final,5p,times]{elsarticle}
+%% \documentclass[final,5p,times,twocolumn]{elsarticle}
+
+%% The graphicx package provides the includegraphics command.
+\usepackage[]{graphicx}
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+%% The amsthm package provides extended theorem environments
+%% \usepackage{amsthm}
+
+\usepackage{subfig}
+
+%% natbib.sty is loaded by default. However, natbib options can be
+%% provided with \biboptions{...} command. Following options are
+%% valid:
+
+%%   round  -  round parentheses are used (default)
+%%   square -  square brackets are used   [option]
+%%   curly  -  curly braces are used      {option}
+%%   angle  -  angle brackets are used    <option>
+%%   semicolon  -  multiple citations separated by semi-colon
+%%   colon  - same as semicolon, an earlier confusion
+%%   comma  -  separated by comma
+%%   numbers-  selects numerical citations
+%%   super  -  numerical citations as superscripts
+%%   sort   -  sorts multiple citations according to order in ref. list
+%%   sort&compress   -  like sort, but also compresses numerical citations
+%%   compress - compresses without sorting
+%%
+%% \biboptions{comma,round}
+% \biboptions{}
+
+\journal{Physica A}
+
+\begin{document}
+
+\begin{frontmatter}
+%% Title, authors and addresses
+
+\title{Centrality indexes in social character networks}
+
+\author{Adriano de Jesus Holanda}
+\author{Mariane Matias}
+\author{Gisele M. Louren\c{c}o Benevides}
+\author{Sueli Mara Ferreira}
+\author{Osame Kinouchi*}
+\address{Faculdade de Filosofia, Ci\^encias e Letras de Ribeir\~ao Preto,
+Universidade de S\~ao Paulo, Av. Bandeirantes 3900, CEP 14040-901, 
+Ribeir\~ao Preto, SP, Brazil}
+
+\cortext[cor1]{Corresponding author \\E-mails: 
+okinouchi@gmail.com (O. Kinouchi), aholanda@usp.br (A. J. Holanda)}
+
+\begin{abstract}
+We compare the social character networks of biographical, 
+legendary and fictional texts,
+in search of statistical indexes of historical information. 
+We examine the frequency of citation of character names and 
+several node centrality indexes, including the recent Lobby
+index. We find a Zipf Law for the number of citations to character 
+names that does not depend on the literary genera and historical content.
+We also examine global and local complex networks indexes,
+in special correlation plots between the recently introduced Lobby index
+and Degree, Betweenness and Closeness centralities. We found no
+relevant differences in the books for these network indexes.
+We discovered, however, that a very simple index based in 
+the \emph{Hapax Legomena}
+phenomenon (names cited a single time in the text) that seems to 
+have the potential of separate pure fiction from 
+legendary and biographical texts.
+
+\end{abstract}
+
+\begin{keyword}
+Social networks \sep Character network 
+\sep Lobby index \sep Hirsch index 
+
+
+%% keywords here, in the form: keyword \sep keyword
+%% MSC codes here, in the form: \MSC code \sep code
+%% or \MSC[2008] code \sep code (2000 is the default)
+
+\end{keyword}
+
+\end{frontmatter}
+
+%%
+%% Start line numbering here if you want
+%%
+\linenumbers
+
+\section{Introduction}
+
+Social networks extracted from literary texts has been studied from some
+years to now. Most of the analysis only try to characterize,
+with different network indexes, pure fictional 
+texts~\cite{choi2007directed,mac2012universal,
+agarwal2012social,mac2013quantitative,kenna2016maths,ribeiro2016complex}. 
+Some intend to examine in what extent
+fictional social networks are similar to real (say, Facebook)
+networks~\cite{alberich2002marvel,gleiser2007become} 
+or test automatic social network
+extraction algorithms~\cite{elson2010extracting,grayson2016sense}. 
+
+Here we intend to do a somewhat different analysis. 
+We compare social networks
+extracted from texts with pure fictional, legendary and biographical nature. 
+From this corpus we try to find if there are network indexes capable of
+differentiate between pure fiction, legendary accounts with some 
+historical traces and historical biography. 
+
+In particular, we study a recent node centrality index, the Lobby 
+index~\cite{korn2009lobby,campiteli2013lobby,lu2016h}. We give
+correlation plots for the Lobby index versus Degree, Betweenness and 
+Closeness centralities to see if it contain
+independent information that could be used for our task.
+The study of the Lobby index in social networks is our main task
+and has not been done in the previous literature.
+
+\section{Materials and Methods}
+\label{Methods}
+
+The networks of characters were extracted from the following books:
+Holy Bible's \emph{Acts of the Apostles}~\cite{holybible}, 
+%Leo Nikolaevitch Tolstoy's \emph{Anna Karenina},
+Bernard Cornwell's \emph{The Winter King: a novel of
+Arthur}~\cite{cornwell2007winter},
+Charles Dickens \emph{David Copperfield},
+%Stephen Hawking's biography~\cite{hawking},
+J. R. R. Tolkien's \emph{The Hobbit}~\cite{tolkien2012hobbit}, 
+Mark Twain's \emph{Huckleberry Finn}, 
+Holy Bible's \emph{Luke Gospel}~\cite{holybible}, 
+Iamblicus's \emph{Life of Pytaghoras}~\cite{taylor1986iamblichus}, 
+James Gleick's \emph{Isaac Newton}~\cite{gleick2003isaac}, and
+Humphrey Carpenter's \emph{Tolkien: a Biography}~\cite{carpenter2014jrr}. 
+
+We use an operational definition of fictional, legendary and biographical
+works. By pure fiction we denote an account that is recognized as such
+by the author of the book (Hobbit, Arthur, Huck, David). 
+Legendary accounts are those that, in the view of modern scholars,
+contain a lot of fictional narratives mixed, perhaps, 
+with possible biographical elements (Lucas, Acts, Pythagoras).
+Finally, biographical works are those recognized as such by
+modern standards (Newton, Tolkien). 
+
+The networks were created with the characters represented by nodes and 
+social links between those characters represented by edges in an
+adjacency matrix $A_{ij} \in [0,1]$ that register if two
+characters know personally each other. All network
+data were manually extracted by the authors, with the exception of 
+ \emph{David Copperfield} and \emph{Huckleberry Finn} 
+  that were obtained from the Stanford GraphBase project~\citep{sgb}.
+
+The following measures were calculated using NetworkX 
+package and Python scripts: clustering coefficient $C_C$, 
+density $d$, diameter $D$,
+minimal mean length $l$, node degree $K_i$, node
+Betweenness $B_i$ and node Closeness $C_i$.
+We also wrote a special script to 
+evaluate the recently proposed Lobby
+index for node centrality~\cite{korn2009lobby,
+campiteli2013lobby,lu2016h}.
+A character Lobby index is the maximum value $L_i$ such that there 
+exists at least $L_i$ neighbors of degree no less than  $L_i$. 
+Additional information about the data and source code can be found 
+at GitHub page for the 
+project called CharNet\footnote{\url{https://ajholanda.github.io/charnet/}}.
+
+\section{Results}
+\label{Results}
+
+%%% FREQUENCY RANK
+
+We ranked the frequencies $f_i$ from the higher to the smaller,
+so that each character now has a rank $r$ and a frequency $F(r)$.
+The plot $F(r)$ is presented in Fig.~\ref{fig:zipf}.
+
+\begin{figure}[ht]
+	\centering
+  		\subfloat[Non-normalized]{{\includegraphics[width=.6\textwidth]{figure1a}}}
+		\qquad
+ 		\subfloat[Normalized]{{\includegraphics[width=.6\textwidth]{figure1b}}}
+		\caption{Zipf curves for character name frequency.}
+        \label{fig:zipf}
+\end{figure}
+
+%%% GLOBAL
+For any two points we can determine the minimum path length
+(the number of intermediate nodes) between then. If we average over
+all possible pairs, we get the average minimum length $l$.
+We also can compute the network clustering coefficient $C_C$, 
+the density $d$ and the diameter $D$, see Table~\ref{tab:global}.
+
+\begin{table}[ht]
+\centering\small
+{\small\begin{tabular}{l|c|c|c|c|c}\hline
+\bf\hfil book\hfil  & \bf\hfil nodes\hfil & \bf\hfil edges\hfil & \bf\hfil avg. degree\hfil & \bf\hfil clustering coeff.\hfil & \bf\hfil density\hfil \\ \hline
+acts & 75 & 160 & 4.27$\pm$5.19 & 0.316 & 0.058\\ 
+arthur & 108 & 155 & 2.87$\pm$4.21 & 0.005 & 0.027\\ 
+david & 87 & 406 & 9.33$\pm$10.56 & 0.351 & 0.109\\ 
+hobbit & 65 & 161 & 4.95$\pm$5.21 & 0.000 & 0.077\\ 
+huck & 74 & 301 & 8.14$\pm$7.39 & 0.488 & 0.111\\ 
+luke & 76 & 203 & 5.34$\pm$8.15 & 0.340 & 0.071\\ 
+newton & 46 & 44 & 1.91$\pm$2.16 & 0.000 & 0.043\\ 
+pythagoras & 41 & 31 & 1.51$\pm$2.20 & 0.027 & 0.038\\ 
+tolkien & 127 & 282 & 4.44$\pm$9.14 & 0.126 & 0.035\\ 
+\hline\end{tabular}}
+\caption{Global measures. $temp$ }
+\label{tab:global}
+\end{table}
+
+Now we examine correlation plots between classical centrality indexes
+(Degree $K$, Betweenness $B$ and Closeness $C$)
+versus the recently introduced Lobby index $L$.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\linewidth]{Degree}
+\caption{\label{FigD} Correlation plots 
+for Lobby versus Degree centrality 
+with Pearson correlation $r$ at the top.}
+\end{figure}
+
+The degree  $K_i$ of a node  is simply the 
+number of neighbors in the
+social network. We plot in Fig.~\ref{FigD} the normalized 
+Lobby index $L^N_i = L_i/N$ versus the normalized 
+degree $K^N_i/N$ for all characters (some graphs as Pythagoras 
+show few points because they have the same $(L^N_i,K^N_i)$).
+What we see is that there is an initial linear
+correlation between the Degree and Lobby indexes followed by
+a saturation. This can be understood because it is much harder
+for the Lobby index to grow after some point. For example,
+it is possible for the central character 
+to have degree $D^N_i=(N-1)/N \approx 1$
+(he/she knows all the other personages) but for having
+$L^N \approx 1$ we would need an all-to-all (complete) graph
+where not only the central character knows all the people,
+but also any of his/her neighbors also knowns all the people.
+
+Comparing all the nine plots, it seems that all are mostly
+equal and correlation between Lobby and Degree can not separate
+the book genres. See, for example, the plots for
+\emph{David Copperfield}, \emph{Luke Gospel} and Tolkien's biography, which are
+almost indistinguishable.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\linewidth]{Betweenness}
+\caption{\label{FigB} Correlation plots for Lobby 
+versus Betweenness centrality 
+with Pearson correlation $r$ at the top.}
+\end{figure}
+
+The Betweenness centrality $B_i$ is  defined 
+as the number of shortest paths that 
+pass through a node $i$, normalized 
+by the number of pair of nodes not including $i$ that 
+is (N-1)(N-2)/2, where $N$ is the number of nodes. 
+The correlation is weak between
+Lobby and Betweenness and it was not found any trend 
+that distinguishes the books.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\linewidth]{Closeness}
+\caption{\label{FigC} Correlation plots for  
+Lobby versus Closeness centrality 
+with Pearson correlation $r$ at the top.}
+\end{figure}
+
+The Closeness centrality $C_i$ is  defined as 
+the sum of shortest distances 
+between a node $i$ and all other reachable nodes.
+This also can be normalized to a maximum value $C^N_i=1$.
+We notice that the \emph{Pythagoras} plot is very poor because several
+characters have the same Closeness. The \emph{Pythagoras} character's 
+network has a low number of edges when compared with other networks 
+used in the study.
+
+Here we observe an interesting phenomenon: the Lobby vs Closeness plot
+show clusters in the data, a property already found in a study
+of biological networks~\cite{campiteli2013lobby}. However,
+these clusters appear in \emph{Huckleberry Finn}, \emph{David Copperfield},
+\emph{Luke's Gospel} and Tolkien's biography (and perhaps in The 
+Hobbit). So, anew, these correlation plots cannot separate the
+book genres.
+
+%\begin{figure}[ht]
+%\centering
+% \includegraphics[width=0.7\linewidth]{Fig5}
+%\caption{\label{FigE} Correlation plots 
+%between  Lobby versus Eingenvector 
+%centrality:
+%a) Acts,  b) Arthur,  c) David, d) Hobbit, e) Huck, 
+%f) Luke, g) Newton, h) Pythagoras and f) Tolkien.}
+%\end{figure}
+
+%%% HAPAX LEGOMENA
+
+Finnaly, we found a very simple measure that has the potential
+of distinguishing the books. 
+From literary criticism we have that words that 
+appear a single time in a text are called 
+\emph{Hapax Legomena}.
+Here we consider only \emph{Hapax Legomena} for personal names,
+that is, names with $f_i=1$. They are presented in Table~\ref{tab:hapax},
+with the books ranked from the larger \emph{Hapax Legomena} ratio (number
+of names with $f_i = 1$ divided by total number of characters).
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{l|r}\hline
+\bf\hfil book\hfil & \bf\hfil\emph{Hapax Legomena}/N\hfil\\\hline
+newton & 41/46 = 0.891 \\
+acts & 51/75 = 0.680 \\
+luke & 51/76 = 0.671 \\
+tolkien & 65/127 = 0.512 \\
+pythagoras & 21/41 = 0.512 \\
+arthur & 52/108 = 0.481 \\
+huck & 32/74 = 0.432 \\
+david & 26/87 = 0.299 \\
+hobbit & 18/65 = 0.277 \\
+\hline
+\end{tabular}
+\caption{Number of character 
+names that are \emph{Hapax legomena} divided by 
+total number $N$ of characters.}
+\label{tab:hapax}
+\end{table}
+
+\section{Discussion}
+
+To distinguish between real social networks from purely fictional ones
+is sometimes a hard task~\cite{alberich2002marvel,gleiser2007become}. 
+The issue complicates when we study legendary texts, which we define
+as text that cannot be trusted as historical biographies but could have
+some historical traces due to oral traditions. That is,
+we have no certain that the social network described is
+fictional or some information refers to true historical
+social relations. This is the case of the narratives 
+about Pythagoras, Jesus of Nazareth and the first apostles. 
+
+Indeed, the normalized frequency $F(r)$ of name citations
+follows a Zipf law (for character citation, not for words!), 
+is universal and does not
+depend on the literary genera examined, see Fig.~\ref{fig:zipf}.
+Of course this need be confirmed with a larger corpora, but
+anyway it suggest that $F(r)$ is not a good indicator 
+for distinguishing historical from fictional accounts.
+
+In the case of the clustering coefficient, density, diameter
+and average minimum length (Table~\ref{tab:global}), we see no
+trend that distinguishes between the genres. This
+suggests that these global indexes are not good tools to classify
+the texts, a conclusion already advanced
+in~\cite{alberich2002marvel,gleiser2007become}.
+
+Recently, Ronqui and Travieso~\cite{ronqui2015analyzing} proposed that
+the analysis of correlations between centrality indexes is interesting
+to characterize and distinguish between natural and model networks.
+We examined the correlation plots for the Lobby index versus 
+Degree (Fig.~\ref{FigD}), Betweenness (Fig.~\ref{FigB}) 
+and Closeness (Fig.~\ref{FigC}). Such plots revealed that social
+networks, fictional or historical, are very similar and cannot
+be distinguished easily.
+
+Another idea could be that there is no motive for a writer of a 
+pure fictional work to introduce a 
+character in a single scene, and cite his/her name a single time.
+Such constraint is weaker for biographies, where characters appear
+due to historical events and not from the special creation of 
+the author, and also for legendary accounts, that are more fragmented
+and follows ancient writing styles. So, our hypothesis is that 
+the presence of \emph{name Hapax legomena} for names should be 
+more rare in pure fiction. 
+
+This hypothesis, indeed, is confirmed by our data: there is a clear 
+trend in Table~\ref{tab:hapax} where pure fictional works have less
+\emph{Hapax Legomena} per character, in the interval $[0.277; 0.481]$;
+modern biographies are in the interval $[0.512;0.891]$; 
+and ancient legendary accounts lie in the interval $[0.512;0.680]$.
+This means that a value of $0.5$ separates pure fiction form the
+other books. We think that this preliminary result, which distinguishes 
+legendary works from pure fiction, is important and 
+makes intuitive sense. Of course, it also must be confirmed 
+by a larger study but, by now, the idea about the \emph{Hapax Legomena}
+ratio seems to be promising and has not been refuted.
+
+\section{Conclusion and Perspectives}
+
+In this paper we examined  three questions:  first, is there
+some difference  between  pure  fictional  social  networks
+(centered in a main character), legendary social networks
+and  networks  extracted from  historical  biography?
+Second, what are the best complex network indexes that would be potential
+candidates to separate these genres?  Third,  what  is the
+behavior of the  recently introduced Lobby index at this respect?
+
+This first study is important by posing the problem and
+exploring its possible solutions.
+Even with a small sample, our findings seems 
+to refute some ideas like to use the
+name frequency $F(r)$ and some global indicators as 
+clustering coefficient, density, 
+diameter and average minimum length as discriminators. 
+Also, by examining local node centrality indexes like 
+Degree, Closeness, Betweenness and Lobby,
+what we can see is that to separate the book genres by
+using the social networks is a hard and  non trivial task.
+
+Although our literary corpus is very small, this work
+intends to present a methodology for the study of the
+old question about how to extract historical information from
+legendary accounts: to examine the characters social networks. 
+We are aware that our results statistically 
+prove nothing, only suggest  possible approaches like the
+use of the fraction of \emph{Hapax Legomena} for names, which seems to
+be a very simple but important result. 
+
+To overcome the limitations of this paper, 
+we foresee only a (non trivial)
+methodological advance: to have a good algorithm that 
+extracts automatically social networks from raw texts. 
+Since this methodology is yet under
+development~\cite{elson2010extracting,grayson2016sense}, 
+our study can be thought as both 
+preliminary and as a benchmark for further studies.
+
+\section*{Acknowledgments}
+This paper results from research activity on the 
+FAPESP Center for Neuromathematics (FAPESP grant 2013/07699-0). 
+OK received support from N\'ucleo de Apoio \'a Pesquisa 
+CNAIPS-USP. 
+
+\section*{Author contributions statement}
+
+GMLB, SMF, MM and AJH extracted the books social networks and 
+name frequency data. AJH organized the public data bank, 
+performed the complex network analysis and analyzed the data.
+OK proposed the original problem and analyzed the data. AJH and
+OK wrote the paper. All authors reviewed the manuscript.
+
+\section*{Competing financial interests} The authors 
+declare no competing financial interests.
+
+\section*{References}
+
+\bibliographystyle{unsrt} 
+\bibliography{main}
+
+\end{document}
