@@ -1,6 +1,6 @@
 # charnet - characters network
 
-This project perform complex network studies using characters's
+This project performs complex network studies using characters's
 encounters as links of some books.
 
 ## Directories content
