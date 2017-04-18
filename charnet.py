@@ -74,12 +74,12 @@ def write_global_measures(books):
 	f = open(fn, "w")
 
 	f.write('{\small\\begin{tabular}{l|c|c|c|c|c}\\hline\n')
-	f.write('\\bf\\hfil book\\hfil '
-                + ' & \\bf\\hfil nodes\hfil '
-                + ' & \\bf\\hfil edges\hfil '
-                + ' & \\bf\\hfil avg. degree\hfil '
-                + ' & \\bf\\hfil clustering coeff.\hfil '
-		+ ' & \\bf\\hfil density\\hfil '
+	f.write('\\bf\\hfil Book\\hfil '
+                + ' & \\bf\\hfil Nodes\hfil '
+                + ' & \\bf\\hfil Edges\hfil '
+                + ' & \\hfil $\\bf\\left\\langle K_i\\right\\rangle$\\hfil '
+                + ' & \\hfil $\\bf\\left\\langle CC \\right\\rangle$ \\hfil '
+		+ ' & \\bf\\hfil Density\\hfil '
                 #+ ' & \\bf\\hfil diameter\\hfil '
                 + ' \\\\ \\hline\n '
         )
@@ -96,7 +96,7 @@ def write_global_measures(books):
                 (deg_avg, deg_stdev) = degree_stat(G)
                 
                 # OUTPUT
-                ln = book.name + ' & '
+                ln = '\emph{' + book.name.title() + '}' + ' & '
                 ln += str(G.number_of_nodes()) + ' & '
                 ln += str(G.number_of_edges()) + ' & '
                 ln += '{0:.2f}'.format(deg_avg) + '$\\pm$' + '{0:.2f}'.format(deg_stdev) + ' & '
