@@ -1,7 +1,8 @@
 # charnet - characters network
 
-This project performs complex network studies using characters's
-encounters as links of some books.
+This project performs complex network studies in some books using
+ characters as nodes and characters encounters as edges. The project
+ has a [GitHub page](https://ajholanda.github.io/charnet/).
 
 ## Directories content
 
