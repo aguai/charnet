@@ -73,21 +73,26 @@ def write_global_measures(books):
 
 	f = open(fn, "w")
 
-	f.write("{\small\\begin{tabular}{l|c|c|c|c|c}\\hline\n")
-	f.write("\\bf\\hfil book\\hfil "
-                + " & \\bf\\hfil nodes\hfil"
-                + " & \\bf\\hfil edges\hfil"
-                + " & \\bf\\hfil avg. degree\hfil"
-                + " & \\bf\\hfil clustering coeff.\hfil"
-		+ " & \\bf\\hfil density\\hfil "
-               # + " & \\bf\\hfil diameter\\hfil
-                +"\\\\ \\hline\n"
+	f.write('{\small\\begin{tabular}{l|c|c|c|c|c}\\hline\n')
+	f.write('\\bf\\hfil book\\hfil '
+                + ' & \\bf\\hfil nodes\hfil '
+                + ' & \\bf\\hfil edges\hfil '
+                + ' & \\bf\\hfil avg. degree\hfil '
+                + ' & \\bf\\hfil clustering coeff.\hfil '
+		+ ' & \\bf\\hfil density\\hfil '
+                #+ ' & \\bf\\hfil diameter\\hfil '
+                + ' \\\\ \\hline\n '
         )
 	for book in books:
                 G = book.G
 	        G.graph['clustering'] = nx.transitivity(book.G)
 	        G.graph['density'] = nx.density(book.G)
-	        #G.graph['diameter'] = nx.diameter(book.G)
+
+                #if (nx.is_connected(G)==True):
+                #        G.graph['diameter'] = nx.diameter(book.G)
+                #else:
+                #        G.graph['diameter'] = '$\infty$'
+
                 (deg_avg, deg_stdev) = degree_stat(G)
                 
                 # OUTPUT
@@ -97,7 +102,7 @@ def write_global_measures(books):
                 ln += '{0:.2f}'.format(deg_avg) + '$\\pm$' + '{0:.2f}'.format(deg_stdev) + ' & '
                 ln += '{0:.3f}'.format(book.G.graph['clustering']) + ' & '
 		ln += '{0:.3f}'.format(book.G.graph['density'])
-                        #+ " & " + str(book.G.graph['diameter'])
+                #ln +=  " & " + str(book.G.graph['diameter'])
                 ln += "\\\\ \n"
                         
 		f.write(ln)
@@ -153,7 +158,7 @@ def plot_rank_frequency(books, normalize=True):
 			        **marker_style)
 
 		plt.xscale('log')
-		ax.set_xlabel('rank')
+		ax.set_xlabel('Rank')
 		plt.yscale('log')
 		ax.set_ylabel('F(r)') # frequency
 
@@ -294,7 +299,7 @@ if __name__ == "__main__":
         flags = 0
         
 	acts = {'name': 'acts', 'source':'data', 'color': color['bible'], 'marker': 's'}
-	arthur = {'name': 'arthur', 'source':'data', 'color': 'magenta', 'marker': '>'}
+	arthur = {'name': 'arthur', 'source':'data', 'color': color['fiction'], 'marker': '>'}
 	david = {'name': 'david', 'source':'sgb', 'color': color['fiction'], 'marker': '8'}
 	hobbit = {'name': 'hobbit', 'source':'data', 'color': color['fiction'], 'marker': 'p'}
 	huck = {'name': 'huck', 'source':'sgb', 'color': color['fiction'], 'marker': 'H'}
