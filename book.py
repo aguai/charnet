@@ -58,14 +58,27 @@ class Book(object):
         def get_number_characters(self):
                 return self.nr_chars
 
-        # _Hapax_ _Legomena_ are words with occurrence frequency equals to one.
         def get_number_hapax_legomenas(self):
+                """
+                _Hapax_ _Legomena_ are words with occurrence frequency equals to one.
+                """
                 nr_hapaxes = 0
                 for name, freq in self.name_freqs.items():
 		       	if (freq == 1):
 		   		nr_hapaxes += 1
 
                 return nr_hapaxes
+
+        def get_number_dis_legomenas(self):
+                """
+                _Dis_ _Legomena_ are words with occurrence frequency equals to two.
+                """
+                nr_dis = 0
+                for name, freq in self.name_freqs.items():
+		       	if (freq == 2):
+		   		nr_dis += 1
+
+                return nr_dis
         
         def get_graph(self):
                 return self.G

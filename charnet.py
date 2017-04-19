@@ -13,30 +13,47 @@ from scipy.stats.stats import pearsonr
 # INIT
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
 
+def format_book_label(name):
+        """
+        Format the label of the book to print in table or plot.
+        """
+        return '\emph{' + name.title() + '}'
+        
+
 ## Hapax Legomena
 #The `write_hapax_legomena_table()` function write the _Hapax_
 #frequency to be included in the paper using LaTeX syntax for tables.
 def write_hapax_legomena_table(books):
-	fn = 'hapax.tex'
+	fn = 'legomenas.tex'
 
 	f = open(fn, "w")
-	f.write("\\begin{tabular}{l|c}\n")
-	f.write("\\bf Book & number of {\\it Hapax Legomena} characters/number of characters \\\\\n")
+	f.write("\\begin{tabular}{l|c|c}\hline \n")
+	f.write("\\bf Book &  $\\bf HL^N=H/N$ & $\\bf DL^N=DL/N$ \\\\ \hline \n")
 	
 	# count the lapaxes for each book
 	for book in books:
 		nr_hapaxes = book.get_number_hapax_legomenas()
-		nr_chars = book.get_number_characters()
+                nr_dis = book.get_number_dis_legomenas()                
+                nr_chars = book.get_number_characters()
 
-                ln = book.name + " & "
+                ln = format_book_label(book.name) + " & "
                 ln += '{0:02d}'.format(nr_hapaxes) + "/"
                 ln += '{0:02d}'.format(nr_chars) + " = "
-                ln += '{0:.3f}'.format(float(nr_hapaxes)/nr_chars) + " \\\\\n"
+                ln += '{0:.3f}'.format(float(nr_hapaxes)/nr_chars) 
+
+                ln += ' & '
+                
+                ln += '{0:02d}'.format(nr_dis) + "/"
+                ln += '{0:02d}'.format(nr_chars) + " = "
+                ln += '{0:.3f}'.format(float(nr_dis)/nr_chars) 
+                
+                ln +=" \\\\\n"
                 
 		f.write(ln)
 
-	f.write("\end{tabular}\n")
+	f.write("\hline\end{tabular}\n")
 	f.close()
+        logging.info('- Wrote %s'% fn)
 
 # Calculate the average degree and the standard deviation degree
 # Source: http://holanda.xyz/files/mean.c
@@ -96,7 +113,7 @@ def write_global_measures(books):
                 (deg_avg, deg_stdev) = degree_stat(G)
                 
                 # OUTPUT
-                ln = '\emph{' + book.name.title() + '}' + ' & '
+                ln = format_book_label(book.name) + ' & '
                 ln += str(G.number_of_nodes()) + ' & '
                 ln += str(G.number_of_edges()) + ' & '
                 ln += '{0:.2f}'.format(deg_avg) + '$\\pm$' + '{0:.2f}'.format(deg_stdev) + ' & '
@@ -117,7 +134,7 @@ def write_global_measures(books):
 def plot_rank_frequency(books, normalize=True):
         logging.info('Plot rank x frequency...')
         
-	fns = ['figure1a.png', 'figure1b.png']
+	fns = ['figure1a.pdf', 'figure1b.pdf']
 	normalizes = [False, True]
 
 	for k in range(len(fns)):
@@ -153,7 +170,7 @@ def plot_rank_frequency(books, normalize=True):
 			marker_style = dict(linestyle=':', color=color, markersize=6)
 			ax.plot(xs, ys, c=color,
 			        marker=marker,
-			        label=name,
+			        label=name.title(),
                		        alpha=0.3, 
 			        **marker_style)
 
@@ -206,7 +223,7 @@ def plot_centralities(books):
                 logging.info('- Wrote data %s' % fn )
                         
 	for c in centrs:
-		fn = c + ".png"
+		fn = c + ".pdf"
 
 		fig, ((ax0, ax1, ax2), (ax3, ax4, ax5), (ax6, ax7, ax8)) = plt.subplots(nrows=3, ncols=3, sharex=True, sharey=True)
                 axes = [ax0, ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8]
@@ -242,11 +259,12 @@ def plot_centralities(books):
                         if (i % 3==0):
 		                axes[i].set_ylabel('Lobby')
 
-                        axes[i].text(0.5, 1.1, name,
-                        horizontalalignment='center',
-                        verticalalignment='center',
-                        fontsize=11, color='gray',
-                        transform=axes[i].transAxes)
+                        axes[i].text(0.5, 1.1, name.title() ,
+                                     style='italic',
+                                     horizontalalignment='center',
+                                     verticalalignment='center',
+                                     fontsize=10, color='gray',
+                                     transform=axes[i].transAxes)
 
                         # calculate Pearson correlation
                         (r_row, p_value) = pearsonr(xs, ys)
