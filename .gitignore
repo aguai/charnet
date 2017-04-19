@@ -2,6 +2,7 @@
 *.dot
 *.csv
 *.gexf
+*.pdf
 *.png
 *.tex
 
