@@ -74,34 +74,12 @@
 %% \documentclass[final,5p,times]{elsarticle}
 %% \documentclass[final,5p,times,twocolumn]{elsarticle}
 
-%% The graphicx package provides the includegraphics command.
-\usepackage[]{graphicx}
-%% The amssymb package provides various useful mathematical symbols
+\usepackage{graphicx}
 \usepackage{amssymb}
-%% The amsthm package provides extended theorem environments
 %% \usepackage{amsthm}
 
 \usepackage{subfig}
-
-%% natbib.sty is loaded by default. However, natbib options can be
-%% provided with \biboptions{...} command. Following options are
-%% valid:
-
-%%   round  -  round parentheses are used (default)
-%%   square -  square brackets are used   [option]
-%%   curly  -  curly braces are used      {option}
-%%   angle  -  angle brackets are used    <option>
-%%   semicolon  -  multiple citations separated by semi-colon
-%%   colon  - same as semicolon, an earlier confusion
-%%   comma  -  separated by comma
-%%   numbers-  selects numerical citations
-%%   super  -  numerical citations as superscripts
-%%   sort   -  sorts multiple citations according to order in ref. list
-%%   sort&compress   -  like sort, but also compresses numerical citations
-%%   compress - compresses without sorting
-%%
-%% \biboptions{comma,round}
-% \biboptions{}
+%\usepackage{cite}
 
 \journal{Physica A}
 
@@ -109,7 +87,6 @@
 
 \begin{frontmatter}
 %% Title, authors and addresses
-
 \title{Centrality indexes in social character networks}
 
 \author[1]{Adriano de Jesus Holanda*}
@@ -163,15 +140,12 @@ Social networks \sep Character network
 
 Social networks extracted from literary texts have been studied from some
 years to now. Most of the analysis try to characterize the networks
-of pure fictional texts with different 
-indexes~\cite{choi2007directed,mac2012universal,
-agarwal2012social,mac2013quantitative,
-kenna2016maths,ribeiro2016complex}. 
+of pure fictional texts with different indexes~\cite{choi2007,mac2012,agarwal2012,mac2013,kenna2016,ribeiro2016}.
 Some intend to examine in what extent
-fictional social networks are similar or not to real (say, Facebook)
-networks~\cite{alberich2002marvel,gleiser2007become} 
+fictional social networks are similar or not to real (e.g. Facebook)
+networks~\cite{alberich2002,gleiser2007} 
 and other propose or test automatic social network
-extraction algorithms~\cite{elson2010extracting,grayson2016sense}. 
+extraction algorithms~\cite{elson2010,grayson2016}. 
 
 Here we intend to do a somewhat different analysis. We compare 
 social networks extracted from texts with pure fictional, 
@@ -183,7 +157,7 @@ legendary accounts are more like pure fiction or more like
 modern biographies?
 
 In particular, we study a recent node centrality index, the Lobby 
-index~\cite{korn2009lobby,campiteli2013lobby,lu2016h}. We give
+index~\cite{korn2009,campiteli2013,lu2016}. We give
 correlation plots for the Lobby index versus Degree, Betweenness and 
 Closeness centralities to see if it contain
 independent information that could be used for our task.
@@ -196,28 +170,29 @@ can separate these genres.
 
 The networks of characters  from the following books:
 Bernard Cornwell's \emph{The Winter King: a novel of
-Arthur}~\cite{cornwell2007winter} (from here, Arthur),
-Charles Dickens \emph{David Copperfield}~\citep{sgb} (David),
-J. R. R. Tolkien's \emph{The Hobbit}~\cite{tolkien2012hobbit} (Hobbit), 
-Mark Twain's \emph{Huckleberry Finn}~\citep{sgb} (Huck),
-\emph{Luke Gospel}~\cite{holybible} (Luke), 
-\emph{Acts of the Apostles}~\cite{holybible} (Acts), 
-Iamblicus's \emph{Life of Pytaghoras}~\cite{taylor1986iamblichus}
-(Pytaghoras), James Gleick's \emph{Isaac Newton}~\cite{gleick2003isaac}
+Arthur}~\cite{cornwell2007} (from here, \emph{Arthur}),
+Charles Dickens \emph{David Copperfield}~\citep{sgb} (\emph{David}),
+J. R. R. Tolkien's \emph{The Hobbit}~\cite{tolkien2012} (\emph{Hobbit}), 
+Mark Twain's \emph{Huckleberry Finn}~\citep{sgb} (\emph{Huck}),
+\emph{Luke Gospel}~\cite{holybible} (\emph{Luke}), 
+\emph{Acts of the Apostles}~\cite{holybible} (\emph{Acts}), 
+Iamblicus's \emph{Life of Pytaghoras}~\cite{taylor1986}
+(\emph{Pytaghoras}), James Gleick's \emph{Isaac Newton}~\cite{gleick2003}
 (Newton), and Humphrey Carpenter's \emph{Tolkien: a
-Biography}~\cite{carpenter2014jrr} (Tolkien). 
+Biography}~\cite{carpenter2014} (\emph{Tolkien}). 
 
-We use an operational definition of fictional, legendary and biographical
+We use an operational definition of fictional, 
+legendary and biographical
 works. By pure fiction we denote an account that is recognized as such
-by the author of the book (Arthur, David, Hobbit, Huck). 
+by the author of the book (\emph{Arthur}, \emph{David}, \emph{Hobbit}, \emph{Huck}). 
 Legendary accounts are those that, in the view of modern scholars,
 contain fictional narratives mixed 
-with possible biographical traces (Lucas, Acts, Pythagoras).
+with possible biographical traces (\emph{Lucas}, \emph{Acts}, \emph{Pythagoras}).
 Finally, biographical works are those recognized as such by
 modern standards (Newton, Tolkien). 
 
-The networks were created with the characters represented by nodes and 
-social links represented by edges in an
+The networks were created with the $N$ characters 
+represented by nodes and social links an $N\times N$
 adjacency matrix $A_{ij} \in [0,1]$ that register if two
 characters know personally each other. All network
 data were manually extracted by us, with the exception of 
@@ -225,87 +200,114 @@ data were manually extracted by us, with the exception of
 that were obtained from the Stanford GraphBase project~\citep{sgb}.
 
 The following measures were calculated using NetworkX 
-package and Python scripts: clustering coefficient $C_C$, 
-density $d$, diameter $D$,
-minimal mean length $l$, node degree $K_i$, node
-Betweenness $B_i$ and node Closeness $C_i$.
-We also wrote a special script to 
+Python package: average clustering coefficient 
+$\left\langle CC\right\rangle$, 
+Density $D$, node Degree $K_i$, node
+Betweenness $B_i$ and node Closeness $C_i$.We also wrote a Python script to 
 evaluate the recently proposed Lobby
-index for node centrality~\cite{korn2009lobby,
-campiteli2013lobby,lu2016h}.
-A character Lobby index is the maximum value $L_i$ such that there 
-exists at least $L_i$ neighbors of degree no less than  $L_i$. 
+index for node centrality~\cite{korn2009,
+campiteli2013,lu2016}. 
 Additional information about the data and source code can be found 
 at GitHub page for the project called 
-CharNet.\footnote{\url{https://ajholanda.github.io/charnet/}}.
+CharNet\footnote{\url{https://ajholanda.github.io/charnet/}}.
+
+The density $D$  of a graph is the ratio of the number of links and the 
+possible number of links $N(N-1)/2$.  The 
+number of the node's neighbors is $K_i$ and the network
+global Degree  is $K = 1/N \sum_i^N K_i$. 
+The clustering coefficient $C_C$  is calculated as follows:
+coefficient:
+\begin{equation}
+\left\langle CC \right\rangle = 
+\frac{1}{N} \sum_{i=1}^N {2L_i \over {K_i(K_i-1)}} \:,
+\end{equation}
+\noindent where  $L_i$ is the number 
+of links between the $K_i$ neighbors of node $i$. 
+
+The individual Degree $K_i$ of a node can be used as a measure
+of its centrality and can be normalized as 
+$K_i^N = K_i/N$. Other centrality measures are Betweenness and
+Closeness. The Betweenness centrality $B_i^N$ is  defined 
+as the number of shortest paths that 
+pass through a node $i$, normalized 
+by the number of pair of nodes not including $i$, that 
+is $(N-1)(N-2)/2$. The Closeness centrality $C_i$ is  defined as 
+the sum of shortest distances 
+between a node $i$ and all other reachable nodes.
+This also can be normalized to a maximum value $C^N_i=1$.
+A character Lobby index is the maximum value $L_i$ such that there 
+exists at least $L_i$ neighbors of degree no less than  $L_i$.
+It also can be normalized as $L_i^N = L_i/N$.
+
+Finally, we can study the frequency $f_i$ that a given 
+character name appear in the text. Notice that, due to
+operational reasons, we counted only
+explicit references to the name, not pronouns 
+or indirect references to the character.
 
 \section{Results}
 \label{Results}
 
 %%% FREQUENCY RANK
 
-We ranked the frequencies $f_i$ in descending order,
+\paragraph{Name frequencies} We ranked the frequencies $f_i$ in descending order,
 so that each character now has a rank $R$ and a frequency $F(R)$.
-The plot $F(R)$ is presented in Fig.~\ref{fig:zipf}.
+The plot $F(R)$ is presented in Fig.~\ref{fig:zipf}. We 
+normalize so that $F(R=1)=1$ and the horizontal axis is 
+$R/R_{\mathbf{max}}$.
 
 \begin{figure}[ht]
 	\centering
-  		\subfloat[Non-normalized]{{\includegraphics[width=.6\textwidth]{figure1a}}}
+  		\subfloat[Non-normalized]{{\includegraphics[width=.6\textwidth]{figure1a.pdf}}}
 		\qquad
- 		\subfloat[Normalized]{{\includegraphics[width=.6\textwidth]{figure1b}}}
+ 		\subfloat[Normalized]{{\includegraphics[width=.6\textwidth]{figure1b.pdf}}}
 		\caption{Zipf curves for character appearance frequency.}
         \label{fig:zipf}
 \end{figure}
 
 %%% GLOBAL
-The degree $D_i$ is the number of links a given node has. A network 
-measure is the average degree $\left \langle 
-D_i \right \rangle$. 
-We also computed the network clustering coefficient $C_C$ and 
-the density $d$, see Table~\ref{tab:global}.
-All these indexes are global ones. {\bf explicar $C_C$ e $d$.}
+\paragraph{Global indexes} 
+In Table~\ref{tab:global} we show the global indexes average degree $K$,
+average clustering coefficient $CC$ and density $D$.
 
 \begin{table}[ht]
 \centering\small
 {\small\begin{tabular}{l|c|c|c|c|c}\hline
-\bf\hfil Book\hfil  & \bf\hfil Nodes\hfil  & \bf\hfil 
-Edges\hfil  & ${\bf \left \langle 
-D_i \right \rangle}$ \hfil \hfil  & \hfil 
-${\bf C_C}$\hfil  & \bf\hfil Density \hfil \\ \hline
-Acts & 75 & 160 & 4.27$\pm$5.19 & 0.316 & 0.058 \\ 
-Arthur & 108 & 155 & 2.87$\pm$4.21 & 0.005 & 0.027 \\ 
-David & 87 & 406 & 9.33$\pm$10.56 & 0.351 & 0.109 \\ 
-Hobbit & 65 & 161 & 4.95$\pm$5.21 & 0.000 & 0.077 \\ 
-Huck & 74 & 301 & 8.14$\pm$7.39 & 0.488 & 0.111 \\ 
-Luke & 76 & 203 & 5.34$\pm$8.15 & 0.340 & 0.071 \\ 
-Newton & 46 & 44 & 1.91$\pm$2.16 & 0.000 & 0.043 \\ 
-Pythagoras & 41 & 31 & 1.51$\pm$2.20 & 0.027 & 0.038\\ 
-Tolkien & 127 & 282 & 4.44$\pm$9.14 & 0.126 & 0.035\\ 
+\bf\hfil Book\hfil  & \bf\hfil N\hfil  & \bf\hfil Links\hfil  
+& \hfil $\bf K $\hfil  & \hfil $\bf CC$ 
+\hfil  & \bf\hfil D\hfil  \\ \hline
+ \emph{Acts} & 75 & 160 & 4.27$\pm$5.19 & 0.316 & 0.058\\ 
+\emph{Arthur} & 108 & 155 & 2.87$\pm$4.21 & 0.005 & 0.027\\ 
+\emph{David} & 87 & 406 & 9.33$\pm$10.56 & 0.351 & 0.109\\ 
+\emph{Hobbit} & 65 & 161 & 4.95$\pm$5.21 & 0.000 & 0.077\\ 
+\emph{Huck} & 74 & 301 & 8.14$\pm$7.39 & 0.488 & 0.111\\ 
+\emph{Luke} & 76 & 203 & 5.34$\pm$8.15 & 0.340 & 0.071\\ 
+\emph{Newton} & 46 & 44 & 1.91$\pm$2.16 & 0.000 & 0.043\\ 
+\emph{Pythagoras} & 41 & 31 & 1.51$\pm$2.20 & 0.027 & 0.038\\ 
+\emph{Tolkien} & 127 & 282 & 4.44$\pm$9.14 & 0.126 & 0.035\\ 
 \hline\end{tabular}}
 \caption{Global network indexes for the books} 
 \label{tab:global}
 \end{table}
 
-The index $i = 1, \ldots , N$ enumerates individuals in a
+\paragraph{Node centrality indexes} 
+Remember that index $i = 1, \ldots , N$ enumerates individuals in a
 network with $N$ characters.
 We examine correlation plots between classical centrality indexes
-(Degree $K_i$, Betweenness $B_i$ and Closeness $C_i$)
-and the recently introduced Lobby index $L_i$. These are local
-centrality indexes.
+(Degree Betweenness and Closeness)
+and the recently introduced Lobby index. 
+These are local centrality indexes.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=\linewidth]{Degree}
-\caption{\label{FigD} Correlation plots 
-for Lobby versus Degree centrality 
+\includegraphics[width=\linewidth]{Degree.pdf}
+\caption{\label{FigD} Correlation plots for Lobby versus Degree centrality 
 with Pearson correlation $r$ at the top.}
 \end{figure}
 
-The degree  $K_i$ of a node  is simply the 
-number of neighbors in the
-social network. We plot in Fig.~\ref{FigD} the normalized 
-Lobby index $L^N_i = L_i/N$ versus the normalized 
-degree $K^N_i = K_i/N$ for all characters (some graphs as Pythagoras 
+We plot in Fig.~\ref{FigD} the normalized 
+Lobby index $L^N_i$ versus the normalized 
+degree $K^N_i$ for all characters (some graphs as \emph{Pythagoras}
 show few points because they have the same $(L^N_i,K^N_i)$).
 What we see is that there is an initial linear
 correlation between the Degree and Lobby indexes followed by
@@ -314,7 +316,7 @@ for the Lobby index to grow after some point. For example,
 it is possible for the central character 
 to have degree $D^N_i=(N-1)/N \approx 1$
 (he/she knows all the other personages) but for having
-$L^N \approx 1$ we would need an all-to-all (complete) graph
+$L_i^N \approx 1$ we would need an all-to-all (complete) graph
 where not only the central character knows all the people,
 but also any of his/her neighbors also knowns all the people.
 
@@ -326,79 +328,80 @@ and \emph{Tolkien}, which are almost indistinguishable.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=\linewidth]{Betweenness}
+\includegraphics[width=\linewidth]{Betweenness.pdf}
 \caption{\label{FigB} Correlation plots for Lobby 
 versus Betweenness centrality 
 with Pearson correlation $r$ at the top.}
 \end{figure}
 
-The Betweenness centrality $B_i^N$ is  defined 
-as the number of shortest paths that 
-pass through a node $i$, normalized 
-by the number of pair of nodes not including $i$ that 
-is $(N-1)(N-2)/2$. The Pearson correlation is weak between
-Lobby and Betweenness. We also notice that
+The Pearson correlation is weak between
+Lobby and Betweenness (Fig.~\ref{FigB}). We also notice that
 the correlation is greater for the biographies than for
 most of the fictional and legendary texts. 
-However, the fictional book Arthur has a 
-larger correlation than Tolkien, so we have a counterexample.
+However, the fictional book \emph{Arthur} has a 
+larger correlation than \emph{Tolkien}, 
+so we have a counterexample for that trend.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=\linewidth]{Closeness}
+\includegraphics[width=\linewidth]{Closeness.pdf}
 \caption{\label{FigC} Correlation plots for  
 Lobby versus Closeness centrality 
 with Pearson correlation $r$ at the top.}
 \end{figure}
 
-The Closeness centrality $C_i$ is  defined as 
-the sum of shortest distances 
-between a node $i$ and all other reachable nodes.
-This also can be normalized to a maximum value $C^N_i=1$.
-We notice that the \emph{Pythagoras} 
-plot is very poor because several
-characters have the same Closeness. 
-The \emph{Pythagoras} character's 
-network has a low number of edges when compared 
-with other networks used in the study.
-
-Here we observe an interesting phenomenon: 
-the Lobby vs Closeness plot
-show clusters in the data, a phenomenon already found in a study
-of biological networks~\cite{campiteli2013lobby}. However,
+We observe an interesting phenomenon in 
+the Lobby vs Closeness plot (Fig.~\ref{FigC}):
+show clusters in the data, a feature already found in a study
+of biological networks~\cite{campiteli2013}. 
+It seems that Lobby can detect clusters or communities that
+the other indexes cannot detect. However,
 these clusters appear in \emph{Huck}, \emph{David},
 \emph{Luke} and \emph{Tolkien}. So, anew, these correlation plots 
 cannot separate the book genres.
 
+We notice that the \emph{Pythagoras} 
+plot is very poor because several
+characters have the same Closeness. 
+The \emph{Pythagoras} character's 
+network has a low number of links when compared 
+with other networks used in the study. However we maintained 
+\emph{Pythagoras} in our sample because this 
+book is a prime example of legendary account. It also gives
+us an idea about the behavior of books with small number
+of characters.
+
 %%% HAPAX LEGOMENA
 
-Finnaly, we found a very simple measure that has the potential
+\paragraph{Hapax Legomena}
+Finally, we found a very simple measure that has the potential
 of distinguishing the books. 
 From literary criticism we have that words that 
 appear a single time in a text are called 
 \emph{Hapax Legomena}.
-Here we consider only \emph{Hapax Legomena} for character names,
-that is, names with $f_i=1$. They are presented 
+Here we consider only \emph{Hapax Legomena} (HL) for character names,
+that is, names with frequency $f_i=1$. They are presented 
 in Table~\ref{tab:hapax},
 with the books ranked from the largest to the lowest
-\emph{Hapax Legomena} ratio $HˆN$ (number $H$ of names with 
+\emph{Hapax Legomena} ratio $HL^N= HL/N$ (number $HL$ of names with 
 $f_i = 1$ divided by  total number of characters $N$).
+We also report \emph{Dis Legomena} (DL) names,
+that is, names with $f_i=2$. 
 
 \begin{table}[ht]
 \centering\small
-\begin{tabular}{l|c}\hline
-\bf\hfil book\hfil & \bf\hfil $H^N = H/N$\hfil\\ \hline
-Newton & 41/46 = 0.891 \\
-Acts & 51/75 = 0.680 \\
-Luke & 51/76 = 0.671 \\
-Tolkien & 65/127 = 0.512 \\
-Pythagoras & 21/41 = 0.512 \\
-Arthur & 52/108 = 0.481 \\
-Huck & 32/74 = 0.432 \\
-David & 26/87 = 0.299 \\
-Hobbit & 18/65 = 0.277 \\
-\hline
-\end{tabular}
+\begin{tabular}{l|c|c}\hline 
+\bf Book &  $\bf HL^N=H/N$ & $\bf DL^N=DL/N$ \\ \hline 
+\emph{Newton} & 41/46 = 0.891 & 14/46 = 0.304 \\
+\emph{Acts} & 51/75 = 0.680 & 13/75 = 0.173 \\
+\emph{Luke} & 51/76 = 0.671 & 15/76 = 0.197 \\
+\emph{Tolkien} & 65/127 = 0.512 & 28/127 = 0.220 \\
+\emph{Pythagoras} & 21/41 = 0.512 & 08/41 = 0.195 \\
+\emph{Arthur} & 52/108 = 0.481 & 20/108 = 0.185 \\
+\emph{Huck} & 32/74 = 0.432 & 19/74 = 0.257 \\
+\emph{David} & 26/87 = 0.299 & 09/87 = 0.103 \\
+\emph{Hobbit} & 18/65 = 0.277 & 10/65 = 0.154 \\
+\hline\end{tabular}
 \caption{Number of character 
 names that are \emph{Hapax legomena} $H$ divided by 
 total number $N$ of characters. The books have been 
@@ -410,7 +413,7 @@ listed in descending order for $H^N$.}
 
 To distinguish between real social networks 
 from purely fictional ones is a hard
-task~\cite{alberich2002marvel,gleiser2007become}. 
+task~\cite{alberich2002,gleiser2007}. 
 The issue complicates when we study legendary texts, which we define
 as text that cannot be trusted as historical 
 biographies but could have
@@ -436,9 +439,9 @@ suggests that these global indexes are not good tools to classify
 the texts, depends strongly of the size and structure
 (number of characters) of the books, 
 a conclusion already advanced
-in~\cite{alberich2002marvel,gleiser2007become}.
+in~\cite{alberich2002,gleiser2007}.
 
-Recently, Ronqui and Travieso~\cite{ronqui2015analyzing} 
+Recently, Ronqui and Travieso~\cite{ronqui2015} 
 proposed that the analysis of correlations between 
 centrality indexes is interesting to characterize 
 and distinguish between natural and artificial networks.
@@ -463,13 +466,13 @@ capacity of traditional network indexes to separate the genres.
 However, another idea could be that there is 
 no clear motivation for a writer of a pure fictional 
 work to introduce a character in a single scene, 
-and cite his/her name a single time.
+and cite his/her name only one or two times.
 Such constraint is weaker for biographies, where characters appear
 due to historical events and not from the special creative
 work of the author. This is also valid for legendary accounts, 
 that are more fragmented and follows ancient writing styles. 
 So, our hypothesis is that 
-the presence of \emph{name Hapax legomena} for names should be 
+the presence of \emph{name Hapax legomena}  for names would be 
 more rare in pure fiction. 
 
 This hypothesis, indeed, is confirmed by our data: there is a clear 
@@ -482,10 +485,11 @@ This means that a value of $0.5$ separates pure fiction form the
 other books. We think that this preliminary result, 
 which distinguishes legendary and historical 
 works from pure fiction, is important and 
-makes intuitive sense. Of course, it also must be confirmed 
+makes intuitive sense. This trend, however, is not 
+observed for the \emph{Dis Legomena} data.
+Of course, this must be confirmed 
 by a larger study but, by now, the idea about 
-the \emph{Hapax Legomena}
-ratio seems to be promising and has not been refuted.
+\emph{Hapax Legomena} seems to be promising and has not been refuted.
 
 \section{Conclusion and Perspectives}
 
@@ -494,7 +498,7 @@ some difference  between  pure  fictional  social  networks
 (centered in a main character), legendary social networks
 and  networks  extracted from  a historical  biography?
 Second, are there complex network indexes 
-with potential to separate these genres?  Third,  what  is the
+with potential to separate these genres? Third,  what  is the
 behavior of the  recently introduced Lobby index at this respect?
 
 This first study is important by posing the problem and
@@ -516,7 +520,7 @@ we foresee only a (non trivial)
 methodological advance: to have a good algorithm that 
 extracts automatically social networks from raw texts. 
 Since this methodology is yet under
-development~\cite{elson2010extracting,grayson2016sense}, 
+development~\cite{elson2010,grayson2016}, 
 our study can be thought as both 
 preliminary and as a benchmark for further studies.
 
@@ -527,9 +531,12 @@ legendary accounts: to examine the characters social networks.
 We are aware that our results statistically 
 prove nothing, but refutes possible approaches.
 Our work also suggests  that the
-use of the fraction of \emph{Hapax Legomena} 
-for names could separate the genres, 
-which seems to be a very simple but important result. 
+use of the fraction of \emph{Hapax Legomena} and \emph{Dis Legomena}
+for names could separate the fictional texts from the legendary and
+biographical ones.  
+This seems to be a very simple but important result and could reflect
+the fact that legendary accounts could have some traces
+of true historical social networks.
 
 \section*{Acknowledgments}
 This paper results from research activity on the 
@@ -550,7 +557,7 @@ declare no competing financial interests.
 
 \section*{References}
 
-\bibliographystyle{unsrt} 
+\bibliographystyle{elsarticle-num} 
 \bibliography{litbib}
 
 \end{document}
