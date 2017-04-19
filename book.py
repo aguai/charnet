@@ -2,10 +2,11 @@ import matplotlib.pyplot as plt
 import networkx as nx
 from lobby import lobby
 
-"""Local class is used to process data of books gathered by the
-authors of this project.
-"""
 class Book(object):
+        """Local class is used to process data of books gathered by the
+        authors of this project.
+        
+        """
         FREQ_EXTENSION = ".freq"
         DATA_FILE_EXTENSION = ".dat"
         COMMENT_TOKEN = '*'
@@ -18,11 +19,12 @@ class Book(object):
                 Parameter
                 ---------
                 name: alias assigned to book
+                data_directory: where data file is stored
                 nr_chars: number of characters
-                source: where the project of gathering data for book, 
-                        options are: 'local' and 'sgb'
-                color: color to be used in the graphics to plot
-                marker: marker used in the graphics to differentiate the book data
+                color: color to be used in the graphic to plot
+                marker: marker used in the graphic to distinguish the book data
+                generative_model: as nodes are added to graph, compute some measures
+                on-the-fly and store them.
                 """
                 # book attributes
                 self.name = name
@@ -87,6 +89,7 @@ class Book(object):
                 """
                 Read the file containning characters encounters of a book 
                 and return a graph.
+                
                 Returns
                 -------
                 igraph graph

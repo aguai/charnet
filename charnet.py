@@ -14,16 +14,18 @@ from scipy.stats.stats import pearsonr
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
 
 def format_book_label(name):
-        """
-        Format the label of the book to print in table or plot.
+        """Format the label of the book to print in table or plot.
+
         """
         return '\emph{' + name.title() + '}'
         
 
-## Hapax Legomena
-#The `write_hapax_legomena_table()` function write the _Hapax_
-#frequency to be included in the paper using LaTeX syntax for tables.
 def write_hapax_legomena_table(books):
+        """"Hapax Legomena The write_hapax_legomena_table() function write the
+        _Hapax_ frequency to be included in the paper using LaTeX
+        syntax for tables.
+
+        """
 	fn = 'legomenas.tex'
 
 	f = open(fn, "w")
@@ -55,9 +57,11 @@ def write_hapax_legomena_table(books):
 	f.close()
         logging.info('- Wrote %s'% fn)
 
-# Calculate the average degree and the standard deviation degree
-# Source: http://holanda.xyz/files/mean.c
 def degree_stat(G):
+        """Calculate the average degree and the standard deviation degree.
+        Source: http://holanda.xyz/files/mean.c
+        
+        """
         avg_prev = float(G.degree(0))
         var_prev = 0
         for i in range(1, G.number_of_nodes()):
@@ -72,18 +76,19 @@ def degree_stat(G):
 
         return (avg_curr, stdev)
         
-## Writing global measures
-# Global measures for each character network are written as a table and
-# included in a LaTeX file named `global.tex` to be included in the
-# manuscript.
-# Clustering coefficient is calculated using _NetworkX_ library
-# [transitivity](https://networkx.github.io/documentation/networkx-1.10/reference/generated/networkx.algorithms.cluster.transitivity.html#networkx.algorithms.cluster.transitivity)
-# routine.  We also calculate
-# [density](https://networkx.github.io/documentation/networkx-1.9/reference/generated/networkx.classes.function.density.html)
-# and
-# [diameter](https://networkx.github.io/documentation/networkx-1.10/reference/generated/networkx.algorithms.distance_measures.diameter.html)
-# of the graph.
 def write_global_measures(books):
+        """ Global measures for each character network are written as a table and
+        included in a LaTeX file named `global.tex` to be included in the
+        manuscript.
+        Clustering coefficient is calculated using _NetworkX_ library
+        [transitivity](https://networkx.github.io/documentation/networkx-1.10/reference/generated/networkx.algorithms.cluster.transitivity.html#networkx.algorithms.cluster.transitivity)
+        routine.  We also calculate
+        [density](https://networkx.github.io/documentation/networkx-1.9/reference/generated/networkx.classes.function.density.html)
+        and
+        [diameter](https://networkx.github.io/documentation/networkx-1.10/reference/generated/networkx.algorithms.distance_measures.diameter.html)
+        of the graph.
+
+        """
         logging.info('Writing global measures...')
         
 	fn = 'global.tex'
@@ -128,10 +133,11 @@ def write_global_measures(books):
 	f.close()
         logging.info('- Wrote %s'% fn)
 
-## Ranking frequency
-# Character appearance frequency is ranked in the y axis. The scale for
-# y axis is logarithmic.
 def plot_rank_frequency(books, normalize=True):
+        """Ranking frequency Character appearance frequency is ranked in the
+        y axis. The scale for y axis is logarithmic.
+        
+        """
         logging.info('Plot rank x frequency...')
         
 	fns = ['figure1a.pdf', 'figure1b.pdf']
@@ -186,13 +192,12 @@ def plot_rank_frequency(books, normalize=True):
 		plt.savefig(fns[k])
                 logging.info('- Wrote %s' % fns[k] )
 
-## Centralities
-# Lobby index centrality is calculated using function defined in
-# lobby.py.
-# Degree, betweenness and closeness centralities are calculated
-# using NetworkX. All measures are normalized.
-##
 def plot_centralities(books):
+        """Centralities Lobby index centrality is calculated using function
+        defined in lobby.py.  Degree, betweenness and closeness centralities
+        are calculated using NetworkX. All measures are normalized.
+        
+        """
         logging.info('Plot centralities...')
         
 	offset_fig_nr = 1 # figure number starts after 1
@@ -284,9 +289,11 @@ def plot_centralities(books):
 		plt.savefig(fn)
                 logging.info('- Wrote plot %s' % fn )
 
-# Graphs for the characters' encounters are drawn for visualization only using
-# matplotlib and NetworkX.
 def draw_graphs(books):
+        """Graphs for the characters' encounters are drawn for visualization
+        only using matplotlib and NetworkX.
+        
+        """
         logging.info('Drawing graphs...')
         
         for book in books:
@@ -307,11 +314,13 @@ def draw_graphs(books):
                 plt.savefig(fn, format="PNG")
                 logging.info('- Wrote %s' % fn )
 
-# The main subroutine declares some attributes associated with the
-# books. Those attributes are used to label the books and to
-# standardize the pictorial elements properties like color and point
-# marker in the plot.
 if __name__ == "__main__":
+        """The main subroutine declares some attributes associated with the
+        books. Those attributes are used to label the books and to
+        standardize the pictorial elements properties like color and point
+        marker in the plot.
+        
+        """
         books = []
 	color = {'bible': 'red', 'fiction': 'blue', 'biography': 'darkgreen'}
         flags = 0

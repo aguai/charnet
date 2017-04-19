@@ -1,5 +1,6 @@
 from igraph import *
 
+def lobby(G, log_file=None):
 """Lobby or h index
 ================
 
@@ -17,8 +18,8 @@ neighbor     degree
 ==========  ========
    
 the Lobby index is 3 because degree $\leq$ neighbor_position. 
+
 """
-def lobby(G, log_file=None):
     lobbies = []
 
     if (log_file!=None):
