@@ -7,6 +7,6 @@ help: charnet.py
 	./$< -h
 
 clean:
-	$(RM) *.csv *.png global.tex hapax.tex
+	$(RM) *.csv *.dot *.log *.pdf *.png global.tex legomenas.tex
 
 .PHONY: all clean help
