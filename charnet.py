@@ -19,7 +19,6 @@ def format_book_label(name):
         """
         return '\emph{' + name.title() + '}'
         
-
 def write_hapax_legomena_table(books):
         """"Hapax Legomena The write_hapax_legomena_table() function write the
         _Hapax_ frequency to be included in the paper using LaTeX
@@ -198,6 +197,8 @@ def plot_centralities(books):
         are calculated using NetworkX. All measures are normalized.
         
         """
+        plot_fns = {'Degree': 'figure2', 'Betweenness':'figure3', 'Closeness':'figure4'}
+        
         logging.info('Plot centralities...')
         
 	offset_fig_nr = 1 # figure number starts after 1
@@ -228,7 +229,7 @@ def plot_centralities(books):
                 logging.info('- Wrote data %s' % fn )
                         
 	for c in centrs:
-		fn = c + ".pdf"
+		fn = plot_fns[c] + ".pdf"
 
 		fig, ((ax0, ax1, ax2), (ax3, ax4, ax5), (ax6, ax7, ax8)) = plt.subplots(nrows=3, ncols=3, sharex=True, sharey=True)
                 axes = [ax0, ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8]
@@ -287,7 +288,7 @@ def plot_centralities(books):
                 fig.subplots_adjust(hspace=0)
 		plt.tight_layout()
 		plt.savefig(fn)
-                logging.info('- Wrote plot %s' % fn )
+                logging.info('- Wrote plot %s for %s centrality', fn, c)
 
 def draw_graphs(books):
         """Graphs for the characters' encounters are drawn for visualization
