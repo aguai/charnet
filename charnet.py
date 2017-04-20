@@ -326,14 +326,14 @@ if __name__ == "__main__":
 	color = {'bible': 'red', 'fiction': 'blue', 'biography': 'darkgreen'}
         flags = 0
         
-	acts = {'name': 'acts', 'source':'data', 'color': color['bible'], 'marker': 's'}
-	arthur = {'name': 'arthur', 'source':'data', 'color': color['fiction'], 'marker': '>'}
-	david = {'name': 'david', 'source':'sgb', 'color': color['fiction'], 'marker': '8'}
+	acts = {'name': 'acts', 'source':'data', 'color': color['bible'], 'marker': '+'}
+	arthur = {'name': 'arthur', 'source':'data', 'color': color['fiction'], 'marker': '^'}
+	david = {'name': 'david', 'source':'sgb', 'color': color['fiction'], 'marker': 'v'}
 	hobbit = {'name': 'hobbit', 'source':'data', 'color': color['fiction'], 'marker': 'p'}
-	huck = {'name': 'huck', 'source':'sgb', 'color': color['fiction'], 'marker': 'H'}
-	luke = {'name': 'luke', 'source':'data', 'color': color['bible'], 'marker': '8'}
-	newton = {'name': 'newton', 'source':'data', 'color': color['biography'], 'marker': 'o'}
-	pythagoras = {'name': 'pythagoras', 'source':'data', 'color': color['biography'], 'marker': '^'}
+	huck = {'name': 'huck', 'source':'sgb', 'color': color['fiction'], 'marker': 's'}
+	luke = {'name': 'luke', 'source':'data', 'color': color['bible'], 'marker': 'x'}
+	newton = {'name': 'newton', 'source':'data', 'color': color['biography'], 'marker': '.'}
+	pythagoras = {'name': 'pythagoras', 'source':'data', 'color': color['biography'], 'marker': '*'}
 	tolkien = {'name': 'tolkien', 'source':'data', 'color': color['biography'], 'marker': 'd'}
 	
 	attrs = [acts, arthur, david, hobbit,
