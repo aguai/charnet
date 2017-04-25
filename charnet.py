@@ -307,7 +307,7 @@ def draw_graphs(books):
                 
                 fig = plt.figure(figsize=(12,12))
                 ax = plt.subplot(111)
-                ax.set_title('Graph - ' + book.name, fontsize=16)
+                ax.set_title('Graph - ' + book.name.title(), fontsize=16)
                 pos = nx.spring_layout(G)
                 nx.draw(G, pos, node_size=1500, node_color=book.color, font_size=14, font_weight='bold')
                 nx.draw_networkx_labels(G, pos, labels, font_size=12)
