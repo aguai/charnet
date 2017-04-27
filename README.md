@@ -1,6 +1,6 @@
 # charnet - characters network
 
-This project aims to perform complex network studies in 9 books using
+This project performed complex network studies in 9 books using
  characters as nodes and characters encounters as edges. The project
  has a [GitHub page](https://ajholanda.github.io/charnet/) and a
  [manuscript](https://arxiv.org/abs/1704.08197).
@@ -13,9 +13,9 @@ This project aims to perform complex network studies in 9 books using
 ## Prerequisites
 
 * Python and the packages:
-  ** [matplotlib](https://matplotlib.org/);
-  ** [NetworkX](https://networkx.github.io/);
-  ** [PyGraphviz](https://pygraphviz.github.io/).
+  * [matplotlib](https://matplotlib.org/);
+  * [NetworkX](https://networkx.github.io/);
+  * [PyGraphviz](https://pygraphviz.github.io/).
 
 ## Running
 
@@ -36,3 +36,8 @@ To clean the output generated:
 ````
 $ make clean
 ````
+
+## Feedback
+
+Please, open an [issue](https://github.com/ajholanda/charnet/issues) for any feeback.
+
