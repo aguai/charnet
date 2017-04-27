@@ -1,4 +1,4 @@
-# charnet - characters network
+# charnet - character networks
 
 This project performed studies using complex networks in 9 books. We considered
  characters as nodes and characters encounters as edges. The project
