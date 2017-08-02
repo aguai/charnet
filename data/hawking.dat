@@ -1,0 +1,342 @@
+* File "hawking.dat" from Characters Network project (C) 2017 University of Sao Paulo, Brazil
+* Stephen Hawking Biography
+* Gathered from "The Theory of Everything" by  Mariane Matias
+* This file may be freely copied.
+AB Anna Bidder
+AC Amarjit Chohan
+AD Alan Deyermond
+AE Arthur Eddington
+AG Anne Young
+AH Alan Hardy
+AK Amy Klohr
+AL Andrei Linde
+AM Antony Melville
+AN Annie Dicke
+AO Sir Alan Hodgkin
+AR Abercrombie
+AS Matthews
+AT Abe Taub
+AU Aude
+AW Agnes Walker
+AX Alex
+AY Andy
+AZ Anna Zytkov
+BA Basil
+BB Brian Burns
+BC Bernard Carr
+BD Bob Dicke
+BE Belinda
+BG Beryl Graves
+BH Brian Whitt
+BI Bill Loveless
+BL Bill Lewis
+BR Bernard Rogers
+BT Brandon Carter
+BW Bernard Whiting
+CA Chalmers
+CC Caroline Chamberlain
+CD Claude
+CE Cice
+CG Cecil Gibbons
+CH Chaim Herzog
+CI Christine Ikin
+CK Clarke
+CL Claudio Teitelbaum
+CM Charlie Misner
+CN Christopher Penrose
+CO Christopher
+CP Chopin
+CR Chris
+CS Christine Putnis
+CT Catherine
+CW Chester White
+DC Molly Du Cane
+DI David Ireland
+DK Diana King
+DN Dorothy Needham
+DP Don Page
+DR Cressida Dronke
+DS Dennis Sciama
+DU Dunham
+DW Dorothy Woollard
+EC Elizabeth Chant
+EF Effie
+EH Edward Hawking
+EL Evgeny Lifshitz
+EM Elaine Mason
+ES Eve Suckling
+FA Jane's father
+FH Frank Hawking
+FO Fred Hoyle
+GA Ghee Ang
+GE George Ellis
+GF Geoffrey
+GG George
+GH George Hill
+GI Gary Gibbons
+GL Gillian
+GS George Sand
+GT Gent
+GW Gow
+GV Gonzalo Vargas Llosa
+HB Heimann Bondi
+HC Hanna Scolnicov
+HE Henry Button
+HG M. Hilay Gent
+HH Herman Hardenberg
+HN Hiroko Naka
+HU Shu
+HW Antony Hewish
+IH Isobel Hawking
+IN Igor Novikov
+IO Iolanta
+IR Irene
+IS Inigo Shaffer
+IV Ivanenko
+JA Jane
+JB Jim Bardeen
+JC John Christian
+JD Joy Cadbury
+JE Jean-Pierre Elkabbach
+JF James Fitzsimons
+JH Jim Hartle
+JI John Ireland
+JJ Jonathan Jones
+JK Jack
+JL Judy Fella
+JM Jane's mother
+JN Jayant Narlikar
+JO Joan
+JP Jean Le Pen
+JR John Farman
+JS Jean Stark
+JT Janet
+JU Judy
+JV John Varey
+JW Jeannette Wheeler
+JY Jeremy Prynne
+KA Katrina
+KB Kate Bertram
+KE Kevin
+KH Khalatnikov
+KN Ken Naka
+KT Kip Thorne
+LA Alan Lapedes
+LC Lucy Cadbury
+LG Lucy Grace
+LH Leather
+LI Linda
+LL Allende
+LO Lola
+LP Lee Pearson
+LR Loraine
+LS Lydia Sciama
+LU Laura
+LW Laura Ward
+LX Lucy Grace
+LY Lucy
+LZ Lizzie
+MA Maria
+MC Mary Thatcher
+ME Maggie Ellis
+MG Margit Wigner
+MH Mary Hawking
+MI Michael Mair
+MJ Jane (Mariah)
+MK MirHiroko Nakaiam
+MN Ming
+MO Mr. Jo
+MR Maribel
+MT Mary Taylor
+MY Maurice Yaffe
+MI Mimi
+ML Madame Maillet
+MR Mariah
+MS Margaret Smithson
+MU Muriel
+MW Mary Whiting
+MY Murray Gell-Mann
+MZ John McClenahan
+NA Nancy
+NE Joseph Needham
+NG Nigel Weiss
+NH Nick Hughes
+NM Nikki Manatuna
+NP Nikolaus Pevsner
+NR Nick Warner
+NS Dan Stark
+NT Anat
+NW Nigel Wickens
+ON John Jones
+OW John Owens
+PA Peck Ang
+PC Peter De'Ath
+PD Paul Dirac
+PE Peter
+PG Polly Grand Montagne
+PH Philippa Hawking
+PI Pilar
+PK Peter Dronke
+PL Paul Lucas
+PM Pam
+PN Penelope
+PP Prínce Philip
+PR Pablo Neruda
+PS Prince Charles
+PT Pat
+PU Pilar de Ubeda
+RA Renata Galosh
+RB Robert Boyer
+RD Rob Donovan
+RE Martin Rees
+RG Robert Graves
+RH Robert George Hawking
+RK John Stark
+RL Ariel
+RM Ros Mays
+RP Roger Penrose
+RT Ruth Hughes
+RU Rus
+SA Samuel
+SB Susie Burns
+SC Subrahmanyan Chandrasekhar
+SE Sue Ellis
+SH Stephen Hawking
+SI Simpson
+SK Sylvie Teschke
+SM Stephen Armstrong
+SN Susan
+SO Solome
+SS Sue Smith
+SR Sara
+ST Jill Sturdy
+SU Susanne
+SV Stephen Harvey
+SW Swan
+SY Sylvia
+TA John C. Taylor
+TB Teulon-Porter
+TC Toby Church
+TD Jill Sturdy
+TE Teversham
+TF Thrift
+TG Thomas Gold
+TH Dorothy
+TI Timothy
+TM Mary Thatcher
+TN Jonathan
+TO Thomas Grace
+TP Toby Penrose
+TR Theresa
+TS Tricia Holmes
+TT Lucette
+TU John Sturdy
+TW Tom Wesley
+TX Thelma Thatcher
+TY Thomas Cadbury
+UR Ursula
+VB Valerie Broadbent-Keeble
+VG Vitaly Ginzburg
+VL Vladimir Belinsky
+VN Valentina Nikolaevna
+VP Vera Petrovna
+WB Winnie Brown
+WF Willy Fowler
+WI Constance Willis
+WL William
+WS Wilson
+WT William Thatcher
+YB Yakov Borisovich Zel'dovich
+YI Joyce Ireland
+YN Jocelyn Bell
+YS Yitzhak Shamir
+
+0:AT,JA;AT,JA
+0:AT,SH;AT,SH;AW,SH
+0:AD,JA;AD,JA;AD,JA;AD,SH
+0:AH,JJ;AX,LY
+0:AC,JA;AC,SH;AL,JA;AL,SH;AB,JA
+0:AN,JA;AN,JA;AN,SH
+0:AM,RH;AM,RH
+0:AE,KE;AE,TI;AE,TI;AU,JA
+0:BA,DK;BA,SH;BE,AE;BE,JA;BE,KE;BE,TI;BC,IO
+0:BC,JA;BC,JA
+0:BR,JA;BR,SH
+0:BW,MW;BW,MW;BW,MW;BL,JA;BL,PI;BI,CG;BI,RH;BI,SH;BD,AN;BD,JA;BD,SH;BT,CT;
+0:BT,JA;BT,JA
+0:BT,JB;BT,JB
+0:BT,SH;BT,SH;BT,SH;BT,SH;BT,SH;BT,SH
+0:BB,JA;BB,SH;CC,GH;CC,JA;CC,JA;CC,PE;CC,SH;CH,SH;CH,YS
+0:CM,JA;CM,JA;CM,SH;CM,SH;CM,SH;CM,SU;CW,NM;CP,GS;CP,MA;CR,JA;CI,JA;CI,TI;CS,JA;CS,RM;CN,TP;CO,JJ
+0:CO,PN;CO,PN;CO,RH;CO,SH;CE,AT;CE,JA;CE,JA;CE,SH;CE,SH;CK,JA;CD,JA;CD,JA;CL,LL;CL,PR
+0:WI,CC;DR,IS;DI,JA;DI,JI;DI,YI;DI,YI;DI,SH;DS,LS
+0:DS,SH;DS,SH;DS,SH
+0:DK,GL;DK,GL
+0:DK,JA;DK,JA;DK,JA;DK,JA;DK,JA
+0:DP,JA;DP,JA;DP,JA;DP,JA;DP,JA;DP,JJ;DP,KT
+0:DP,SH;DP,SH;DP,SH
+0:DN,JA;DN,JA;DN,JA;EH,SH;EM,JA
+0:EM,SH;EM,SH;EM,SH;EM,SH;EC,DK;EC,JA;Eva,JA;ES,JA
+0:FH,EH;FH,JA;FH,JA;FH,JA;FH,SH;FH,SH;
+0:FO,JN;FO,SH;FO,TG;GF,JA;GF,JA;GF,SH;GF,SH;GE,AY;GE,JA;GE,ME;GE,ME
+0:GE,SH;GE,SH;GE,SH;GE,SH;GE,SH;GG,JA;GG,RH;GA,JA;GA,PA
+0:GL,GF;GL,GF;GL,JA;GL,JA;GL,JA;GL,JA;GV,JA;GW,WI;HC,NT;HC,RL;HC,JA;HC,SA;HB,FO;HB,SH;HB,TG;HH,JA
+0:HH,JT;IN,SH;IO,SH;IR,JA;IR,JJ;IR,SR;IR,TI;IH,BG;
+0:IH,FH;IH,FH;IH,FH
+0:IH,JA;IH,JA;IH,JA;IH,JA;IH,JA;IH,JA;IH,JA;IH,JA;IH,JA;IH,RG
+0:IH,SH;IH,SH;IV,KT;JK,JM;JF,AU;JF,JA;JA,AR;JA,AH;JA,LA;JA,AZ;JA,AE
+0:JA,BW;JA,BW;JA,BI;JA,BI;JA,CG;JA,CW
+0:JA,CO;JA,CO;JA,CO;JA,CO;JA,CO
+0:JA,WI;JA,WI;JA,DS;JA,DW;JA,DU;JA,EF;JA,GT;JA,GA;JA,HN;JA,JT;JA,JS
+0:JA,JO;JA,JO;JA,JC
+0:JA,JR;JA,JR;JA,JV
+0:JA,JJ;JA,JJ;JA,JJ;JA,JJ;JA,JJ;JA,JJ;JA,JJ;JA,JJ;JA,JJ;JA,JJ;JA,JJ;JA,JJ;JA,JJ;JA,JJ;JA,JJ;JA,JJ;JA,JJ;JA,JJ;JA,JJ;JA,JJ;JA,JJ;JA,JJ
+0:JA,JD;JA,JD;JA,JD;JA,JL;JA,KN
+0:JA,LY;JA,LY;JA,LY;JA,LY;JA,LY;JA,LY;JA,LY;JA,LY;JA,LY;JA,LY;JA,LY;JA,LY;JA,LY;JA,LY;JA,LY;JA,LY;JA,LY;JA,LY;JA,LY;JA,LY;JA,LY
+0:JA,LS;JA,MS;JA,MS
+0:JA,MG;JA,MG;JA,MR;JA,RE;JA,MH;JA,MT;JA,MC
+0:JA,MW;JA,MW;JA,AS;JA,AS;JA,DC;JA,MU
+0:JA,NW;JA,NW;JA,NW;JA,NP;JA,PD;JA,PD;JA,PA;JA,PN;JA,PK
+0:JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH;JA,SH
+0:JA,SE;JA,SE;JA,SU;JA,SU;JA,SW;JA,SW;JA,TE
+0:JA,TI;JA,TI;JA,TI;JA,TI;JA,TI;JA,TI;JA,TI;JA,TI;JA,TI;JA,TI;JA,TI;JA,TI;JA,TI
+0:JA,TC;JA,UR;JA,VG;JA,WB;JS,NS;JW,JA;JW,SH;JE,JA;JE,JP;JY,SH;JB,NA;JH,SH;JO,CN;JO,RP;JO,TP;
+0:YN,HW;TA,MT;JC,ST;JR,SH;ON,IR;ON,JA;ON,JJ;ON,SR;ON,TI;RK,NS;RK,JA;RK,JS;RK,RH;TU,TD;TU,JC
+0:JJ,BW;JJ,BW;JJ,BI;JJ,BT;JJ,GT;JJ,JT;JJ,TT
+0:JJ,LY;JJ,LY;JJ,LY;JJ,LY;JJ,MW;JJ,RH
+0:JJ,SH;JJ,SH;JJ,SH;JJ,SH;JJ,SH
+0:NE,TH;JD,LC;JD,TY;YI,JA;YI,JI;YI,SH;JL,SH;KB,JA;KA,GG;KA,RH;KE,JA;KH,JA;KH,SH;KH,VN;KT,EL;
+0:KT,JA;KT,JA;KT,JA;KT,JA;KT,JA;KT,JA
+0:KT,LI;KT,RH;KT,SH;KT,SH;KT,SH;KT,SH;LW,JA;LW,SH
+0:LH,JA;LP,JA;LI,JA;LZ,LY;LO,AY;LO,GE;LO,ME;LO,SE;LR,HB;LR,RU;LR,SH;TT,BT;TT,BT;TT,CT
+0:TT,JA;TT,JA;TT,JA;LG,JD;LY,BI;LY,LC;LY,HU;LY,WL;HG,JA;ML,JA;ML,TN
+0:JM,JA;JM,JA;JM,JA;JM,JA;JM,JA;JM,JA;JM,JA;JM,JA;JM,JA;JM,JA;JM,JA;JM,JJ;JM,RH;JM,RH;ME,AY
+0:MR,MJ;MH,SH;MH,SH;MH,SH;MW,TI;MY,JA;MI,JA;MI,SO;MI,SH;MI,JA;MI,SH;MN,GA;MN,PA;DC,AW;
+0:MO,JA;MO,SH;MU,FH;MU,SH;MY,JA;MY,SH;NA,JA;NH,SH;NR,JA;NR,JA;NR,SH;NR,SH
+0:NG,JU;NW,AK;NW,LU;NM,JA;NM,SH;PR,LL;FA,HE
+0:FA,JA;FA,JA;FA,JA;FA,JA;FA,JA;FA,JA;FA,JA;FA,JA;FA,JA;FA,JA;FA,JA;FA,JA;FA,JA
+0:FA,OW;FA,JJ;FA,JM;FA,JM;FA,JM;FA,JM;PM,JA;PM,TR;PT,JA;PD,SH;PD,MG;PD,MG
+0:PL,JA;PL,SH;PN,JJ;PK,UR;PH,JA;PH,JA
+0:PH,SH;PH,SH;PH,SH;PH,SH;PU,JA;PU,JA;PU,MR;PI,JA;2PI,JA;PI,SY;PI,SY
+0:PP,JA;PP,RH;PP,TI;RA,AL;RA,JA;RA,SH;RD,MJ;RD,JA;RD,MR;RD,SH;RD,SH;RD,SH
+0:RB,JA;RB,JA;RB,SH;RB,SH;RH,NS
+0:RH,IS;RH,IS;RH,IS;RH,IS;RH,IS;RH,IS;RH,IS
+0:RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA;RH,JA
+0:RH,LG;RH,LY;RH,LY;RH,LY;RH,LY;RH,LY;RH,LY;RH,LY;RH,HU
+0:RH,SH;RH,SH;RH,SH;RH,SH;RH,SH;RH,SH;RH,SH;RH,SH;RH,SH;RH,SH;RH,SH;RH,SH;RH,SH;RH,SH
+0:RH,TY;RH,TO;RH,TI;RH,TI;RH,TI;RG,BG;RP,JA;RP,JA;RP,SH;RP,SH;RP,SH;RM,JA
+0:RU,SH;RU,SH;RT,JA;SR,JA;SR,JJ;SR,MK;HU,HN;HU,KN;SI,WI;SO,JA;SO,SH;SM,JA;SV,JA
+0:SH,LA;SH,LA;SH,LA;SH,LA;SH,LA;SH,AG;SH,AE
+0:SH,BC;SH,BC;SH,BC;SH,BC;SH,BC;SH,BC;SH,BC;SH,BW;SH,BW;SH,BL;SH,BH;SH,WI;SH,DK
+0:SH,GI;SH,GI;SH,GA;SH,GA;SH,GA;SH,JT;SH,JB;SH,JB;SH,JO;SH,MZ
+0:SH,LY;SH,LY;SH,LY;SH,LY;SH,LY;SH,LY;SH,LY;SH,LY;SH,JM;SH,TM
+0:SH,MW;SH,MW;SH,NG;SH,PA;SH,PA;SH,PC;SH,PG;SH,PS;SH,PP;SH,PP;SH,AO;SH,AO;SH,SE
+0:SH,SS;SH,SU;SH,SU;SH,SW;SH,SW;SH,SK;SH,TI;SH,TI;SH,VG;SC,AY;SC,GE
+0:SC,LO;SC,ME;SC,SE;SE,AY;SE,GE;SE,GE;SE,GE;SE,JA;SE,JA;SE,ME;SE,ME;SE,RH;SE,SH
+0:SN,GA;SN,MN;SN,PA;SB,JA;SB,SH;SY,JA;SY,JA
+0:TX,JA;TX,JA;TX,JA;TX,JA;TX,JA;TX,JA;TX,JA
+0:TX,CA;TX,GA;TX,TM;TX,PA;TX,SH;TX,SH;TX,TB;TR,JA;TY,LC;TO,JD
+0:TO,LX;TO,LX;TO,LY;TF,JA;TI,JJ;TI,JJ;TI,KE;TI,LP
+0:TI,LY;TI,LY;TI,SR;TW,SH;TS,JA;TS,LZ;VB,JA;VB,RH;VB,TI;VP,LY
+0:VL,KT;WT,JA;WT,JA;WT,TM;WF,JA;WF,SH;WS,JA;WS,JA;WS,RH;WS,TI;YB,IN;YS,SH
+* End of file "hawking.dat"
