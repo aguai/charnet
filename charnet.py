@@ -2,9 +2,11 @@
 from optparse import OptionParser
 import logging
 import math
-import networkx as nx
 import matplotlib.pyplot as plt
+import networkx as nx
+import numpy
 import pygraphviz as pgv
+
 from book import *
 
 # to calculate Pearson correlation
@@ -18,7 +20,21 @@ def format_book_label(name):
 
         """
         return '\emph{' + name.title() + '}'
+
+def pre_process_centralities(books):
+        """
+        Calculate centralities and store in associative array.
+        """
+        # PRE-processing
+        f = open('lobby.log', 'w') # log file, used to debug the results
+	for book in books:
+                book.calc_normalized_centralities()
+		## Already do the assignment of lobby value to each vertex                
+		book.calc_graph_vertex_lobby(f)
+        f.close
         
+
+
 def write_hapax_legomena_table(books):
         """"Hapax Legomena The write_hapax_legomena_table() function write the
         _Hapax_ frequency to be included in the paper using LaTeX
@@ -96,11 +112,11 @@ def write_global_measures(books):
 
 	f.write('{\small\\begin{tabular}{l|c|c|c|c|c}\\hline\n')
 	f.write('\\bf\\hfil Book\\hfil '
-                + ' & \\bf\\hfil Nodes\hfil '
-                + ' & \\bf\\hfil Edges\hfil '
-                + ' & \\hfil $\\bf\\left\\langle K_i\\right\\rangle$\\hfil '
-                + ' & \\hfil $\\bf\\left\\langle CC \\right\\rangle$ \\hfil '
-		+ ' & \\bf\\hfil Density\\hfil '
+                + ' & \\bf\\hfil N\hfil '
+                + ' & \\bf\\hfil Links\hfil '
+                + ' & \\hfil $\\bf K  $\\hfil '
+                + ' & \\hfil $\\bf CC $\\hfil '
+		+ ' & \\hfil $\\bf D  $\\hfil '
                 #+ ' & \\bf\\hfil diameter\\hfil '
                 + ' \\\\ \\hline\n '
         )
@@ -203,15 +219,9 @@ def plot_centralities(books):
         
 	offset_fig_nr = 1 # figure number starts after 1
 	centrs = ["Degree", "Betweenness", "Closeness"]
-        
-        # PRE-processing
-        f = open('lobby.log', 'w') # log file, used to debug the results
-	for book in books:
-                book.calc_normalized_centralities()
-		## Already do the assignment of lobby value to each vertex                
-		book.calc_graph_vertex_lobby(f)
-        f.close
-        
+
+        pre_process_centralities(books)
+
         for book in books:
                 G = book.G
                 fn = book.name + '-centralities.csv'
@@ -289,7 +299,43 @@ def plot_centralities(books):
 		plt.tight_layout()
 		plt.savefig(fn)
                 logging.info('- Wrote plot %s for %s centrality', fn, c)
+                f.close()
 
+def stat_centralities(books):
+        """
+        Calculate the mean and deviation for centralities for each book.
+        """
+        fn = 'centr.tex'
+        f = open(fn, "w")
+
+        centrs = ['Degree', 'Betweenness', 'Closeness', 'Lobby']
+
+        pre_process_centralities(books)
+
+        f.write("\\begin{tabular}{c|c|c|c|c}\hline\n")
+        f.write("Book & Degree & Betweenness & Closeness & Lobby \\\ \hline \n");
+        for book in books:
+                f.write(format_book_label(book.name) + ' & ')
+                G = book.G
+                for centr in centrs:
+                        vals = []
+                        for i in range(G.number_of_nodes()):
+                                vals.append(G.node[i][centr])
+
+                        m = numpy.mean(numpy.array(vals))
+                        std = numpy.std(numpy.array(vals))
+                        f.write('${0:.3f}'.format(m) + ' \pm ' '{0:.3f}'.format(std) + '$ ')
+                        if centr != 'Lobby':
+                                f.write(' & ')
+                        else:
+                                f.write(' \\\ ')
+                                if book.name == 'tolkien' and centr == 'Lobby':
+                                        f.write(' \hline')
+                f.write('\n')
+        f.write('\\end{tabular} \n')
+        logging.info('- Wrote %s', fn)
+        f.close()
+                
 def draw_graphs(books):
         """Graphs for the characters' encounters are drawn for visualization
         only using matplotlib and NetworkX.
@@ -329,6 +375,7 @@ if __name__ == "__main__":
 	acts = {'name': 'acts', 'source':'data', 'color': color['bible'], 'marker': '+'}
 	arthur = {'name': 'arthur', 'source':'data', 'color': color['fiction'], 'marker': '^'}
 	david = {'name': 'david', 'source':'sgb', 'color': color['fiction'], 'marker': 'v'}
+        hawking = {'name': 'hawking', 'source':'data', 'color': color['biography'], 'marker': 'o'}
 	hobbit = {'name': 'hobbit', 'source':'data', 'color': color['fiction'], 'marker': 'p'}
 	huck = {'name': 'huck', 'source':'sgb', 'color': color['fiction'], 'marker': 's'}
 	luke = {'name': 'luke', 'source':'data', 'color': color['bible'], 'marker': 'x'}
@@ -336,9 +383,7 @@ if __name__ == "__main__":
 	pythagoras = {'name': 'pythagoras', 'source':'data', 'color': color['biography'], 'marker': '*'}
 	tolkien = {'name': 'tolkien', 'source':'data', 'color': color['biography'], 'marker': 'd'}
 	
-	attrs = [acts, arthur, david, hobbit,
-	      	 huck, luke, newton,
-		 pythagoras, tolkien]
+	attrs = [acts, arthur, david, hawking, hobbit, huck, luke, newton, pythagoras, tolkien]
 
         # process command line arguments
         usage = "usage: %prog [options] arg"
@@ -362,6 +407,9 @@ if __name__ == "__main__":
         parser.add_option("-r", "--rank",
                           help="plot the ranking of characters frequencies generating the figures 1a and 1b",
                           action="store_true", dest="rank")
+        parser.add_option("-s", "--stat-centralities",
+                          help="generate statistics from centralities",
+                          action="store_true", dest="stat")
         
         (options, args) = parser.parse_args()
         
@@ -375,6 +423,7 @@ if __name__ == "__main__":
                 plot_rank_frequency(books)
                 plot_centralities(books)
                 draw_graphs(books)
+                stat_centralities(books)
         else:
                 if options.centralities:
                         plot_centralities(books)
@@ -386,3 +435,6 @@ if __name__ == "__main__":
                         write_hapax_legomena_table(books)
                 if options.rank:
                         plot_rank_frequency(books)
+                if options.stat:
+                        stat_centralities(books)
+                        
