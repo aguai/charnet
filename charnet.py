@@ -32,8 +32,6 @@ def pre_process_centralities(books):
 		## Already do the assignment of lobby value to each vertex                
 		book.calc_graph_vertex_lobby(f)
         f.close
-        
-
 
 def write_hapax_legomena_table(books):
         """"Hapax Legomena The write_hapax_legomena_table() function write the
@@ -211,95 +209,74 @@ def plot_centralities(books):
         """Centralities Lobby index centrality is calculated using function
         defined in lobby.py.  Degree, betweenness and closeness centralities
         are calculated using NetworkX. All measures are normalized.
-        
         """
-        plot_fns = {'Degree': 'figure2', 'Betweenness':'figure3', 'Closeness':'figure4'}
-        
-        logging.info('Plot centralities...')
+        logging.info('Plotting centralities...')
         
 	offset_fig_nr = 1 # figure number starts after 1
-	centrs = ["Degree", "Betweenness", "Closeness"]
+	centrs = ["Assortativity", "Betweenness", "Closeness", "Degree", "Lobby"]
 
-        pre_process_centralities(books)
+        fn = "Figure1.pdf"
+        
+	fig, ((ax0, ax1, ax2), (ax3, ax4, ax5), (ax6, ax7, ax8)) = plt.subplots(nrows=3, ncols=3)
+        axes = [ax0, ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8]
 
-        for book in books:
-                G = book.G
-                fn = book.name + '-centralities.csv'
-                f = open(fn, "w")
+        for b in books:
+                b.avg['Assortativity'] = nx.degree_assortativity_coefficient(b.G)
+                b.avg['Betweenness'] = b.get_avg_betweenness()
+                b.avg['Closeness'] = b.get_avg_closeness()
+                b.avg['Degree'] = b.get_avg_degree()
+                b.avg['Lobby'] = b.get_avg_lobby()
+        k = 0
+	for i in range(len(centrs)-1):
+                for j in range(i+1, len(centrs)):
+                        print centrs[i], i, 'x', centrs[j], j
+			name = ''
 
-                f.write("character;degree;betweenness,closeness;lobby\n");
-                for i in range(G.number_of_nodes()):
-                        ln = G.node[i]['name'] + ";"
-                        ln += '{0:.3f}'.format(G.node[i]['Degree']) + ";"
-                        ln += '{0:.3f}'.format(G.node[i]['Betweenness']) + ";"
-		        ln += '{0:.3f}'.format(G.node[i]['Closeness']) + ";"
-                        ln += '{0:.3f}'.format(G.node[i]['Lobby']) + "\n"
-                        f.write(ln)
-                f.close()
-                logging.info('- Wrote data %s' % fn )
-                        
-	for c in centrs:
-		fn = plot_fns[c] + ".pdf"
+                        #left = bottom = 100000.0
+                        #right = top = 0.0
 
-		fig, ((ax0, ax1, ax2), (ax3, ax4, ax5), (ax6, ax7, ax8)) = plt.subplots(nrows=3, ncols=3, sharex=True, sharey=True)
-                axes = [ax0, ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8]
-
-		for i in range(len(books)):
-                        G = books[i].G
-			name = books[i].name
-			color = books[i].color
-			marker = books[i].marker
-			xs = []
-			ys = []
-                        left = bottom = 100000.0
-                        right = top = 0.0
-                        
-			# load the centrality measures
-			for j in range(G.number_of_nodes()):
-				x = G.node[j][c]
-                                y = G.node[j]['Lobby']
-
-                                xs.append(x)
-                                ys.append(y)
-
-			marker_style = dict(linestyle='', color=color, markersize=6)
-			axes[i].plot(xs, ys, c=color,
-				    marker=marker,
-				    label=name,
-               			    alpha=0.3, 
+			marker_style = dict(linestyle='', markersize=6)
+                        for b in books:
+                                print '\t', b.avg[centrs[i]], ';', b.avg[centrs[j]]
+                                x = b.avg[centrs[i]]
+                                y = b.avg[centrs[j]]
+                        	axes[k].plot(x, y, c = b.color,
+				     marker = b.marker,
+				     label=name,
+               			     alpha=0.3,
 				    **marker_style)
-		        axes[i].grid(True)
+		        axes[k].grid(True)
+                        
+		        axes[k].set_xlabel(centrs[i])
+                        axes[k].set_ylabel(centrs[j])
 
-                        if (i>=6 and i<9):
-		                axes[i].set_xlabel(c)
-                        if (i % 3==0):
-		                axes[i].set_ylabel('Lobby')
-
-                        axes[i].text(0.5, 1.1, name.title() ,
+                        axes[k].text(0.5, 1.1, name.title() ,
                                      style='italic',
                                      horizontalalignment='center',
                                      verticalalignment='center',
-                                     fontsize=10, color='gray',
+                                     fontsize=8, color='gray',
                                      transform=axes[i].transAxes)
 
                         # calculate Pearson correlation
-                        (r_row, p_value) = pearsonr(xs, ys)
-                        print name, r_row, p_value
+                        #  (r_row, p_value) = pearsonr(xs, ys)
+                        #  print name, r_row, p_value
                         # write Pearson correlation in the plot
-                        axes[i].text(.675, .875, '$r=$'+'{0:.3f}'.format(r_row),
-                        horizontalalignment='center',
-                        verticalalignment='center',
-                        fontsize=10, color='black',
-                        transform=axes[i].transAxes)
-                        
-		plt.xscale('log')   			       			       
-		plt.yscale('log')
+                        # axes[i].text(.675, .875, '$r=$'+'{0:.3f}'.format(r_row),
+                        # horizontalalignment='center',
+                        # verticalalignment='center',
+                        # fontsize=10, color='black',
+                        # transform=axes[i].transAxes)
+                        k = k + 1
+                        if k == 8:
+                                break
+		#plt.xscale('log')   			       			       
+		#plt.yscale('log')
 		#plt.legend()
-                fig.subplots_adjust(hspace=0)
-		plt.tight_layout()
-		plt.savefig(fn)
-                logging.info('- Wrote plot %s for %s centrality', fn, c)
-                f.close()
+      
+        fig.subplots_adjust(hspace=0)
+	plt.tight_layout()
+	plt.savefig(fn)
+        logging.info('- Wrote plot %s', fn)
 
 def stat_centralities(books):
         """
@@ -369,22 +346,8 @@ if __name__ == "__main__":
         
         """
         books = []
-	color = {'bible': 'red', 'fiction': 'blue', 'biography': 'darkgreen'}
         flags = 0
         
-	acts = {'name': 'acts', 'source':'data', 'color': color['bible'], 'marker': '+'}
-	arthur = {'name': 'arthur', 'source':'data', 'color': color['fiction'], 'marker': '^'}
-	david = {'name': 'david', 'source':'sgb', 'color': color['fiction'], 'marker': 'v'}
-        hawking = {'name': 'hawking', 'source':'data', 'color': color['biography'], 'marker': 'o'}
-	hobbit = {'name': 'hobbit', 'source':'data', 'color': color['fiction'], 'marker': 'p'}
-	huck = {'name': 'huck', 'source':'sgb', 'color': color['fiction'], 'marker': 's'}
-	luke = {'name': 'luke', 'source':'data', 'color': color['bible'], 'marker': 'x'}
-	newton = {'name': 'newton', 'source':'data', 'color': color['biography'], 'marker': '.'}
-	pythagoras = {'name': 'pythagoras', 'source':'data', 'color': color['biography'], 'marker': '*'}
-	tolkien = {'name': 'tolkien', 'source':'data', 'color': color['biography'], 'marker': 'd'}
-	
-	attrs = [acts, arthur, david, hawking, hobbit, huck, luke, newton, pythagoras, tolkien]
-
         # process command line arguments
         usage = "usage: %prog [options] arg"
         parser = OptionParser(usage)
@@ -413,9 +376,7 @@ if __name__ == "__main__":
         
         (options, args) = parser.parse_args()
         
-	for i in range(len(attrs)):
-	    cn = Book(attrs[i]['name'], attrs[i]['source'], attrs[i]['color'], attrs[i]['marker'])
-	    books.append(cn)
+	books = Book.get_books()
 
         if options.all_tasks:
                 write_global_measures(books)
