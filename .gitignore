@@ -1,3 +1,6 @@
+# emacs backup
+.#*
+
 # project output
 *.dot
 *.csv
