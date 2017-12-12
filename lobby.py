@@ -57,6 +57,7 @@ def lobby(G, log_file=None):
         
         lobbies.append(G.node[u]['Lobby'])
 
-    log_file.flush()
+    if log_file:
+        log_file.flush()
     return lobbies
             
