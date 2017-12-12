@@ -10,6 +10,24 @@ class Book(object):
         FREQ_EXTENSION = ".freq"
         DATA_FILE_EXTENSION = ".dat"
         COMMENT_TOKEN = '*'
+        color = {'bible': 'red', 'fiction': 'blue', 'biography': 'darkgreen'}
+        
+        @classmethod
+        def get_books(cls):
+                acts = Book('acts', 'data', cls.color['bible'], '+')
+                arthur = Book('arthur', 'data',  cls.color['fiction'], '^')
+                david = Book('david', 'sgb', cls.color['fiction'], 'v')
+                hawking = Book('hawking', 'data', cls.color['biography'], 'o')
+                hobbit = Book('hobbit', 'data',  cls.color['fiction'], 'p')
+                huck = Book('huck', 'sgb', cls.color['fiction'], 's')
+                luke = Book('luke', 'data', cls.color['bible'], 'x')
+                newton = Book('newton', 'data',  cls.color['biography'],  '.')
+                pythagoras = Book('pythagoras', 'data',  cls.color['biography'], '*')
+                tolkien = Book('tolkien', 'data', cls.color['biography'], 'd')
+                
+                books = [acts, arthur, david, hawking, hobbit, huck, luke, newton, pythagoras, tolkien]
+
+                return books
         
         def __init__(self, name,
                      data_directory='data',
@@ -52,6 +70,9 @@ class Book(object):
                 self.name_freqs = {} # map character names and their frequencies
                 self.G = None
 
+                # load the average
+                self.avg = {}
+                
                 # graph properties
                 self.degs_componentSizes = []
                 
@@ -92,7 +113,7 @@ class Book(object):
                 
                 Returns
                 -------
-                igraph graph
+                networkx graph
                 """
                 self.code_names = {}
                 name_idxs = {}
@@ -173,7 +194,7 @@ class Book(object):
                 G = nx.Graph()
                 G.graph['name'] = self.name
                 
-		# add and name the vertices
+		# name the vertices
 		for name, idx in name_idxs.items():
 		    	G.add_node(idx, name=name)
 			
@@ -196,17 +217,46 @@ class Book(object):
         def calc_graph_vertex_lobby(self, log_file=None):
                 lobby(self.G, log_file)
 
-        def Tick(self, G):
-                G
-                deg = 0
+        def get_avg_lobby(self, log_file=None):
+                '''Return the average Lobby index of the book characters'''
+                lobby(self.G, log_file)
+                acc = 0.0
+                N = self.G.number_of_nodes()
+		for i in range(N):
+                        acc = acc + self.G.node[i]['Lobby']
 
-                for i in range(G.number_of_nodes()):
-                        deg += G.degree(i)
-                avg = float(deg)/G.number_of_nodes()
+                return float(acc) / N
 
-                # TODO COMPONENT
-                #self.degs_componentSizes.append([avg, G.components().size(0)])
+        def get_avg_degree(self):
+                '''Return the average degree of the book characters'''
+                acc = 0.0
+                N = self.G.number_of_nodes()
+                degs = nx.degree_centrality(self.G)
+		for i in range(N):
+                        acc = acc + degs[i]
 
+                return float(acc) / N
+
+        def get_avg_betweenness(self):
+                '''Return the average betweenness of the book characters'''
+                acc = 0.0
+                N = self.G.number_of_nodes()
+		bets = nx.betweenness_centrality(self.G)
+		for i in range(N):
+			acc =  acc + bets[i]
+
+                return acc / N
+
+        def get_avg_closeness(self):
+                '''Return the average closeness of the book characters'''
+                acc = 0.0
+                N = self.G.number_of_nodes()
+                closes = nx.closeness_centrality(self.G)
+                for i in range(N):
+		        acc = acc + closes[i]
+
+                return acc / N
+        
         def calc_normalized_centralities(self):
 		# DEGREE
                 degs = nx.degree_centrality(self.G)                
@@ -222,11 +272,15 @@ class Book(object):
                 closes = nx.closeness_centrality(self.G)
                 for i in range(self.G.number_of_nodes()):
 		        self.G.node[i]['Closeness']   = closes[i]
+                        
+        def Tick(self, G):
+                G
+                deg = 0
 
-if __name__ == "__main__":
-        anna = Book('anna', 'sgb', '.dat', 'blue')
-        acts = Book('acts', 'data', '.dat', 'red')
-        david = Book('david', 'sgb', '.dat', 'cyan')
-        huck = Book('huck', 'sgb', '.dat', 'brown')
-        luke = Book('luke', 'data', '.dat', 'green')
-        books = [acts, anna, david, huck, luke]
+                for i in range(G.number_of_nodes()):
+                        deg += G.degree(i)
+                avg = float(deg)/G.number_of_nodes()
+
+                # TODO COMPONENT
+                #self.degs_componentSizes.append([avg, G.components().size(0)])
+
