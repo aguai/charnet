@@ -1,8 +1,9 @@
-* File "acts.dat" from Characters Network project (C) 2017 University of Sao Paulo, Brazil
+* File "apollonius.dat" from Characters Network project (C) 2017 University of Sao Paulo, Brazil
 * "The Life of Apollonius of Tyana" in two volumes
 * Philostratus, with an english translation by F. C. Conybeare
 * In the edge section, in the enumeration as 1.2, the 1 indicates volume and 2 chapter
 * This file may be freely copied.
+AB Apollonius' brother
 AF Apollonius' father
 AM Apollonius' mother
 AP Apollonius of Tyana
@@ -26,3 +27,5 @@ RU (a) ruffian man addicted to infamous forms of passion
 1.10:AP,PS;AS,PR
 1.11:AP,PS
 1.12:RU,AP
+1.13:AB,AP
+1.14:EX,AP
