@@ -15,13 +15,12 @@ from scipy.stats.stats import pearsonr
 # INIT
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
 
-def format_book_label(name):
+def __format_book_label(name):
         """Format the label of the book to print in table or plot.
-
         """
         return '\emph{' + name.title() + '}'
 
-def pre_process_centralities(books):
+def __pre_process_centralities(books):
         """
         Calculate centralities and store in associative array.
         """
@@ -37,7 +36,6 @@ def write_hapax_legomena_table(books):
         """"Hapax Legomena The write_hapax_legomena_table() function write the
         _Hapax_ frequency to be included in the paper using LaTeX
         syntax for tables.
-
         """
 	fn = 'legomenas.tex'
 
@@ -51,17 +49,14 @@ def write_hapax_legomena_table(books):
                 nr_dis = book.get_number_dis_legomenas()                
                 nr_chars = book.get_number_characters()
 
-                ln = format_book_label(book.name) + " & "
+                ln = __format_book_label(book.name) + " & "
                 ln += '{0:02d}'.format(nr_hapaxes) + "/"
                 ln += '{0:02d}'.format(nr_chars) + " = "
                 ln += '{0:.3f}'.format(float(nr_hapaxes)/nr_chars) 
-
                 ln += ' & '
-                
                 ln += '{0:02d}'.format(nr_dis) + "/"
                 ln += '{0:02d}'.format(nr_chars) + " = "
                 ln += '{0:.3f}'.format(float(nr_dis)/nr_chars) 
-                
                 ln +=" \\\\\n"
                 
 		f.write(ln)
@@ -70,10 +65,9 @@ def write_hapax_legomena_table(books):
 	f.close()
         logging.info('- Wrote %s'% fn)
 
-def degree_stat(G):
+def __degree_stat(G):
         """Calculate the average degree and the standard deviation degree.
         Source: http://holanda.xyz/files/mean.c
-        
         """
         avg_prev = float(G.degree(0))
         var_prev = 0
@@ -90,17 +84,13 @@ def degree_stat(G):
         return (avg_curr, stdev)
         
 def write_global_measures(books):
-        """ Global measures for each character network are written as a table and
+        """Global measures for each character network are written as a table and
         included in a LaTeX file named `global.tex` to be included in the
         manuscript.
         Clustering coefficient is calculated using _NetworkX_ library
-        [transitivity](https://networkx.github.io/documentation/networkx-1.10/reference/generated/networkx.algorithms.cluster.transitivity.html#networkx.algorithms.cluster.transitivity)
+        [average clustaring]https://networkx.github.io/documentation/networkx-1.9/reference/generated/networkx.algorithms.cluster.average_clustering.html#networkx.algorithms.cluster.average_clustering
         routine.  We also calculate
-        [density](https://networkx.github.io/documentation/networkx-1.9/reference/generated/networkx.classes.function.density.html)
-        and
-        [diameter](https://networkx.github.io/documentation/networkx-1.10/reference/generated/networkx.algorithms.distance_measures.diameter.html)
-        of the graph.
-
+        [density](https://networkx.github.io/documentation/networkx-1.9/reference/generated/networkx.classes.function.density.html).
         """
         logging.info('Writing global measures...')
         
@@ -115,23 +105,17 @@ def write_global_measures(books):
                 + ' & \\hfil $\\bf K  $\\hfil '
                 + ' & \\hfil $\\bf CC $\\hfil '
 		+ ' & \\hfil $\\bf D  $\\hfil '
-                #+ ' & \\bf\\hfil diameter\\hfil '
                 + ' \\\\ \\hline\n '
         )
 	for book in books:
                 G = book.G
-	        G.graph['clustering'] = nx.transitivity(book.G)
+	        G.graph['clustering'] = nx.average_clustering(book.G)
 	        G.graph['density'] = nx.density(book.G)
 
-                #if (nx.is_connected(G)==True):
-                #        G.graph['diameter'] = nx.diameter(book.G)
-                #else:
-                #        G.graph['diameter'] = '$\infty$'
-
-                (deg_avg, deg_stdev) = degree_stat(G)
+                (deg_avg, deg_stdev) = __degree_stat(G)
                 
                 # OUTPUT
-                ln = format_book_label(book.name) + ' & '
+                ln = __format_book_label(book.name) + ' & '
                 ln += str(G.number_of_nodes()) + ' & '
                 ln += str(G.number_of_edges()) + ' & '
                 ln += '{0:.2f}'.format(deg_avg) + '$\\pm$' + '{0:.2f}'.format(deg_stdev) + ' & '
@@ -149,9 +133,8 @@ def write_global_measures(books):
 def plot_rank_frequency(books, normalize=True):
         """Ranking frequency Character appearance frequency is ranked in the
         y axis. The scale for y axis is logarithmic.
-        
         """
-        logging.info('Plot rank x frequency...')
+        logging.info('Plotting rank x frequency...')
         
 	fns = ['figure1a.pdf', 'figure1b.pdf']
 	normalizes = [False, True]
@@ -226,23 +209,21 @@ def plot_centralities(books):
                 b.avg['Closeness'] = b.get_avg_closeness()
                 b.avg['Degree'] = b.get_avg_degree()
                 b.avg['Lobby'] = b.get_avg_lobby()
+
         k = 0
 	for i in range(len(centrs)-1):
                 for j in range(i+1, len(centrs)):
-                        print centrs[i], i, 'x', centrs[j], j
-			name = ''
 
                         #left = bottom = 100000.0
                         #right = top = 0.0
 
 			marker_style = dict(linestyle='', markersize=6)
                         for b in books:
-                                print '\t', b.avg[centrs[i]], ';', b.avg[centrs[j]]
                                 x = b.avg[centrs[i]]
                                 y = b.avg[centrs[j]]
                         	axes[k].plot(x, y, c = b.color,
 				     marker = b.marker,
-				     label=name,
+				     label=b.name,
                			     alpha=0.3,
 				    **marker_style)
 		        axes[k].grid(True)
@@ -250,13 +231,29 @@ def plot_centralities(books):
 		        axes[k].set_xlabel(centrs[i])
                         axes[k].set_ylabel(centrs[j])
 
-                        axes[k].text(0.5, 1.1, name.title() ,
+                        axes[k].text(0.5, 1.1, '' ,
                                      style='italic',
                                      horizontalalignment='center',
                                      verticalalignment='center',
                                      fontsize=8, color='gray',
                                      transform=axes[i].transAxes)
 
+                        if k==0:
+                                axes[k].legend(loc='upper right', fontsize=4)
+                        
+                        # fix number colision problems
+                        if centrs[i] == 'Assortativity':
+                                start, end = axes[k].get_xlim()
+                                axes[k].xaxis.set_ticks(numpy.arange(start, end, 0.1))
+                        elif centrs[i] == 'Betweenness':
+                                start, end = axes[k].get_xlim()
+                                axes[k].xaxis.set_ticks(numpy.arange(start, end, 0.02))
+                        elif centrs[i] == 'Closeness':
+                                start, end = axes[k].get_xlim()
+                                axes[k].xaxis.set_ticks(numpy.arange(start, end, 0.1))
+                        else: # Degree
+                                start, end = axes[k].get_xlim()
+                                axes[k].xaxis.set_ticks(numpy.arange(start, end, 0.05))
                         # calculate Pearson correlation
                         #  (r_row, p_value) = pearsonr(xs, ys)
                         #  print name, r_row, p_value
@@ -287,12 +284,12 @@ def stat_centralities(books):
 
         centrs = ['Degree', 'Betweenness', 'Closeness', 'Lobby']
 
-        pre_process_centralities(books)
+        __pre_process_centralities(books)
 
         f.write("\\begin{tabular}{c|c|c|c|c}\hline\n")
         f.write("Book & Degree & Betweenness & Closeness & Lobby \\\ \hline \n");
         for book in books:
-                f.write(format_book_label(book.name) + ' & ')
+                f.write(__format_book_label(book.name) + ' & ')
                 G = book.G
                 for centr in centrs:
                         vals = []
