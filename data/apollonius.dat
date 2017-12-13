@@ -1,0 +1,21 @@
+* File "acts.dat" from Characters Network project (C) 2017 University of Sao Paulo, Brazil
+* "The Life of Apollonius of Tyana" in two volumes
+* Philostratus, with an english translation by F. C. Conybeare
+* In the edge section, in the enumeration as 1.2, the 1 indicates volume and 2 chapter
+* This file may be freely copied.
+AF Apollonius' father
+AM Apollonius' mother
+AP Apollonius of Tyana
+DM Damis
+EJ empress Julia
+EU Euthydemus, Apollonius' teacher from Phoenicia
+EX Euxenus, Apollonius' teacher of the Pythagorean system
+KD kinsman of Damis
+PH Philostratus
+PR Proteus
+
+1.3:DM,AP;KD,EJ;PH,EJ
+1.4:AM,PR
+1.5:AM,AP
+1.7:AF,AP,EU;AP,EX
+
