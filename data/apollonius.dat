@@ -6,6 +6,7 @@
 AF Apollonius' father
 AM Apollonius' mother
 AP Apollonius of Tyana
+AS Asclepius, the god of medicine
 DM Damis
 EJ empress Julia
 EU Euthydemus, Apollonius' teacher from Phoenicia
@@ -13,9 +14,15 @@ EX Euxenus, Apollonius' teacher of the Pythagorean system
 KD kinsman of Damis
 PH Philostratus
 PR Proteus
+PS (a) priest
+RU (a) ruffian man addicted to infamous forms of passion
 
 1.3:DM,AP;KD,EJ;PH,EJ
 1.4:AM,PR
 1.5:AM,AP
 1.7:AF,AP,EU;AP,EX
-
+1.8:EX,AP
+1.9:AS,AP
+1.10:AP,PS;AS,PR
+1.11:AP,PS
+1.12:RU,AP
