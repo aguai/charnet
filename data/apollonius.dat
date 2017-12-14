@@ -14,6 +14,7 @@ DM Damis
 EJ empress Julia
 EU Euthydemus, Apollonius' teacher from Phoenicia
 EX Euxenus, Apollonius' teacher of the Pythagorean system
+FS Babylon frontier satrap
 GO governor of Aspendus
 KD kinsman of Damis
 LA Ladon
@@ -22,6 +23,7 @@ PR Proteus
 PS (a) priest
 RU (a) ruffian man addicted to infamous forms of passion
 SW shorthand writer
+TG tax-gatherer who presided over the Bridge (Zeugma)
 
 1.3:DM,AP;KD,EJ;PH,EJ
 1.4:AM,PR
@@ -38,3 +40,5 @@ SW shorthand writer
 1.16:AP,LA
 1.18:AP,SW,CA
 1.19:AP,DA
+1.20:TG,AP
+1.21:AP,FS
