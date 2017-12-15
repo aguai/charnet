@@ -9,6 +9,7 @@ AM Apollonius' mother
 AP Apollonius of Tyana
 AS Asclepius, the god of medicine
 CA calligraphist
+CQ (a) certain quibler
 DA Damis, a native of Nineveh
 DM Damis
 EJ empress Julia
@@ -16,6 +17,7 @@ EU Euthydemus, Apollonius' teacher from Phoenicia
 EX Euxenus, Apollonius' teacher of the Pythagorean system
 FS Babylon frontier satrap
 GO governor of Aspendus
+HU huntsmen
 KD kinsman of Damis
 LA Ladon
 PH Philostratus
@@ -42,3 +44,5 @@ TG tax-gatherer who presided over the Bridge (Zeugma)
 1.19:AP,DA
 1.20:TG,AP
 1.21:AP,FS
+1.22:AP,SW,CA,HU;AP,DA
+1.23:AP,DA
