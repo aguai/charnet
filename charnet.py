@@ -4,7 +4,7 @@ import logging
 import math
 import matplotlib.pyplot as plt
 import networkx as nx
-import numpy
+import numpy as np
 import pygraphviz as pgv
 
 from book import *
@@ -15,6 +15,9 @@ from scipy.stats.stats import pearsonr
 # INIT
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
 
+def __raw_format_book_label(name):
+        return name.title()
+        
 def __format_book_label(name):
         """Format the label of the book to print in table or plot.
         """
@@ -82,7 +85,40 @@ def __degree_stat(G):
         stdev = math.sqrt(var_curr/(G.number_of_nodes() - 1))
 
         return (avg_curr, stdev)
+
+def _plot_density(books):
+        fn = 'fig_density.pdf'
+        Ds = []
+        xticklabels = []
         
+        f = open(fn, "w")
+
+        for book in books:
+                G = book.G
+
+                D = nx.density(G)
+
+                # OUTPUT
+                xticklabels.append(__raw_format_book_label(book.name))
+                Ds.append(D)
+
+        fig, ax = plt.subplots()
+        N = len(books)
+        ind = np.arange(N)  # the x locations for the groups
+        width = 0.35       # the width of the bars
+        rects = ax.bar(ind, tuple(Ds), width, color='0')
+
+
+        # add some text for labels, title and axes ticks
+        ax.set_ylabel('Density')
+        ax.set_title('')
+        ax.set_xticks(ind + width / 2)
+        ax.set_xticklabels(tuple(xticklabels), fontsize=6)
+        plt.savefig(fn)
+
+        logging.info('- Wrote %s'% fn)
+
+
 def write_global_measures(books):
         """Global measures for each character network are written as a table and
         included in a LaTeX file named `global.tex` to be included in the
@@ -104,8 +140,7 @@ def write_global_measures(books):
                 + ' & \\bf\\hfil Links\hfil '
                 + ' & \\hfil $\\bf K  $\\hfil '
                 + ' & \\hfil $\\bf CC $\\hfil '
-		+ ' & \\hfil $\\bf D  $\\hfil '
-                + ' \\\\ \\hline\n '
+		+ ' \\\\ \\hline\n '
         )
 	for book in books:
                 G = book.G
@@ -120,8 +155,6 @@ def write_global_measures(books):
                 ln += str(G.number_of_edges()) + ' & '
                 ln += '{0:.2f}'.format(deg_avg) + '$\\pm$' + '{0:.2f}'.format(deg_stdev) + ' & '
                 ln += '{0:.3f}'.format(book.G.graph['clustering']) + ' & '
-		ln += '{0:.3f}'.format(book.G.graph['density'])
-                #ln +=  " & " + str(book.G.graph['diameter'])
                 ln += "\\\\ \n"
                         
 		f.write(ln)
@@ -129,6 +162,8 @@ def write_global_measures(books):
 	f.write("\\hline\\end{tabular}}\n")        
 	f.close()
         logging.info('- Wrote %s'% fn)
+
+        _plot_density(books)
 
 def plot_rank_frequency(books, normalize=True):
         """Ranking frequency Character appearance frequency is ranked in the
