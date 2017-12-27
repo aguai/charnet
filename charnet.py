@@ -228,7 +228,7 @@ def plot_centralities(books):
         defined in lobby.py.  Degree, betweenness and closeness centralities
         are calculated using NetworkX. All measures are normalized.
         """
-        logging.info('Plotting centralities...')
+        logging.info('Plotting centralities...')                
         
 	offset_fig_nr = 1 # figure number starts after 1
 	centrs = ["Assortativity", "Betweenness", "Closeness", "Degree", "Lobby"]
@@ -238,12 +238,13 @@ def plot_centralities(books):
 	fig, ((ax0, ax1, ax2), (ax3, ax4, ax5), (ax6, ax7, ax8)) = plt.subplots(nrows=3, ncols=3)
         axes = [ax0, ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8]
 
+        lobbyf = open('lobby.centr.csv', 'w')
         for b in books:
                 b.avg['Assortativity'] = nx.degree_assortativity_coefficient(b.G)
                 b.avg['Betweenness'] = b.get_avg_betweenness()
                 b.avg['Closeness'] = b.get_avg_closeness()
                 b.avg['Degree'] = b.get_avg_degree()
-                b.avg['Lobby'] = b.get_avg_lobby()
+                b.avg['Lobby'] = b.get_avg_lobby(lobbyf)
 
         k = 0
 	for i in range(len(centrs)-1):
@@ -279,16 +280,16 @@ def plot_centralities(books):
                         # fix number colision problems
                         if centrs[i] == 'Assortativity':
                                 start, end = axes[k].get_xlim()
-                                axes[k].xaxis.set_ticks(numpy.arange(start, end, 0.1))
+                                axes[k].xaxis.set_ticks(np.arange(start, end, 0.1))
                         elif centrs[i] == 'Betweenness':
                                 start, end = axes[k].get_xlim()
-                                axes[k].xaxis.set_ticks(numpy.arange(start, end, 0.02))
+                                axes[k].xaxis.set_ticks(np.arange(start, end, 0.02))
                         elif centrs[i] == 'Closeness':
                                 start, end = axes[k].get_xlim()
-                                axes[k].xaxis.set_ticks(numpy.arange(start, end, 0.1))
+                                axes[k].xaxis.set_ticks(np.arange(start, end, 0.1))
                         else: # Degree
                                 start, end = axes[k].get_xlim()
-                                axes[k].xaxis.set_ticks(numpy.arange(start, end, 0.05))
+                                axes[k].xaxis.set_ticks(np.arange(start, end, 0.05))
                         # calculate Pearson correlation
                         #  (r_row, p_value) = pearsonr(xs, ys)
                         #  print name, r_row, p_value
@@ -309,6 +310,7 @@ def plot_centralities(books):
 	plt.tight_layout()
 	plt.savefig(fn)
         logging.info('- Wrote plot %s', fn)
+        lobbyf.close()
 
 def stat_centralities(books):
         """
