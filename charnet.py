@@ -86,34 +86,32 @@ def __degree_stat(G):
 
         return (avg_curr, stdev)
 
-def _plot_density(books):
-        fn = 'fig_density.pdf'
-        Ds = []
-        xticklabels = []
+def _plot_density_versus_clustering_coefficient(books):
+        fn = 'figure1.pdf'
+        xs = []
+        ys = []
         
         f = open(fn, "w")
 
         for book in books:
                 G = book.G
 
-                D = nx.density(G)
+                x = nx.density(G)
+                y = nx.average_clustering(G)
 
-                # OUTPUT
-                xticklabels.append(__raw_format_book_label(book.name))
-                Ds.append(D)
+	        marker_style = dict(linestyle=':', color=book.color, markersize=8)
+	        plt.plot(x, y, c=book.color,
+		        marker=book.marker,
+		        label=__raw_format_book_label(book.name),
+               	        alpha=0.3, 
+		        **marker_style)
 
-        fig, ax = plt.subplots()
-        N = len(books)
-        ind = np.arange(N)  # the x locations for the groups
-        width = 0.35       # the width of the bars
-        rects = ax.bar(ind, tuple(Ds), width, color='0')
-
-
-        # add some text for labels, title and axes ticks
-        ax.set_ylabel('Density')
-        ax.set_title('')
-        ax.set_xticks(ind + width / 2)
-        ax.set_xticklabels(tuple(xticklabels), fontsize=6)
+        plt.ylim(-0.1,0.8)
+        plt.xlabel('Density')
+        plt.ylabel('Clustering coefficient')
+        plt.grid()
+        plt.title('')
+        plt.legend(fontsize=7, loc='center right')
         plt.savefig(fn)
 
         logging.info('- Wrote %s'% fn)
@@ -124,7 +122,7 @@ def write_global_measures(books):
         included in a LaTeX file named `global.tex` to be included in the
         manuscript.
         Clustering coefficient is calculated using _NetworkX_ library
-        [average clustaring]https://networkx.github.io/documentation/networkx-1.9/reference/generated/networkx.algorithms.cluster.average_clustering.html#networkx.algorithms.cluster.average_clustering
+        [average clustering]https://networkx.github.io/documentation/networkx-1.9/reference/generated/networkx.algorithms.cluster.average_clustering.html#networkx.algorithms.cluster.average_clustering
         routine.  We also calculate
         [density](https://networkx.github.io/documentation/networkx-1.9/reference/generated/networkx.classes.function.density.html).
         """
@@ -163,7 +161,7 @@ def write_global_measures(books):
 	f.close()
         logging.info('- Wrote %s'% fn)
 
-        _plot_density(books)
+        _plot_density_versus_clustering_coefficient(books)
 
 def plot_rank_frequency(books, normalize=True):
         """Ranking frequency Character appearance frequency is ranked in the
