@@ -10,7 +10,7 @@ class Book(object):
         FREQ_EXTENSION = ".freq"
         DATA_FILE_EXTENSION = ".dat"
         COMMENT_TOKEN = '*'
-        color = {'bible': 'red', 'fiction': 'blue', 'biography': 'darkgreen'}
+        color = {'bible': 'black', 'fiction': 'grey', 'biography': 'black'}
         
         @classmethod
         def get_books(cls):
