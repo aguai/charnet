@@ -163,64 +163,6 @@ def write_global_measures(books):
 
         _plot_density_versus_clustering_coefficient(books)
 
-def plot_rank_frequency(books, normalize=True):
-        """Ranking frequency Character appearance frequency is ranked in the
-        y axis. The scale for y axis is logarithmic.
-        """
-        logging.info('Plotting rank x frequency...')
-        
-	fns = ['figure1a.pdf', 'figure1b.pdf']
-	normalizes = [False, True]
-
-	for k in range(len(fns)):
-		fig, ax = plt.subplots()
-
-		for book in books:
-			name = book.name
-			color = book.color
-			marker = book.marker
-	    		freqs = {}		
-			xs = []
-			ys = []
-			ys_normalized = []
-			max_freq = 0.0
-
-			x = 1
-			for character, freq in book.name_freqs.items():
-			    	y = int(freq)
-			    	xs.append(x)
-				ys.append(y)
-				x += 1
-
-				if (y > max_freq): 
-					max_freq = y 
-
-			ys = sorted(ys, key=int, reverse=True)
-
-			if (normalizes[k]==True):
-				# normalize y (frequency)
-				for i in range(len(ys)):
-					ys[i] = float(ys[i]) / float(max_freq)
-
-			marker_style = dict(linestyle=':', color=color, markersize=6)
-			ax.plot(xs, ys, c=color,
-			        marker=marker,
-			        label=name.title(),
-               		        alpha=0.3, 
-			        **marker_style)
-
-		plt.xscale('log')
-		ax.set_xlabel('Rank')
-		plt.yscale('log')
-		ax.set_ylabel('F(r)') # frequency
-
-		plt.rc('legend',fontsize=10)
-		ax.legend()
-		ax.grid(True)
-
-		plt.savefig(fns[k])
-                logging.info('- Wrote %s' % fns[k] )
-
 def plot_centralities(books):
         """Centralities Lobby index centrality is calculated using function
         defined in lobby.py.  Degree, betweenness and closeness centralities
