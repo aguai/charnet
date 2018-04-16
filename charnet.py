@@ -43,8 +43,8 @@ def write_hapax_legomena_table(books):
 	fn = 'legomenas.tex'
 
 	f = open(fn, "w")
-	f.write("\\begin{tabular}{l|c|c}\hline \n")
-	f.write("\\bf Book &  $\\bf HL^N=H/N$ & $\\bf DL^N=DL/N$ \\\\ \hline \n")
+	f.write("\\begin{tabular}{@{}ccc@{}}\\toprule \n")
+	f.write("\\bf Book &  $\\mathbf HL^N=H/N$ & $\\mathbf DL^N=DL/N$ \\\\ \\colrule \n")
 	
 	# count the lapaxes for each book
 	for book in books:
@@ -64,7 +64,7 @@ def write_hapax_legomena_table(books):
                 
 		f.write(ln)
 
-	f.write("\hline\end{tabular}\n")
+	f.write("\\botrule \\end{tabular}\n")
 	f.close()
         logging.info('- Wrote %s'% fn)
 
@@ -132,13 +132,13 @@ def write_global_measures(books):
 
 	f = open(fn, "w")
 
-	f.write('{\small\\begin{tabular}{l|c|c|c|c|c}\\hline\n')
+	f.write('{\small\\begin{tabular}{@{}cccccc@{}}\\toprule\n')
 	f.write('\\bf\\hfil Book\\hfil '
-                + ' & \\bf\\hfil N\hfil '
-                + ' & \\bf\\hfil Links\hfil '
-                + ' & \\hfil $\\bf K  $\\hfil '
-                + ' & \\hfil $\\bf CC $\\hfil '
-		+ ' \\\\ \\hline\n '
+                + ' & \\hfil \\hphantom{00} $\\mathbf N$ \\hphantom{00} \\hfil '
+                + ' & \\hfil \\bf Links\hfil '
+                + ' & \\hfil \\hphantom{0} $\\mathbf K$ \\hphantom{0} \\hfil '
+                + ' & \\hfil \\hphantom{0} $\\mathbf C_c$ \\hphantom{0} \\hfil '
+		+ ' \\\\ \\colrule\n'
         )
 	for book in books:
                 G = book.G
@@ -157,7 +157,7 @@ def write_global_measures(books):
                         
 		f.write(ln)
                 
-	f.write("\\hline\\end{tabular}}\n")        
+	f.write("\\botrule\\end{tabular}}\n")        
 	f.close()
         logging.info('- Wrote %s'% fn)
 
@@ -263,8 +263,8 @@ def stat_centralities(books):
 
         __pre_process_centralities(books)
 
-        f.write("\\begin{tabular}{c|c|c|c|c}\hline\n")
-        f.write("Book & Degree & Betweenness & Closeness & Lobby \\\ \hline \n");
+        f.write("\\begin{tabular}{@{}ccccc@{}}\\toprule\n")
+        f.write("\\bf Book &\\bf Degree &\\bf Betweenness &\\bf Closeness &\\bf Lobby \\\ \\colrule \n");
         for book in books:
                 f.write(__format_book_label(book.name) + ' & ')
                 G = book.G
@@ -281,7 +281,7 @@ def stat_centralities(books):
                         else:
                                 f.write(' \\\ ')
                                 if book.name == 'tolkien' and centr == 'Lobby':
-                                        f.write(' \hline')
+                                        f.write(' \\botrule')
                 f.write('\n')
         f.write('\\end{tabular} \n')
         logging.info('- Wrote %s', fn)
