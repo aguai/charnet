@@ -273,8 +273,8 @@ def stat_centralities(books):
                         for i in range(G.number_of_nodes()):
                                 vals.append(G.node[i][centr])
 
-                        m = numpy.mean(numpy.array(vals))
-                        std = numpy.std(numpy.array(vals))
+                        m = np.mean(np.array(vals))
+                        std = np.std(np.array(vals))
                         f.write('${0:.3f}'.format(m) + ' \pm ' '{0:.3f}'.format(std) + '$ ')
                         if centr != 'Lobby':
                                 f.write(' & ')
@@ -341,9 +341,9 @@ if __name__ == "__main__":
                           help="Write the frequency of hapax legomena, characters that "
                           +"appear only once in a table in a LaTeX file",
                           action="store_true", dest="hapax_legomena")
-        parser.add_option("-r", "--rank",
-                          help="plot the ranking of characters frequencies generating the figures 1a and 1b",
-                          action="store_true", dest="rank")
+#        parser.add_option("-r", "--rank",
+ #                         help="plot the ranking of characters frequencies generating the figures 1a and 1b",
+  #                        action="store_true", dest="rank")
         parser.add_option("-s", "--stat-centralities",
                           help="generate statistics from centralities",
                           action="store_true", dest="stat")
@@ -355,7 +355,7 @@ if __name__ == "__main__":
         if options.all_tasks:
                 write_global_measures(books)
                 write_hapax_legomena_table(books)
-                plot_rank_frequency(books)
+                #plot_rank_frequency(books)
                 plot_centralities(books)
                 draw_graphs(books)
                 stat_centralities(books)
@@ -368,8 +368,8 @@ if __name__ == "__main__":
                         write_global_measures(books)
                 if options.hapax_legomena:
                         write_hapax_legomena_table(books)
-                if options.rank:
-                        plot_rank_frequency(books)
+#                if options.rank:
+ #                       plot_rank_frequency(books)
                 if options.stat:
                         stat_centralities(books)
                         
