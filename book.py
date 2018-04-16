@@ -17,6 +17,7 @@ class Book(object):
                 acts = Book('acts', 'data', cls.color['bible'], '+')
                 arthur = Book('arthur', 'data',  cls.color['fiction'], '^')
                 david = Book('david', 'sgb', cls.color['fiction'], 'v')
+                david = Book('dick', 'data', cls.color['biography'], 'o')
                 hawking = Book('hawking', 'data', cls.color['biography'], 'o')
                 hobbit = Book('hobbit', 'data',  cls.color['fiction'], 'p')
                 huck = Book('huck', 'sgb', cls.color['fiction'], 's')
