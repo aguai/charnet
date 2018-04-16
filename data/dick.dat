@@ -1,0 +1,316 @@
+* File "acts.dat" from Characters Network project (C) 2018 University of Sao Paulo, Brazil
+* "A vida de Philip K. Dick" (The life of Philip K. Dick)
+* by Anthony Peake, Publisher Seoman, 2015, 296 pages
+* The data was gathered by Mariane Matias
+* This file may be freely copied.
+AB Anthony Boucher
+AC Al Capone
+AD Avram Davidson
+AE A. E. Van Vogt
+AH Anne Hackett
+AL Antonio Lombardo
+AM Arthur Marlin
+AN Anne
+AP Anthony Peake
+BC Bill Christensen
+BE Ben
+BH Barbara Hershey
+BN Bernie
+BR Betty Rivers
+BS Brad Steiger
+BZ Barry Spatz
+CH Christopher
+CZ Chris Zielger
+GD Grania Davidson
+DA Daisley
+DD Dorothy Dick
+DE Dorothea
+DG David Gerrold
+DI Diane
+DO Doris
+ED Edgar Dick (Ted)
+EK Earl Kindred
+EM Edna Matilda
+EN Eldon Nichols
+GC George Scruggs
+GD Grania Davidson
+GE Gertrude
+GL Gwen Lee
+GM George Smith
+GO George
+GR Gregg Rickmann
+GS Ginger Smith
+HE Harlan Ellison
+HF Hampton Fancher
+HH Herb Hollis
+HJ Honor Jackson
+HK Henry Korman
+HT Hatte
+IS Isa
+JA Jack
+JB Joseph Bogen
+JC Jack Spicer
+JH Joe Hudner
+JI Jamis
+JJ Jim Júnior
+JK Jerry Kresy
+JL John Locke
+JM Jeanette Marlin
+JN Joanne McMahon
+JO John (Kathy)
+JP James Pike
+JR John Boonstra
+JS Joan Simpson
+JT Joel Stein
+JU June Kresy
+JY Jayne
+KA Kathy
+KB Kevin Briggs
+KH Katy Heber
+KI Kirsten
+KL Kleo
+KR Karen
+LA Lynne Aalan
+LL Linda Levy
+LM Lydia Marlin
+LR Laura
+LV Leon Rimov
+MA Margo
+MD Michael Deeley
+MG Michael Gazzaniga
+MI Mick
+MK Mike
+MN Monica
+MO Marion
+MR Maren
+MW Michael Walsh
+NA Nancy
+NB Nita Busby
+NE Neal
+NM Norman Mini
+NS Norman Spinrad
+OH Olive Holt
+PA Paul Anderson
+PD Philip K. Dick
+PF Pat Flannery
+PL Philip Lamantia
+PW Paul Williams
+RC Richard
+RD Robert Duncan
+RG Russell Galen
+RI Rick
+RN Ray Nelson
+RS Roger Sperry
+RT Ray Torrence
+RZ Roger Zelazny
+SA Scott Apel
+SC Schmidt
+SE Serena
+SH Sue Hoglind
+SR Scott Ridley
+ST Stephanie
+SY Sydney
+SW Susan Walsh
+TA Tandy
+TE Tessa
+TH Tony Hiss
+TP Tim Powers
+VL Vince Lusby
+WE Wendell
+WM Willis McNelly
+WS William Sarrill
+
+0:AC,AL
+0:AH,MR;AH,MR
+0:AN,HT
+0:AN,JY
+0:AN,LA
+0:AN,NE
+0:AN,RC
+0:AN,TA
+0:AB,PD
+0:AP,MI
+0:AM,LM
+0:AD,PD
+0:AD,GD
+0:BH, HF
+0:BH,PD
+0:BH,TE
+0:BR,PD
+0:BC,PD
+0:BC,AN
+0:BS,PD
+0:CH,PD;CH,PD;CH,PD
+0:CH,TE;CH,TE
+0:DA,JP,1
+0:DG,TE
+0:DI,JP
+0:DO,NS
+0:DO,PD;DO,PD
+0:DO,TE;DO,TE
+0:DD,PD;DD,PD;DD,PD;DD,PD;DD,PD
+0:DD,AN
+0:DD,EK
+0:DD,ED;DD,ED;DD,ED
+0:DD,MO
+0:DD,NE
+0:ED,CH
+0:ED,DE
+0:ED,GE
+0:ED,TE
+0:EM,DD;EM,DD
+0:EM,EK
+0:EM,ED
+0:EM,PD
+0:EN,HH
+0:GO,PD
+0:GO,TE
+0:GO,LL
+0:GD,PD;GD,PD
+0:GD,RN
+0:GR,ED
+0:HF,MD
+0:HF,PD;HF,PD
+0:HF,TE
+0:HE,LL
+0:HT,JY
+0:HT,TA
+0:HK,PD;HK,PD
+0:HJ,NA
+0:JA,MA
+0:JP,JJ
+0:JJ,MR
+0:JP,NA
+0:JY,TA
+0:JM,PD
+0:JK,KL
+0:JN,PD
+0:JH,PD
+0:JH,AN
+0:JH,DD;JH,DD
+0:JH,LA;JH,LA
+0:JH,NE;JH,NE
+0:JO,PD
+0:JO,KA
+0:JL,BE
+0:JB,MG
+0:JU,JK
+0:KR,KL
+0:KR,PD
+0:KB,JS
+0:KI,AN
+0:KL,JU
+0:KL,NM
+0:KL,PD;KL,PD
+0:LR,ED
+0:LR,GE
+0:LV,PD
+0:LL,NS
+0:LA,TE
+0:LA,DD;LA,DD
+0:LA,NE
+0:LA,NE
+0:MO,ED
+0:MO,EM
+0:MO,JH
+0:MO,LA
+0:MA,NE
+0:MD,KH
+0:MW,SW
+0:NA,BN
+0:NA,IS,NA,IS
+0:NA,MR;NA,MR
+0:NA,MK
+0:NA,SC
+0:NB,GS
+0:NM,HH
+0:NM,PD
+0:NS,TE
+0:PF,HH
+0:PD,SH
+0:PD,AE
+0:PD,AH;PD,AH
+0:PD,AN;PD,AN
+0:PD,AN;PD,AN;PD,AN;PD,AN;PD,AN;PD,AN
+0:PD,BZ
+0:PD,ED;PD,ED;PD,ED
+0:PD,GC
+0:PD,GM
+0:PD,GS
+0:PD,GR
+0:PD,GL
+0:PD,HE;PD,HE
+0:PD,HH;PD,HH
+0:PD,IS;PD,IS
+0:PD,JC
+0:PD,JA
+0:PD,JP
+0:PD,JI
+0:PD,JK
+0:PD,JS
+0:PD,JS
+0:PD,JT
+0:PD,JR
+0:PD,JU
+0:PD,KA
+0:PD,KB
+0:PD,LR
+0:PD,LL;PD,LL;PD,LL
+0:PD,LA
+0:PD,MR;PD,MR
+0:PD,MA
+0:PD,MO
+0:PD,MW
+0:PD,NA;PD,NA;PD,NA;PD,NA
+0:PD,NE
+0:PD,NS;PD,NS;PD,NS;
+0:PD,OH
+0:PD,PW;PD,PW
+0:PD,PL
+0:PD,RN
+0:PD,RT;PD,RT
+0:PD,RD
+0:PD,RZ
+0:PD,RG
+0:PD,SR
+0:PD,TE;PD,TE;PD,TE;PD,TE;PD,TE;PD,TE;PD,TE
+0:PD,TP;PD,TP;PD,TP;PD,TP;PD,TP
+0:PD,VL
+0:PD,WM
+0:PD,SW;PD,SW
+0:PA,KR
+0:PA,KL
+0:PA,PD
+0:RN,PD;RN,PD;RN,PD
+0:RN,AN
+0:RN,KI
+0:RT,JS
+0:RC,HT
+0:RC,JY
+0:RC,TS
+0:RI,PD
+0:RS,JB
+0:RS,MG
+0:SA,JS
+0:SA,KB;SA,KB
+0:SA,PD
+0:SR,SY
+0:ST,PD
+0:ST,SW;ST,SW
+0:ST;WE
+0:SW,SE
+0:SW,WE
+0:TE,GS
+0:TE,NB
+0:TE,TP
+0:TP,CZ
+0:TP,LL
+0:TP,SE
+0:TP,SW
+0:TH,PD;TH,PD
+0:TH,HK;TH,HK
+0:VL,MN
+0:VL,AN
+0:WE,JM
+0:WS,PD,1
+* End of file "dick.dat"
